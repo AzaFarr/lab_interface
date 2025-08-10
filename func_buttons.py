@@ -1,26 +1,18 @@
 from tkinter import *
-import main_interface
 
-class ButtonMy(Button):
+class ButtonMy():
 
-    def __init__(self, master, text, command):
-
-        self.frame = master
-        self.text = text
-        self.command = command
-
-        Button.__init__(self, master=self.frame,
-                        text = self.text,
-                        command=self.command)
+    def __init__(self, button, window):
+        self.button = button
+        self.window = window
 
     def full_screen(self):
-        if self.text == "Полноэкранный режим":
-            self.frame.attributes("-fullscreen", True)
-            self.text = "Выйти из полноэкранного режима"
+        if self.button['text'] == "Полноэкранный режим":
+            self.window.attributes("-fullscreen", True)
+            self.button['text'] = "Выйти из полноэкранного режима"
         else:
-            self.frame.attributes("-fullscreen", False)
-            self.frame.geometry("1000x800")
-            self.text = "Полноэкранный режим"
-
+            self.window.attributes("-fullscreen", False)
+            self.window.geometry("1000x800")
+            self.button['text'] = "Полноэкранный режим"
 
 
