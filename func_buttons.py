@@ -7,6 +7,8 @@ class ButtonMy():
         self.window = window
 
     def full_screen(self):
+        """ function provides changing the screen format from full screen to not full and vice versa """
+
         if self.button['text'] == "Полноэкранный режим":
             self.window.attributes("-fullscreen", True)
             self.button['text'] = "Выйти из полноэкранного режима"
