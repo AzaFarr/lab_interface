@@ -17,6 +17,8 @@ class Viscos():
         self.VISCOS.rowconfigure(index=2, weight=1)
         self.VISCOS.rowconfigure(index=3, weight=10)
 
+        self.data_table = []
+
     def On(self):
         label_2 = ttk.Label(master=self.VISCOS, borderwidth=0, font=("Arial", 13), justify=LEFT, text="Сведения об экспериментах")
         label_2.grid(column=0, row=0, columnspan=2, sticky=NW, padx=5, pady=5)
@@ -34,16 +36,27 @@ class Viscos():
         table_exp.column("#3", width=100, minwidth=100, stretch=False)
 
         label_1 = ttk.Label(master=self.VISCOS, borderwidth=0, font=("Arial", 20), justify=LEFT, text="Показание с датчика")
-        label_1.grid(column=1, row=1, sticky=W, padx=30, pady=0)
+        label_1.grid(column=1, row=1, sticky=NW, padx=30, pady=0)
 
         enter_value = ttk.Entry(master=self.VISCOS, font=("Arial", 40), justify=LEFT, width=8)
-        enter_value.grid(column=1, row=1, sticky=SW, padx=30, pady=50)
+        enter_value.grid(column=1, row=1, sticky=NW, padx=30, pady=40)
+
+        button_1 = Button(master=self.VISCOS, text='Добавить')
+        root_button_1 = ButtonMy(button_1, self.VISCOS)
+        button_1.config(command=root_button_1.fill_table(table_exp, enter_value))
+        button_1.grid(column=1, row=1, sticky=NW, padx=30, pady=120)
+
+        self.data_table = root_button_1.DataTable
 
         self.VISCOS.pack(fill=BOTH, expand=True)
 
     @property
     def get(self):
         return self.VISCOS
+
+    @property
+    def data(self):
+        return self.data_table
 
 class Else_1():
 

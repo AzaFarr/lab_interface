@@ -36,3 +36,5 @@ notebook.add(ELSE_2.get, text="Еще че то")
 
 
 window.mainloop()
+
+print(VISCOS.data)
