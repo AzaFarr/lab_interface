@@ -5,8 +5,8 @@ from func_buttons import ButtonMy
 
 class Viscos():
 
-    def __init__(self):
-        self.VISCOS = ttk.Frame(borderwidth=3, relief=RAISED)
+    def __init__(self, notebook):
+        self.VISCOS = ttk.Frame(master=notebook, borderwidth=3, relief=RAISED)
 
         self.VISCOS.columnconfigure(index=0, weight=1)
         self.VISCOS.columnconfigure(index=1, weight=0)
@@ -68,8 +68,8 @@ class Viscos():
 
 class Else_1():
 
-    def __init__(self):
-        self.ELSE_1 = Frame(borderwidth=3, relief=RAISED)
+    def __init__(self,notebook):
+        self.ELSE_1 = Frame(notebook, borderwidth=3, relief=RAISED)
 
     def On(self):
         self.ELSE_1.pack(fill=BOTH, expand=True)
@@ -80,8 +80,8 @@ class Else_1():
 
 class Else_2():
 
-    def __init__(self):
-        self.ELSE_2 = Frame(borderwidth=3, relief=RAISED)
+    def __init__(self, notebook):
+        self.ELSE_2 = Frame(notebook, borderwidth=3, relief=RAISED)
 
     def On(self):
         self.ELSE_2.pack(fill=BOTH, expand=True)

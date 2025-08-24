@@ -7,6 +7,7 @@ class ButtonMy():
         self.button = button
         self.window = window
 
+        self.name_user = ""
         self.data_table = []
         self.i = 0
 
@@ -39,5 +40,22 @@ class ButtonMy():
     def DataTable(self):
         return self.data_table
 
+    def start_get_name(self, next_win, enter_value):
 
+        next_window = next_win
+        def command():
+            self.name_user = enter_value.get()
+            if self.name_user != "":
+                self.window.destroy()
+                next_window.On(self.name_user)
+            else:
+                start_label = Label(master=self.window, foreground="#B71C1C", font=("Arial", 10), justify=LEFT,
+                                        text="введите имя пожалуйста :(")
+                start_label.pack(anchor="nw")
+
+        return command
+
+    @property
+    def NameUser(self):
+        return self.name_user
 
