@@ -23,17 +23,25 @@ class Viscos():
         label_2 = ttk.Label(master=self.VISCOS, borderwidth=0, font=("Arial", 13), justify=LEFT, text="Сведения об экспериментах")
         label_2.grid(column=0, row=0, columnspan=2, sticky=NW, padx=5, pady=5)
 
+        table_frame = Frame(master=self.VISCOS)
+        table_frame.grid(column=0, row=1, sticky=NW, padx=5, pady=5)
+
         columns = ("1", "2", "3")
-        table_exp = ttk.Treeview(master=self.VISCOS, columns=columns, show="headings")
-        table_exp.grid(column=0, row=1, sticky=NW, padx=5, pady=5)
+        table_exp = ttk.Treeview(master=table_frame, columns=columns, show="headings")
+        table_exp.pack(side=LEFT, fill=BOTH, expand=True)
 
         table_exp.heading("1", text="№", anchor=W)
         table_exp.heading("2", text="Значение", anchor=W)
         table_exp.heading("3", text="Время", anchor=W)
 
         table_exp.column("#1", width=30, minwidth=30, stretch=False)
-        table_exp.column("#2", width=500, minwidth=100, stretch=True)
-        table_exp.column("#3", width=100, minwidth=100, stretch=False)
+        table_exp.column("#2", width=200, minwidth=200, stretch=True)
+        table_exp.column("#3", width=120, minwidth=120, stretch=False)
+
+        scrollbary = ttk.Scrollbar(master=table_frame, orient="vertical", command=table_exp.yview)
+        scrollbary.pack(side=RIGHT, fill=Y)
+        table_exp["yscrollcommand"] = scrollbary.set
+
 
         label_1 = ttk.Label(master=self.VISCOS, borderwidth=0, font=("Arial", 20), justify=LEFT, text="Показание с датчика")
         label_1.grid(column=1, row=1, sticky=NW, padx=30, pady=0)
