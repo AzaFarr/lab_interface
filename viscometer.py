@@ -54,10 +54,10 @@ class Viscos():
         button_1.config(command=root_button_1.fill_table(table_exp, enter_value))
         button_1.grid(column=1, row=1, sticky=NW, padx=30, pady=120)
 
-        button_2 = Button(master=self.VISCOS, text='Автоматический ввод')
+        button_2 = Button(master=self.VISCOS, text='Авто-ввод')
         root_button_2 = ButtonMy(button_2, self.VISCOS)
         button_2.config(command=root_button_2.auto_fill_table(table_exp, enter_value))
-        button_2.grid(column=1, row=1, sticky=N, padx=30, pady=120)
+        button_2.grid(column=1, row=1, sticky=NW, padx=100, pady=120)
 
         self.data_table = root_button_1.DataTable
 

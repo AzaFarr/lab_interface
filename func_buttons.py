@@ -9,7 +9,8 @@ class ButtonMy():
 
         self.name_user = ""
         self.data_table = []
-        self.i = 0
+        self.i: int = 0
+        self.auto_on: bool
 
 
     def full_screen(self):
@@ -40,7 +41,10 @@ class ButtonMy():
         """ function provides automatic entering data to table """
 
         def command():
-            pass
+            if self.button['text'] == "Авто-ввод":
+                self.button['text'] = "Прервать авто-ввод"
+            else:
+                self.button['text'] = "Авто-ввод"
 
         return command
 
