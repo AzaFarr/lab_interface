@@ -33,6 +33,14 @@ class ButtonMy():
             self.data_table.append(data_exp)
             table.insert("", END, values=data_exp)
 
+        return command
+
+    #TODO: develop this func
+    def auto_fill_table(self, table, enter_value):
+        """ function provides automatic entering data to table """
+
+        def command():
+            pass
 
         return command
 

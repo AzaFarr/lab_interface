@@ -42,10 +42,10 @@ class Viscos():
         scrollbary.pack(side=RIGHT, fill=Y)
         table_exp["yscrollcommand"] = scrollbary.set
 
-
         label_1 = ttk.Label(master=self.VISCOS, borderwidth=0, font=("Arial", 20), justify=LEFT, text="Показание с датчика")
         label_1.grid(column=1, row=1, sticky=NW, padx=30, pady=0)
 
+        #TODO: make this entry window like display to show values
         enter_value = ttk.Entry(master=self.VISCOS, font=("Arial", 40), justify=LEFT, width=8)
         enter_value.grid(column=1, row=1, sticky=NW, padx=30, pady=40)
 
@@ -53,6 +53,11 @@ class Viscos():
         root_button_1 = ButtonMy(button_1, self.VISCOS)
         button_1.config(command=root_button_1.fill_table(table_exp, enter_value))
         button_1.grid(column=1, row=1, sticky=NW, padx=30, pady=120)
+
+        button_2 = Button(master=self.VISCOS, text='Автоматический ввод')
+        root_button_2 = ButtonMy(button_2, self.VISCOS)
+        button_2.config(command=root_button_2.auto_fill_table(table_exp, enter_value))
+        button_2.grid(column=1, row=1, sticky=N, padx=30, pady=120)
 
         self.data_table = root_button_1.DataTable
 
