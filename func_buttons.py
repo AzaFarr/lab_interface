@@ -62,7 +62,7 @@ class ButtonMy():
                 next_window.On(self.name_user)
             else:
                 start_label = Label(master=self.window, foreground="#B71C1C", font=("Arial", 10), justify=LEFT,
-                                        text="введите имя пожалуйста :(")
+                                        text="ты что безымянный введи имя говорят")
                 start_label.pack(anchor="nw")
 
         return command

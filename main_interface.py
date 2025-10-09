@@ -1,4 +1,4 @@
-from viscometer import *
+from device_classes import *
 from func_buttons import ButtonMy
 
 class Window():
@@ -25,20 +25,20 @@ class Window():
         notebook = ttk.Notebook(master=self.WINDOW)
         notebook.pack(fill=BOTH, expand=True)
 
-        VISCOS = Viscos(notebook)
-        VISCOS.On()
+        TENZ = Tensiometer(notebook)
+        TENZ.On()
 
         ELSE_1 = Else_1(notebook)
 
         ELSE_2 = Else_2(notebook)
 
-        notebook.add(VISCOS.get, text="Вискозиметр")
+        notebook.add(TENZ.get, text="Вискозиметр")
         notebook.add(ELSE_1.get, text="Еще че то")
         notebook.add(ELSE_2.get, text="Еще че то")
 
         self.WINDOW.mainloop()
 
-        print(VISCOS.data)
+        print(TENZ.data)
         
 
 
