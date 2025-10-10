@@ -291,23 +291,23 @@ void loop()
 
   //     raz = 1;
   //   }
-    //МОТОР И ЭНКОДЕР       // получается в ручном режиме энкодер управляет мотором (просто я пионер очевидности) [aza]
-    stepper.tick(); //enc1.tick();
-    if (enc1.isRight()) {    //INPUT [aza]
-      speed += 100;
-      stepper.setSpeedDeg(speed);
-      raz = 0;
-      //Serial.println(speed);
-    }
-    if (enc1.isLeft()) {    //INPUT [aza]
-      speed -= 100;
-      stepper.setSpeedDeg(speed);
-      raz = 0;
-      //Serial.println(speed);
-    }
-    //INPUT [aza]
-    if (enc1.isPress()) {manual = 0; glob = 2; raz = 2;}   // давишь на энкодер - выходишь из мануала [aza]
-  }
+  //   //МОТОР И ЭНКОДЕР       // получается в ручном режиме энкодер управляет мотором (просто я пионер очевидности) [aza]
+  //   stepper.tick(); //enc1.tick();
+  //   if (enc1.isRight()) {    //INPUT [aza]
+  //     speed += 100;
+  //     stepper.setSpeedDeg(speed);
+  //     raz = 0;
+  //     //Serial.println(speed);
+  //   }
+  //   if (enc1.isLeft()) {    //INPUT [aza]
+  //     speed -= 100;
+  //     stepper.setSpeedDeg(speed);
+  //     raz = 0;
+  //     //Serial.println(speed);
+  //   }
+  //   //INPUT [aza]
+  //   if (enc1.isPress()) {manual = 0; glob = 2; raz = 2;}   // давишь на энкодер - выходишь из мануала [aza]
+  // }
   //ВВОД КОЛИЧЕСТВА ПОГРУЖЕНИЙ______________________________  
   // (?) почему там наверху (216 строка) еще есть выбор кол-ва погруж-й [aza]  --да больше никто и не мог такой вопрос задать :/
   // ответ на вопрос: мы сюда попали из верхнего условия, если loc==0 [aza]
@@ -366,7 +366,7 @@ void loop()
       //СВЯЗЬ
       while (Serial3.available())
       {
-        sgchar = Serial3.read();  // вот сздесь происходит чтение [aza]
+        sgchar = Serial3.read();  // вот здесь происходит чтение [aza]
         if (sgchar != '\n')
         {
           sgstr += sgchar;  // а здесь запись посимвольная до конца строки [aza]
@@ -378,7 +378,7 @@ void loop()
           sgread = sgstr;
           sgstr0 = sgstr;
           sgstr = "";
-          //Serial.print(sgfloat); Serial.print(";\t"); Serial.print(sgmax); Serial.print(";\t"); Serial.println(sgmin);
+          Serial.print(sgfloat); Serial.print(";\t"); Serial.print(sgmax); Serial.print(";\t"); Serial.println(sgmin);
         }
         if (sgfloat>sgmax) sgmax = sgfloat;  // записываем наибольшее из значений [aza]
                                              // кажется по нему идет как раз суммирование и расчет среднего значения

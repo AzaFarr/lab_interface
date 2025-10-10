@@ -1,6 +1,7 @@
 import serial
 import threading
 import time
+import re
 
 #TODO: iter and speed_value input from import
 from device_classes import Tensiometer
@@ -13,8 +14,8 @@ def read():
     while True:
         if ser.in_waiting > 0:
             data = ser.readline().decode('utf-8').strip()
-            if data:
-                print(f"From Arduino: {data}")
+
+
 
 def write(data):
     while True:
