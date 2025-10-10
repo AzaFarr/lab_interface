@@ -63,6 +63,10 @@ class Tensiometer():
 
         self.TENZ.pack(fill=BOTH, expand=True)
 
+        #TODO: make input from keyboard via the interface
+        speed_value: int = 1000
+        iter: int = 5
+
     @property
     def get(self):
         return self.TENZ
