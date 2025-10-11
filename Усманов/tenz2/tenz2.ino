@@ -291,20 +291,25 @@ void loop()
 
   //     raz = 1;
   //   }
-  //   //МОТОР И ЭНКОДЕР       // получается в ручном режиме энкодер управляет мотором (просто я пионер очевидности) [aza]
-  //   stepper.tick(); //enc1.tick();
-  //   if (enc1.isRight()) {    //INPUT [aza]
-  //     speed += 100;
-  //     stepper.setSpeedDeg(speed);
-  //     raz = 0;
-  //     //Serial.println(speed);
-  //   }
-  //   if (enc1.isLeft()) {    //INPUT [aza]
-  //     speed -= 100;
-  //     stepper.setSpeedDeg(speed);
-  //     raz = 0;
-  //     //Serial.println(speed);
-  //   }
+    //МОТОР И ЭНКОДЕР       // получается в ручном режиме энкодер управляет мотором (просто я пионер очевидности) [aza]
+    stepper.tick(); //enc1.tick();
+    while (Serial.available()) {
+      speed = Serial.read();
+    }
+    // if (enc1.isRight()) {    
+    if (speed != 0) {    //[aza]
+      // speed += 100;
+      stepper.setSpeedDeg(speed);
+      // raz = 0;
+      //Serial.println(speed);
+    }
+    // if (enc1.isLeft()) {   
+    if (speed != 0) {   //[aza]
+      // speed -= 100;
+      stepper.setSpeedDeg(speed);
+      // raz = 0;
+      //Serial.println(speed);
+    }
   //   //INPUT [aza]
   //   if (enc1.isPress()) {manual = 0; glob = 2; raz = 2;}   // давишь на энкодер - выходишь из мануала [aza]
   // }
