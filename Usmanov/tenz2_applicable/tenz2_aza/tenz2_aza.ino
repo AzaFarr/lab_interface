@@ -157,7 +157,7 @@ void loop()
     //   loc--; raz = 0;
     // }
     
-    Serial.print("Ввести loc (loc == 0 -> основной (авто) режим; loc == 1 -> ручной режим):" + "\n" + "loc = ")
+    Serial.print("Ввести loc (loc == 0 -> основной (авто) режим; loc == 1 -> ручной режим):\nloc = ")
     while (Serial.available()){
         loc_char = Serial.read();
         if (loc_char != '\n')
@@ -231,7 +231,7 @@ void loop()
     //   loc--; raz = 0;
     }
 
-    Serial.print("Ввести loc (loc == 0 -> выбор кол-ва погружений; loc == 1 -> возврат на стартовое меню; loc == 2 -> заспук эксперимента):" + "\n" + "loc = ")
+    Serial.print("Ввести loc (loc == 0 -> выбор кол-ва погружений; loc == 1 -> возврат на стартовое меню; loc == 2 -> заспук эксперимента):\nloc = ")
     while (Serial.available()){
         loc_char = Serial.read();
         if (loc_char != '\n')
@@ -303,7 +303,7 @@ void loop()
     //   loc--; raz = 0;
     // }
     
-    Serial.print("Ввести loc (loc == 0 -> перейти к ручному вводу скорости двигателя; loc == 1 -> возврат на стартовое меню):" + "\n" + "loc = ")
+    Serial.print("Ввести loc (loc == 0 -> перейти к ручному вводу скорости двигателя; loc == 1 -> возврат на стартовое меню):\nloc = ")
     while (Serial.available()){
         loc_char = Serial.read();
         if (loc_char != '\n')
@@ -344,7 +344,7 @@ void loop()
     }
     //МОТОР И ЭНКОДЕР
     stepper.tick(); //enc1.tick();
-    Serial.print("Ввести значение скорости:" + "\n" + "speed_value = ")
+    Serial.print("Ввести значение скорости:\nspeed_value = ")
     while (Serial.available()){
         speed_value_char = Serial.read();
         if (speed_value_char != '\n')
@@ -409,7 +409,7 @@ void loop()
     // if (enc1.isLeft() && (iter!=1)){
     //   iter--; raz = 0;
     // }
-    Serial.print("Ввести количество итераций:" + "\n" + "iter = ")
+    Serial.print("Ввести количество итераций:\niter = ")
     while (Serial.available()){
         iter_char = Serial.read();
         if (iter_char != '\n')
