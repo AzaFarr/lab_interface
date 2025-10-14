@@ -120,9 +120,6 @@ void loop()
   //   t = millis()/1000;
   // }
   //__________________________________________________________________________________________________________________
-  while (Serial.available()){
-    char_data = 
-  }
   
   //ЭНКОИНТЕРФЕЙС
   //СТАРТОВОЕ МЕНЮ______________________________
@@ -306,7 +303,7 @@ void loop()
     //   loc--; raz = 0;
     // }
     
-    Serial.print("Ввести loc (loc == 0 -> перейти к ручномц вводу скорости двигателя; loc == 1 -> возврат на стартовое меню):" + "\n" + "loc = ")
+    Serial.print("Ввести loc (loc == 0 -> перейти к ручному вводу скорости двигателя; loc == 1 -> возврат на стартовое меню):" + "\n" + "loc = ")
     while (Serial.available()){
         loc_char = Serial.read();
         if (loc_char != '\n')
@@ -357,12 +354,19 @@ void loop()
         if ((speed_value_char == '\n'))
         {
           speed_value = speed_value_str.toInt();
+          stepper.setSpeedDeg(speed);
         }
+        if ((speed_value == -1))
+        {
+          raz = 0;
+          manual = 0; glob = 2; raz = 2
+        }
+
       }
 
-      stepper.setSpeedDeg(speed);
-      raz = 0;
-      manual = 0; glob = 2; raz = 2
+      // stepper.setSpeedDeg(speed);
+      // raz = 0;
+      // manual = 0; glob = 2; raz = 2
 
   //   if (enc1.isRight()) {
   //     speed += 100;
@@ -601,7 +605,7 @@ void loop()
     //   glob = 0;
     //   raz = 2; loc = 0;
     // }
-    Serial.print("Эксперимент окончен. Для начала нового эксперимента нажать 0 ")
+    Serial.print("Эксперимент окончен. Для начала нового эксперимента нажать на 0 ")
     while (Serial.available()){
       restart_char = Serial.read();
       if (restart_char != '\n')

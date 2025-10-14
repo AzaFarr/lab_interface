@@ -32,7 +32,7 @@ class Window():
 
         ELSE_2 = Else_2(notebook)
 
-        notebook.add(TENZ.get, text="Вискозиметр")
+        notebook.add(TENZ.get, text="Тензиометр")
         notebook.add(ELSE_1.get, text="Еще че то")
         notebook.add(ELSE_2.get, text="Еще че то")
 
