@@ -44,10 +44,10 @@ uint8_t dataPin = 6;
 uint8_t clockPin = 7;
 
 //ЭНКОДЕР
-#define S1 46
-#define S2 48
-#define KEY 44
-Encoder enc1(S1, S2, KEY);
+// #define S1 46
+// #define S2 48
+// #define KEY 44
+// Encoder enc1(S1, S2, KEY);
 
 //ДВИГАТЕЛЬ
 const int stepPin = 50;
@@ -55,13 +55,13 @@ const int dirPin = 52;
 GStepper2<STEPPER2WIRE> stepper(6400, stepPin, dirPin);
 
 int speed = 0, rate = 500, drvstatus = 0; //спид скорость, статус статус двигателя
-int glob = 0, loc = 0, iter = 1, raz = 2, ret = 0; //глоб следит за навигацией между меню, лок внутри меню, раз нужен, чтобы экран менялся один раз а не гориллион 
+int glob = 0, loc = 0, iter = 1, raz = 2, ret = 0, print = 0; //глоб следит за навигацией между меню, лок внутри меню, раз нужен, чтобы экран менялся один раз а не гориллион 
 //(0 значит, что можно моргнуть экраном при повороте энкодера, 2 значит, что при нажатии), рет значит брейк и возврат в 0
 int autom = 0, manual = 0, sled = 0; //основной и ручной режим соответственно, след чтобы эта мразь не лупилась сука
-    int i = 0, stage = 0, start = 0, dir = -1, rufkinsrs=0, t0 = 1, t = 0; //это всё для авторежима
+    int i = 0, stage = 0, start = 0, dir = -1, rufkinsrs=0, t0 = 1, t = 0, speed_value, restart, stop; //это всё для авторежима
 double sgm = 0, countt = 0, P = 0, T = 0, wc = 0;
-char sgchar="";
-String sgstr0 = "", sgstr = "", sgread = "";
+char sgchar="", loc_char, speed_value_char, iter_char, stop_char, restart_char, press;
+String sgstr0 = "", sgstr = "", sgread = "", loc_str, speed_value_str, iter_str, stop_str, restart_str;
 double sgfloat, sgmin=0, sgmax=0, sgsum = 0;
 //int sg=0;
 
@@ -91,7 +91,7 @@ void setup()
 	bmp180.setSamplingMode(BMP180MI::MODE_UHR);
 
   //ЭНКОДЕР
-  enc1.setType(TYPE2);
+  // enc1.setType(TYPE2);
   //Двигатель
   //stepper.setAcceleration(0); 
   stepper.setSpeedDeg(speed);        // в градусах/сек
@@ -121,6 +121,7 @@ void loop()
   // }
   //__________________________________________________________________________________________________________________
   
+      // Serial.print("Для ввода нажать "-"\n\n");
   //ЭНКОИНТЕРФЕЙС
   //СТАРТОВОЕ МЕНЮ______________________________
   if (glob==0){
@@ -157,7 +158,12 @@ void loop()
     //   loc--; raz = 0;
     // }
     
-    Serial.print("Ввести loc (loc == 0 -> основной (авто) режим; loc == 1 -> ручной режим):\nloc = ")
+
+    if (print == 0) {
+      Serial.print("Ввести loc (loc == 0 -> основной (авто) режим; loc == 1 -> ручной режим):\nloc = ");
+      print++;
+    }
+
     while (Serial.available()){
         loc_char = Serial.read();
         if (loc_char != '\n')
@@ -167,8 +173,46 @@ void loop()
         if ((loc_char == '\n'))
         {
           loc = loc_str.toInt();
+          break;
         }
       }
+
+    // while (Serial.available()){
+    //     press = Serial.read();
+    //     if (press == "-"){
+    //       if (loc==0) glob = 1; //меню основного режима
+    //       if (loc==1) glob = 2; //меню ручного режима
+    //       raz = 2; loc = 0; press = ""; print = 0;
+    //       break;
+    //     }
+    //   }
+
+    if (loc != 0) {
+      if (loc==1) glob = 1; //меню основного режима
+      if (loc==2) glob = 2; //меню ручного режима
+      raz = 2; loc = 0; press = ""; print = 0;
+    }
+    
+
+// // есть еще вот такой вариант............................
+
+//     Serial.print("Ввести loc (loc == 0 -> основной (авто) режим; loc == 1 -> ручной режим):\nloc = ");
+//     while (Serial.available()){
+//         loc_char = Serial.read();
+//         if (loc_char != '\n')
+//         {
+//           loc_str += loc_char;
+//         }
+//         if ((loc_char == '\n'))
+//         {
+//           loc = loc_str.toInt();
+//           break;
+//         }
+//       }
+
+// //......................................................./
+
+
 
     // if (enc1.isPress()) {
     //   if (loc==0) glob = 1; //меню основного режима
@@ -176,9 +220,12 @@ void loop()
     //   raz = 2; loc = 0;
     // }
 
-    if (loc==0) glob = 1; //меню основного режима
-    if (loc==1) glob = 2; //меню ручного режима
-    raz = 2; loc = 0;
+    // if (press == "-"){
+    //   if (loc==0) glob = 1; //меню основного режима
+    //   if (loc==1) glob = 2; //меню ручного режима
+    //   raz = 2; loc = 0; press = "";
+    // }
+  
   }
   //МЕНЮ ОСНОВНОГО РЕЖИМА______________________________
   if (glob == 1){
@@ -229,9 +276,14 @@ void loop()
     // }
     // if (enc1.isLeft() && (loc!=0)){
     //   loc--; raz = 0;
-    }
+    // }
 
-    Serial.print("Ввести loc (loc == 0 -> выбор кол-ва погружений; loc == 1 -> возврат на стартовое меню; loc == 2 -> заспук эксперимента):\nloc = ")
+
+    if (print == 0) {
+      Serial.print("Ввести loc (loc == 0 -> выбор кол-ва погружений; loc == 1 -> возврат на стартовое меню; loc == 2 -> заспук эксперимента):\nloc = ");
+      print++;
+    }
+    
     while (Serial.available()){
         loc_char = Serial.read();
         if (loc_char != '\n')
@@ -242,6 +294,7 @@ void loop()
         {
           loc = loc_str.toInt();
         }
+        press = Serial.read();
       }
 
     // if (enc1.isPress()) {
@@ -252,11 +305,12 @@ void loop()
       
     // }
 
-    if (loc==0) glob = 3; //выбор количества погружений
-    if (loc==1) glob = 0; //стартовое меню
-    if (loc==2) {autom = 1; glob = -1; sled = 0;}//запуск эксперимента
-    raz = 2; loc = 0;
-      
+    if (press == "-"){
+      if (loc==0) glob = 3; //выбор количества погружений
+      if (loc==1) glob = 0; //стартовое меню
+      if (loc==2) {autom = 1; glob = -1; sled = 0;}//запуск эксперимента
+      raz = 2; loc = 0; press = "";
+    }
 
   }
   //МЕНЮ РУЧНОГО РЕЖИМА______________________________
@@ -303,7 +357,7 @@ void loop()
     //   loc--; raz = 0;
     // }
     
-    Serial.print("Ввести loc (loc == 0 -> перейти к ручному вводу скорости двигателя; loc == 1 -> возврат на стартовое меню):\nloc = ")
+    Serial.print("Ввести loc (loc == 0 -> перейти к ручному вводу скорости двигателя; loc == 1 -> возврат на стартовое меню):\nloc = ");
     while (Serial.available()){
         loc_char = Serial.read();
         if (loc_char != '\n')
@@ -314,15 +368,20 @@ void loop()
         {
           loc = loc_str.toInt();
         }
+        press = Serial.read();
       }
     // if (enc1.isPress()) {
     //   if (loc==0) {manual = 1; glob = -1;} //ручной режим, -1 чтобы глоб временно ни на что не влиял
     //   if (loc==1) glob = 0; //стартовое меню
     //   raz = 2; loc = 0;
     // }
-    if (loc==0) {manual = 1; glob = -1;} //ручной режим, -1 чтобы глоб временно ни на что не влиял
-    if (loc==1) glob = 0; //стартовое меню
-    raz = 2; loc = 0;
+
+    if (press = "-"){
+      if (loc==0) {manual = 1; glob = -1;} //ручной режим, -1 чтобы глоб временно ни на что не влиял
+      if (loc==1) glob = 0; //стартовое меню
+      raz = 2; loc = 0; press = "";
+    }
+
   }
   //РУЧНОЙ РЕЖИМ
   if (manual==1){
@@ -344,7 +403,7 @@ void loop()
     }
     //МОТОР И ЭНКОДЕР
     stepper.tick(); //enc1.tick();
-    Serial.print("Ввести значение скорости:\nspeed_value = ")
+    Serial.print("Ввести значение скорости:\nspeed_value = ");
     while (Serial.available()){
         speed_value_char = Serial.read();
         if (speed_value_char != '\n')
@@ -359,7 +418,7 @@ void loop()
         if ((speed_value == -1))
         {
           raz = 0;
-          manual = 0; glob = 2; raz = 2
+          manual = 0; glob = 2; raz = 2;
         }
 
       }
@@ -381,7 +440,7 @@ void loop()
   //     //Serial.println(speed);
   //   }
   //   if (enc1.isPress()) {manual = 0; glob = 2; raz = 2;}
-  // }
+  }
   //ВВОД КОЛИЧЕСТВА ПОГРУЖЕНИЙ______________________________
   if (glob == 3){
     //ЭКРАН
@@ -409,7 +468,7 @@ void loop()
     // if (enc1.isLeft() && (iter!=1)){
     //   iter--; raz = 0;
     // }
-    Serial.print("Ввести количество итераций:\niter = ")
+    Serial.print("Ввести количество итераций:\niter = ");
     while (Serial.available()){
         iter_char = Serial.read();
         if (iter_char != '\n')
@@ -420,13 +479,13 @@ void loop()
         {
           iter = iter_str.toInt();
         }
+        press = Serial.read();
       }
-    // if (enc1.isPress()) {
-    //   glob = 1;
-    //   raz = 2; loc = 0;
-    // }
-    glob = 1;
-    raz = 2; loc = 0;
+    if (press = "-") {
+      glob = 1;
+      raz = 2; loc = 0; press = "";
+    }
+
   }
 
   //ОСНОВНОЙ РЕЖИМ
@@ -447,7 +506,7 @@ void loop()
       //   glob = 0; loc = 0; manual = 0; autom = 0; speed = 0; raz = 2;
       //   stepper.setSpeedDeg(0);
       // }
-      Serial.print("Для экстренной остановки и возврата на 0 нажать на 0")
+      Serial.print("Для экстренной остановки и возврата на 0 нажать на 0");
       while (Serial.available()){
         stop_char = Serial.read();
         if (stop_char != '\n')
@@ -461,7 +520,7 @@ void loop()
       }
 
       if (stop == 0){
-        glob = 0; loc = 0; manual = 0; autom = 0; speed = 0; raz = 2;
+        glob = 0; loc = 0; manual = 0; autom = 0; speed = 0; raz = 2; stop = 1;
         stepper.setSpeedDeg(0);
       }
 
@@ -605,7 +664,7 @@ void loop()
     //   glob = 0;
     //   raz = 2; loc = 0;
     // }
-    Serial.print("Эксперимент окончен. Для начала нового эксперимента нажать на 0 ")
+    Serial.print("Эксперимент окончен. Для начала нового эксперимента нажать на 0 ");
     while (Serial.available()){
       restart_char = Serial.read();
       if (restart_char != '\n')
@@ -619,7 +678,7 @@ void loop()
     }
     if (restart == 0) {
       glob = 0;
-      raz = 2; loc = 0;
+      raz = 2; loc = 0; restart =1;
     }
   }
   
@@ -643,5 +702,6 @@ void loop()
   //   if (sgfloat<sgmin) sgmin = sgfloat;
   // }
   //КОНЕЦ ВОТ ЗДЕСЬ
+
 }
 
