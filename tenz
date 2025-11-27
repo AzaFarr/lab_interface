@@ -1,0 +1,694 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+
+#define _LCD_TYPE 1
+#include <LCD_1602_RUS_ALL.h>
+#include <DHT20.h>
+#include <BMP180I2C.h>
+#include "HX711.h"
+#include "GyverEncoder.h"
+#include <GyverStepper2.h>
+#define GS_NO_ACCEL 
+#include <MemoryFree.h>
+#include <EEPROM.h>
+
+// =============================================================================
+// CONSTANTS
+// =============================================================================
+const int STEPPER_STEPS = 6400;
+const int STEP_PIN = 50;
+const int DIR_PIN = 52;
+const int ENCODER_S1 = 46;
+const int ENCODER_S2 = 48;
+const int ENCODER_KEY = 44;
+const int SCALE_DATA_PIN = 6;
+const int SCALE_CLOCK_PIN = 7;
+const uint8_t BMP_I2C_ADDRESS = 0x77;
+const int LCD_I2C_ADDRESS = 0x27;
+
+const int BASE_SPEED = 500;
+const int MANUAL_SPEED_STEP = 100;
+const int FAST_SPEED_MULTIPLIER = 2;
+const int RETURN_SPEED_MULTIPLIER = -2;
+
+// Stage thresholds
+const double STAGE0_RATIO_THRESHOLD = 10.0;
+const double STAGE1_MIN_RATIO = 0.6;
+const double STAGE1_MIN_THRESHOLD = 0.1;
+const double STAGE2_MAX_THRESHOLD = 0.99;
+const double STAGE3_HIGH_THRESHOLD = 0.95;
+const double STAGE3_LOW_THRESHOLD = 0.9;
+const double FINAL_POSITION_THRESHOLD = 0.01;
+const int STAGE1_DELAY_MS = 5000;
+
+// =============================================================================
+// ENUMS
+// =============================================================================
+enum MenuState {
+    MENU_MAIN,
+    MENU_AUTO_MODE,
+    MENU_MANUAL_MODE,
+    MENU_ITER_INPUT,
+    MENU_RESULTS,
+    MODE_RUNNING_AUTO,
+    MODE_RUNNING_MANUAL
+};
+
+enum AutoStage {
+    AUTO_STAGE_INIT,
+    AUTO_STAGE_WAIT_PEAK,
+    AUTO_STAGE_WAIT_DROP,
+    AUTO_STAGE_RETURN,
+    AUTO_STAGE_CYCLE,
+    AUTO_STAGE_COMPLETE
+};
+
+enum DisplayUpdate {
+    DISPLAY_NO_UPDATE,
+    DISPLAY_CURSOR_UPDATE,
+    DISPLAY_FULL_REFRESH
+};
+
+// =============================================================================
+// HARDWARE GLOBALS
+// =============================================================================
+LCD_1602_RUS lcd(LCD_I2C_ADDRESS, 16, 2, 2);
+DHT20 dht;
+BMP180I2C bmp180(BMP_I2C_ADDRESS);
+HX711 scale;
+Encoder encoder(ENCODER_S1, ENCODER_S2, ENCODER_KEY);
+GStepper2<STEPPER2WIRE> stepper(STEPPER_STEPS, STEP_PIN, DIR_PIN);
+
+// =============================================================================
+// STATE VARIABLES
+// =============================================================================
+struct AppState {
+    MenuState menu;
+    int menuIndex;
+    DisplayUpdate displayState;
+    
+    int manualSpeed;
+    int iterationCount;
+    
+    bool autoModeActive;
+    bool manualModeActive;
+    
+    AutoStage autoStage;
+    int currentIteration;
+    int cycleDirection;
+    bool stageInitialized;
+    unsigned long lastDebugTime;
+    
+    double strainValue;
+    double maxStrain;
+    double minStrain;
+    double sumStrain;
+    
+    double humidity;
+    double temperature;
+    double pressure;
+};
+
+AppState state = {
+    MENU_MAIN, 0, DISPLAY_FULL_REFRESH,
+    0, 1,
+    false, false,
+    AUTO_STAGE_INIT, 0, -1, false, 0,
+    0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0
+};
+
+// LCD custom character for cursor
+uint8_t dotChar[8] = {
+    B00000, B00100, B01110, B11111,
+    B11111, B01110, B00100, B00000
+};
+
+// =============================================================================
+// SERIAL COMMUNICATION
+// =============================================================================
+void readStrainData() {
+    static String buffer = "";
+    static String lastValue = "";
+    
+    while (Serial3.available()) {
+        char c = Serial3.read();
+        
+        if (c != '\n') {
+            buffer += c;
+        } else {
+            state.strainValue = buffer.toDouble();
+            lastValue = buffer;
+            buffer = "";
+            
+            if (state.strainValue > state.maxStrain) {
+                state.maxStrain = state.strainValue;
+            }
+            if (state.strainValue < state.minStrain) {
+                state.minStrain = state.strainValue;
+            }
+        }
+    }
+}
+
+// =============================================================================
+// SENSOR READING
+// =============================================================================
+void readEnvironmentSensors() {
+    dht.read();
+    state.humidity = dht.getHumidity();
+    state.temperature = bmp180.readTemperature();
+    state.pressure = bmp180.readPressure() / 100000.0;
+}
+
+// =============================================================================
+// INPUT HANDLING
+// =============================================================================
+void handleEncoder() {
+    encoder.tick();
+    
+    if (encoder.isHolded()) {
+        resetToMainMenu();
+    }
+}
+
+void resetToMainMenu() {
+    state.menu = MENU_MAIN;
+    state.menuIndex = 0;
+    state.manualModeActive = false;
+    state.autoModeActive = false;
+    state.manualSpeed = 0;
+    state.displayState = DISPLAY_FULL_REFRESH;
+    stepper.setSpeedDeg(0);
+}
+
+// =============================================================================
+// DISPLAY FUNCTIONS
+// =============================================================================
+void updateCursor(int row, int col) {
+    lcd.setCursor(15, 0);
+    lcd.print(" ");
+    lcd.setCursor(15, 1);
+    lcd.print(" ");
+    lcd.setCursor(10, 1);
+    lcd.print(" ");
+    lcd.setCursor(11, 1);
+    lcd.print(" ");
+    
+    lcd.setCursor(col, row);
+    lcd.write(6);
+}
+
+void displayMainMenu() {
+    if (state.displayState == DISPLAY_FULL_REFRESH) {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Осн режим");
+        lcd.setCursor(0, 1);
+        lcd.print("Руч режим");
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (state.displayState == DISPLAY_CURSOR_UPDATE) {
+        updateCursor(state.menuIndex, 15);
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+}
+
+void displayAutoModeMenu() {
+    if (state.displayState == DISPLAY_FULL_REFRESH) {
+        lcd.clear();
+        lcd.setCursor(1, 0);
+        lcd.print("Число");
+        lcd.setCursor(9, 0);
+        lcd.print("Назад");
+        lcd.setCursor(6, 1);
+        lcd.print("Нач");
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (state.displayState == DISPLAY_CURSOR_UPDATE) {
+        int positions[3][2] = {{0, 7}, {0, 15}, {1, 10}};
+        updateCursor(positions[state.menuIndex][0], positions[state.menuIndex][1]);
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+}
+
+void displayManualModeMenu() {
+    if (state.displayState == DISPLAY_FULL_REFRESH) {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Начать");
+        lcd.setCursor(9, 0);
+        lcd.print("Назад");
+        lcd.setCursor(3, 1);
+        lcd.print("Гр/с :");
+        lcd.setCursor(10, 1);
+        lcd.print(String(state.manualSpeed));
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (state.displayState == DISPLAY_CURSOR_UPDATE) {
+        updateCursor(0, state.menuIndex == 0 ? 7 : 15);
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+}
+
+void displayIterationInput() {
+    if (state.displayState == DISPLAY_FULL_REFRESH) {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Число итераций:");
+        lcd.setCursor(7, 1);
+        lcd.print(String(state.iterationCount));
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+    
+    if (state.displayState == DISPLAY_CURSOR_UPDATE) {
+        lcd.setCursor(7, 1);
+        lcd.print("  ");
+        lcd.setCursor(7, 1);
+        lcd.print(String(state.iterationCount));
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+}
+
+void displayRunningAuto() {
+    if (state.displayState == DISPLAY_FULL_REFRESH && state.currentIteration != state.iterationCount) {
+        lcd.clear();
+        lcd.setCursor(5, 0);
+        lcd.print("i = ");
+        lcd.setCursor(9, 0);
+        lcd.print(String(state.currentIteration));
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+}
+
+void displayRunningManual() {
+    if (state.displayState == DISPLAY_FULL_REFRESH) {
+        lcd.clear();
+        lcd.setCursor(3, 1);
+        lcd.print("Гр/с : ");
+        lcd.setCursor(10, 1);
+        lcd.print(String(state.manualSpeed));
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+    
+    if (state.displayState == DISPLAY_CURSOR_UPDATE) {
+        lcd.setCursor(10, 1);
+        lcd.print("        ");
+        lcd.setCursor(10, 1);
+        lcd.print(String(state.manualSpeed));
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+}
+
+void displayResults() {
+    if (state.displayState == DISPLAY_FULL_REFRESH) {
+        readEnvironmentSensors();
+        
+        lcd.clear();
+        lcd.backlight();
+        lcd.print("S=");
+        lcd.setCursor(2, 0);
+        lcd.print(String(state.sumStrain));
+        lcd.setCursor(8, 0);
+        lcd.print("W=");
+        lcd.setCursor(10, 0);
+        lcd.print(String(state.humidity));
+        lcd.setCursor(0, 1);
+        lcd.print("T=");
+        lcd.setCursor(2, 1);
+        lcd.print(String(state.temperature));
+        lcd.setCursor(8, 1);
+        lcd.print("P=");
+        lcd.setCursor(10, 1);
+        lcd.print(String(state.pressure));
+        
+        state.displayState = DISPLAY_NO_UPDATE;
+    }
+}
+
+// =============================================================================
+// MENU NAVIGATION
+// =============================================================================
+void navigateMainMenu() {
+    if (encoder.isRight() && state.menuIndex < 1) {
+        state.menuIndex++;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    if (encoder.isLeft() && state.menuIndex > 0) {
+        state.menuIndex--;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (encoder.isPress()) {
+        if (state.menuIndex == 0) {
+            state.menu = MENU_AUTO_MODE;
+        } else {
+            state.menu = MENU_MANUAL_MODE;
+        }
+        state.displayState = DISPLAY_FULL_REFRESH;
+        state.menuIndex = 0;
+    }
+}
+
+void navigateAutoModeMenu() {
+    if (encoder.isRight() && state.menuIndex < 2) {
+        state.menuIndex++;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    if (encoder.isLeft() && state.menuIndex > 0) {
+        state.menuIndex--;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (encoder.isPress()) {
+        if (state.menuIndex == 0) {
+            state.menu = MENU_ITER_INPUT;
+        } else if (state.menuIndex == 1) {
+            state.menu = MENU_MAIN;
+        } else {
+            initAutoMode();
+            state.menu = MODE_RUNNING_AUTO;
+        }
+        state.displayState = DISPLAY_FULL_REFRESH;
+        state.menuIndex = 0;
+    }
+}
+
+void navigateManualModeMenu() {
+    if (encoder.isRight() && state.menuIndex < 1) {
+        state.menuIndex++;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    if (encoder.isLeft() && state.menuIndex > 0) {
+        state.menuIndex--;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (encoder.isPress()) {
+        if (state.menuIndex == 0) {
+            state.manualModeActive = true;
+            state.menu = MODE_RUNNING_MANUAL;
+        } else {
+            state.menu = MENU_MAIN;
+        }
+        state.displayState = DISPLAY_FULL_REFRESH;
+        state.menuIndex = 0;
+    }
+}
+
+void navigateIterationInput() {
+    if (encoder.isRight() && state.iterationCount < 99) {
+        state.iterationCount++;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    if (encoder.isLeft() && state.iterationCount > 1) {
+        state.iterationCount--;
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (encoder.isPress()) {
+        state.menu = MENU_AUTO_MODE;
+        state.displayState = DISPLAY_FULL_REFRESH;
+        state.menuIndex = 0;
+    }
+}
+
+// =============================================================================
+// AUTO MODE
+// =============================================================================
+void initAutoMode() {
+    state.currentIteration = 0;
+    state.autoStage = AUTO_STAGE_INIT;
+    state.stageInitialized = false;
+    state.cycleDirection = -1;
+    state.lastDebugTime = 0;
+    state.maxStrain = 0.0;
+    state.minStrain = 0.0;
+    state.sumStrain = 0.0;
+    state.autoModeActive = true;
+}
+
+void debugAutoMode() {
+    unsigned long currentTime = millis() / 1000;
+    if (currentTime - state.lastDebugTime >= 1) {
+        Serial.print("t = "); Serial.print(currentTime); Serial.print(";\t");
+        Serial.print("i = "); Serial.print(state.currentIteration); Serial.print(";\t");
+        Serial.print("stage = "); Serial.print(state.autoStage); Serial.print(";\t");
+        Serial.print("init = "); Serial.print(state.stageInitialized); Serial.print(";\t");
+        Serial.print("dir = "); Serial.print(state.cycleDirection); Serial.print(";\t");
+        Serial.print("strain = "); Serial.print(state.strainValue); Serial.print(";\t");
+        Serial.print("max = "); Serial.print(state.maxStrain); Serial.print(";\t");
+        Serial.print("min = "); Serial.print(state.minStrain); Serial.print(";\t");
+        Serial.print("sum = "); Serial.print(state.sumStrain); Serial.println(";\t");
+        state.lastDebugTime = currentTime;
+    }
+}
+
+void runAutoStageInit() {
+    if (!state.stageInitialized) {
+        stepper.setSpeedDeg(FAST_SPEED_MULTIPLIER * BASE_SPEED);
+        state.stageInitialized = true;
+    }
+    
+    if (state.maxStrain / abs(state.minStrain) >= STAGE0_RATIO_THRESHOLD) {
+        state.autoStage = AUTO_STAGE_WAIT_PEAK;
+        state.stageInitialized = false;
+    }
+}
+
+void runAutoStageWaitPeak() {
+    if (!state.stageInitialized) {
+        stepper.setSpeedDeg(FAST_SPEED_MULTIPLIER * BASE_SPEED);
+        state.stageInitialized = true;
+    }
+    
+    if ((state.strainValue / state.minStrain <= STAGE1_MIN_RATIO) && 
+        (abs(state.minStrain) >= abs(STAGE1_MIN_THRESHOLD * state.maxStrain))) {
+        state.autoStage = AUTO_STAGE_WAIT_DROP;
+        state.stageInitialized = false;
+        delay(STAGE1_DELAY_MS);
+    }
+}
+
+void runAutoStageWaitDrop() {
+    if (!state.stageInitialized) {
+        stepper.setSpeedDeg(-BASE_SPEED);
+        state.stageInitialized = true;
+    }
+    
+    if (state.strainValue >= STAGE2_MAX_THRESHOLD * state.maxStrain) {
+        state.autoStage = AUTO_STAGE_RETURN;
+        state.stageInitialized = false;
+    }
+}
+
+void runAutoStageReturn() {
+    if (!state.stageInitialized) {
+        stepper.setSpeedDeg(-BASE_SPEED);
+        state.stageInitialized = true;
+    }
+    
+    if (state.strainValue <= STAGE3_HIGH_THRESHOLD * state.maxStrain) {
+        state.autoStage = AUTO_STAGE_CYCLE;
+        state.stageInitialized = false;
+        state.currentIteration++;
+        lcd.setCursor(9, 0);
+        lcd.print(String(state.currentIteration));
+        state.sumStrain += state.maxStrain;
+    }
+}
+
+void runAutoStageCycle() {
+    if (state.cycleDirection == -1) {
+        if (!state.stageInitialized) {
+            stepper.setSpeedDeg(-BASE_SPEED);
+            state.stageInitialized = true;
+        }
+        
+        if (state.strainValue <= STAGE3_HIGH_THRESHOLD * state.maxStrain) {
+            state.cycleDirection = 1;
+            state.stageInitialized = false;
+            state.currentIteration++;
+            lcd.setCursor(9, 0);
+            lcd.print(String(state.currentIteration));
+            state.sumStrain += state.maxStrain;
+        }
+    }
+    
+    if (state.cycleDirection == 1 && state.currentIteration < state.iterationCount) {
+        if (!state.stageInitialized) {
+            stepper.setSpeedDeg(BASE_SPEED);
+            state.stageInitialized = true;
+        }
+        
+        if (state.strainValue <= STAGE3_LOW_THRESHOLD * state.maxStrain) {
+            state.cycleDirection = -1;
+            state.stageInitialized = false;
+            state.maxStrain = 0.0;
+        }
+    }
+    
+    if (state.currentIteration >= state.iterationCount) {
+        state.autoStage = AUTO_STAGE_COMPLETE;
+        state.stageInitialized = false;
+    }
+}
+
+void runAutoStageComplete() {
+    static bool averageCalculated = false;
+    
+    if (!averageCalculated) {
+        state.sumStrain = state.sumStrain / state.iterationCount;
+        averageCalculated = true;
+    }
+    
+    if (!state.stageInitialized) {
+        stepper.setSpeedDeg(RETURN_SPEED_MULTIPLIER * BASE_SPEED);
+        state.stageInitialized = true;
+    }
+    
+    stepper.tick();
+    readStrainData();
+    
+    if (abs(state.strainValue) <= FINAL_POSITION_THRESHOLD * state.maxStrain) {
+        stepper.setSpeedDeg(-1000);
+        state.menu = MENU_RESULTS;
+        state.displayState = DISPLAY_FULL_REFRESH;
+        state.autoModeActive = false;
+        averageCalculated = false;
+    }
+    
+    debugAutoMode();
+}
+
+void runAutoMode() {
+    while (state.currentIteration < state.iterationCount && state.autoModeActive) {
+        stepper.tick();
+        handleEncoder();
+        readStrainData();
+        debugAutoMode();
+        
+        switch (state.autoStage) {
+            case AUTO_STAGE_INIT:
+                runAutoStageInit();
+                break;
+            case AUTO_STAGE_WAIT_PEAK:
+                runAutoStageWaitPeak();
+                break;
+            case AUTO_STAGE_WAIT_DROP:
+                runAutoStageWaitDrop();
+                break;
+            case AUTO_STAGE_RETURN:
+                runAutoStageReturn();
+                break;
+            case AUTO_STAGE_CYCLE:
+                runAutoStageCycle();
+                break;
+            default:
+                break;
+        }
+    }
+    
+    if (state.currentIteration == state.iterationCount) {
+        runAutoStageComplete();
+    }
+}
+
+// =============================================================================
+// MANUAL MODE
+// =============================================================================
+void runManualMode() {
+    stepper.tick();
+    
+    if (encoder.isRight()) {
+        state.manualSpeed += MANUAL_SPEED_STEP;
+        stepper.setSpeedDeg(state.manualSpeed);
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (encoder.isLeft()) {
+        state.manualSpeed -= MANUAL_SPEED_STEP;
+        stepper.setSpeedDeg(state.manualSpeed);
+        state.displayState = DISPLAY_CURSOR_UPDATE;
+    }
+    
+    if (encoder.isPress()) {
+        state.manualModeActive = false;
+        state.menu = MENU_MANUAL_MODE;
+        state.displayState = DISPLAY_FULL_REFRESH;
+    }
+}
+
+// =============================================================================
+// MAIN FUNCTIONS
+// =============================================================================
+void setup() {
+    Serial.begin(115200);
+    Serial3.begin(115200);
+    
+    lcd.init();
+    lcd.backlight();
+    lcd.createChar(6, dotChar);
+    
+    Wire.begin();
+    dht.begin();
+    
+    bmp180.begin();
+    bmp180.resetToDefaults();
+    bmp180.setSamplingMode(BMP180MI::MODE_UHR);
+    
+    encoder.setType(TYPE2);
+    stepper.setSpeedDeg(state.manualSpeed);
+    
+    delay(1000);
+    
+    readEnvironmentSensors();
+}
+
+void loop() {
+    handleEncoder();
+    
+    switch (state.menu) {
+        case MENU_MAIN:
+            displayMainMenu();
+            navigateMainMenu();
+            break;
+            
+        case MENU_AUTO_MODE:
+            displayAutoModeMenu();
+            navigateAutoModeMenu();
+            break;
+            
+        case MENU_MANUAL_MODE:
+            displayManualModeMenu();
+            navigateManualModeMenu();
+            break;
+            
+        case MENU_ITER_INPUT:
+            displayIterationInput();
+            navigateIterationInput();
+            break;
+            
+        case MODE_RUNNING_AUTO:
+            displayRunningAuto();
+            runAutoMode();
+            break;
+            
+        case MODE_RUNNING_MANUAL:
+            displayRunningManual();
+            runManualMode();
+            break;
+            
+        case MENU_RESULTS:
+            displayResults();
+            if (encoder.isPress()) {
+                state.menu = MENU_MAIN;
+                state.displayState = DISPLAY_FULL_REFRESH;
+                state.menuIndex = 0;
+            }
+            break;
+    }
+}
