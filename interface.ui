@@ -177,7 +177,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>0</string>
+      <string>0.001</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="f_n_edit">
@@ -190,7 +190,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>0</string>
+      <string>0.01</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="re_edit">
@@ -203,7 +203,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>0</string>
+      <string>300000</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -254,7 +254,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>0</string>
+      <string>0.05</string>
      </property>
     </widget>
     <widget class="QPushButton" name="plot_button">
@@ -295,7 +295,7 @@
       <string>Solve</string>
      </property>
     </widget>
-    <widget class="QLabel" name="error_massage">
+    <widget class="QLabel" name="error_message">
      <property name="geometry">
       <rect>
        <x>20</x>
