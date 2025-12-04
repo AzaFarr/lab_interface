@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1046</width>
-    <height>567</height>
+    <height>631</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>30</y>
+      <y>80</y>
       <width>351</width>
       <height>321</height>
      </rect>
@@ -319,7 +319,7 @@
     <property name="geometry">
      <rect>
       <x>19</x>
-      <y>368</y>
+      <y>418</y>
       <width>351</width>
       <height>131</height>
      </rect>
@@ -411,10 +411,32 @@
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>30</y>
+      <y>80</y>
       <width>641</width>
       <height>471</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>311</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Swis721 Hv BT</family>
+      <pointsize>20</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>Bisection Method</string>
     </property>
    </widget>
   </widget>
