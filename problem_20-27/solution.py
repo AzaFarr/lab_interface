@@ -1,6 +1,6 @@
 import numpy as np
 
-from gauss_seidel_method import gauss_elimination
+from gauss_method import gauss_elimination
 from interpolate_func import polynom, poly_coef
 
 class Solution():
