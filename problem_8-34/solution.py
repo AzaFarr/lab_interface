@@ -47,7 +47,6 @@ class Solution():
                 Func_middle = self.Func(self.Re, (self.f_n + self.f_0) / 2)
                 self.f_0, self.f_n = bisec(self.f_0, self.f_n, Func_0, Func_n, Func_middle)
                 cur_error = (abs(self.f_0 - self.f_n) / abs(self.f_n))
-                print("cur_error = ", cur_error)
 
             return ''
 

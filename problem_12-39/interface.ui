@@ -11,7 +11,12 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>problem 12.39 - Farrakhetdinova Azaliya</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <activeon>icon.ico</activeon>
+   </iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">

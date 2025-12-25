@@ -1,5 +1,5 @@
 import numpy as np
-from PyQt5 import QtCore, QtWidgets, uic
+from PyQt5 import QtWidgets, uic
 
 from solution import Solution
 
@@ -14,7 +14,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.solve_button.clicked.connect(self.show_solution)
 
 
-
     def show_solution(self):
 
         self.x = float(self.x_edit.text())
@@ -22,10 +21,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.Error = float(self.Error_edit.text())
 
         T_arr: np.ndarray = np.array([
-            [0,                           float(self.T21_edit.text()), float(self.T31_edit.text()), 0                          ],
-            [float(self.T12_edit.text()), 0,                           0,                           float(self.T42_edit.text())],
-            [float(self.T13_edit.text()), 0,                           0,                           float(self.T43_edit.text())],
-            [0,                           float(self.T24_edit.text()), float(self.T34_edit.text()), 0                          ]
+            [0,                           float(self.T12_edit.text()), float(self.T13_edit.text()), 0                          ],
+            [float(self.T21_edit.text()), 0,                           0,                           float(self.T24_edit.text())],
+            [float(self.T31_edit.text()), 0,                           0,                           float(self.T34_edit.text())],
+            [0,                           float(self.T42_edit.text()), float(self.T43_edit.text()), 0                          ]
         ])
 
         self.solution = Solution(T=T_arr,

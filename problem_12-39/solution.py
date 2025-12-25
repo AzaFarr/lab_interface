@@ -1,5 +1,4 @@
 import numpy as np
-import math as m
 
 from gauss_seidel_method import gauss_seidel
 
@@ -19,13 +18,7 @@ class Solution():
         self.y: float = y
         self.Error: float = Error
 
-        self.T_start: np.ndarray = np.zeros(shape=4, dtype=float)  # T = [ T23_edit, T32_edit, T22_edit, T33_edit ]
-        # self.T_start: np.ndarray = np.array([
-        #     10,
-        #     130,
-        #     100,
-        #     30
-        # ])
+        self.T_start: np.ndarray = np.zeros(shape=4, dtype=float)  # it is a vector of unresolved T
 
         a = 1/pow(self.x, 2)
         b = 1/pow(self.y, 2)
