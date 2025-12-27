@@ -16,30 +16,32 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def plot_data(self):
 
-        print("entered into the plot_data")
         self.a = float(self.a_edit.text())
-        print("read a")
         self.b = float(self.b_edit.text())
-        print("read b")
         self.z = float(self.z_edit.text())
-        print("read z")
         self.q = float(self.q_edit.text())
-        print("read q")
-        print("text has been read")
 
         self.solution = Solution(a=self.a,
                                  b=self.b,
                                  z=self.z,
                                  q=self.q )
-        print('solution created')
 
-        X = self.solution.f
-        Y = self.solution.m
-        Z = self.solution.n
-        print(1)
+        X = np.copy(self.solution.f_arr)
+        Y = np.copy(self.solution.m_arr)
+        Z = np.copy(self.solution.n_arr)
+
+        self.solution.solve()
+
+        x = self.solution.f_var
+        y = self.solution.m_var
+        z = self.solution.n_var
 
         self.widget_graph.canvas.axes.clear()
         self.widget_graph.canvas.axes.plot(X, Y, Z, "-o")
+        self.widget_graph.canvas.axes.plot(x, y, z, "ro")
+        self.widget_graph.canvas.axes.set_xlabel('f')
+        self.widget_graph.canvas.axes.set_ylabel('m')
+        self.widget_graph.canvas.axes.set_zlabel('n')
         self.widget_graph.canvas.axes.grid(True)
 
         self.widget_graph.canvas.draw()

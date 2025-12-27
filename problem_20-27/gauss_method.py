@@ -1,16 +1,18 @@
-def gauss_elimination(A, b):
+import numpy as np
 
-    n = len(b)
+def gauss_elimination(A: np.ndarray,
+                      b: np.ndarray):
+
+    n: int = len(b)
 
     for i in range(n):
-
         for k in range(i + 1, n):
             m = A[k][i] / A[i][i]
             for j in range(i, n):
                 A[k][j] -= m * A[i][j]
             b[k] -= m * b[i]
 
-    x = [0] * n
+    x: np.ndarray = np.zeros(shape=n)
     for i in range(n - 1, -1, -1):
         x[i] = b[i]
         for j in range(i + 1, n):
@@ -18,8 +20,3 @@ def gauss_elimination(A, b):
         x[i] /= A[i][i]
 
     return x
-
-
-
-
-

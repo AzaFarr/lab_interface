@@ -32,7 +32,7 @@
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>20</y>
       <width>311</width>
       <height>40</height>
@@ -248,7 +248,7 @@
       </font>
      </property>
      <property name="text">
-      <string>q = </string>
+      <string>q' = </string>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -294,7 +294,7 @@
       <rect>
        <x>40</x>
        <y>224</y>
-       <width>191</width>
+       <width>281</width>
        <height>31</height>
       </rect>
      </property>

@@ -5,7 +5,7 @@ def poly_coef(
         n: np.ndarray ):
 
     A: np.ndarray = np.zeros((10, 10))  # по задаче это зависимые переменные m и n, по ним находятся интерполяционные коэффициенты потом
-    for k in range(9, -1, -1):
+    for k in range(0, 10):
         i = 0
         j = 0
         for l in range(9, -1, -1):
@@ -28,14 +28,14 @@ def polynom(
    i = 0
    j = 0
    for l in range(9, -1, -1):
-        if (i + j) <= 3:
-            X[l] = pow(m, i) * pow(n, j)
+        X[l] = pow(m, i) * pow(n, j)
+        if (i + j) < 3:
             i += 1
         elif (j < 3):
             j += 1
             i = 0
 
-   for l in range(0, 10):
-       b += a[0] * X[0]
+   for k in range(0, 10):
+       b += a[k] * X[k]
 
    return b
