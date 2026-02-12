@@ -1,10 +1,8 @@
 import serial
 import threading
 import time
-import re
 
 #TODO: iter and speed_value input from import
-from device_classes import Tensiometer
 
 ser = serial.Serial('COM3', 115200, timeout=1)
 
