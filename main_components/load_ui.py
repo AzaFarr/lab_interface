@@ -1,6 +1,12 @@
 import numpy as np
 from PyQt5 import QtWidgets, uic
 
+#TODO: make fullscreen as default mode
+#TODO: change the HTML codes (they in TextBrowsers)
+#TODO: improove common styles
+#TODO: connect buttons with func
+#TODO: finish the table with data
+
 
 class MainWindow(QtWidgets.QMainWindow):
 
