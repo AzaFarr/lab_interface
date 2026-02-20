@@ -4,13 +4,15 @@ from PySide2.QtWidgets import *
 
 from PyQt5 import QtWidgets, uic
 
+import sys
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1512, 877)
+
+class MainWindow(QWidget, QMainWindow):
+    def setupUi(self):
+        # if not MainWindow.objectName():
+        #     MainWindow.setObjectName(u"MainWindow")
+        # MainWindow.resize(1512, 877)
         icon = QIcon()
         icon.addFile(u"../media/icon.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -183,128 +185,191 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow",
+                                                             u"\u041c\u044b \u0435\u0449\u0435 \u043d\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u0438..",
+                                                             None))
+        self.label.setText(QCoreApplication.translate("MainWindow",
+                                                      u"\u041c\u0435\u0442\u043e\u0434 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u044b\u0439",
+                                                      None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow",
+                                                        u"\u0412\u0432\u043e\u0434 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445",
+                                                        None))
+        self.lineEdit.setText("")
+        self.textBrowser_2.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043a\u0433 / \u043c</span><span style=\" font-size:14pt; font-weight:600; vertical-align:super;\">3</span><span style=\" font-size:14pt; font-weight:600;\">]</span></p></body></html>",
+                                                              None))
+        self.textBrowser_3.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">\u03c1 = </span></p></body></html>",
+                                                              None))
+        self.textBrowser_4.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c / \u0441</span><span style=\" font-size:14pt; font-weight:600; vertical-align:super;\">2</span><span style=\" font-size:14pt; font-weight:600;\">]</span></p></body></html>",
+                                                              None))
+        self.textBrowser_5.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">g = </span></p></body></html>",
+                                                              None))
+        self.lineEdit_2.setText("")
+        self.textBrowser_6.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c]</span></p></body></html>",
+                                                              None))
+        self.textBrowser_7.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">r</span><span style=\" font-size:14pt; font-weight:600; vertical-align:sub;\">1</span><span style=\" font-size:14pt; font-weight:600;\"> = </span></p></body></html>",
+                                                              None))
+        self.lineEdit_3.setText("")
+        self.textBrowser_8.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c]</span></p></body></html>",
+                                                              None))
+        self.textBrowser_9.setHtml(QCoreApplication.translate("MainWindow",
+                                                              u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                              "p, li { white-space: pre-wrap; }\n"
+                                                              "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">r</span><span style=\" font-size:14pt; font-weight:600; vertical-align:sub;\">2</span><span style=\" font-size:14pt; font-weight:600;\"> = </span></p></body></html>",
+                                                              None))
+        self.lineEdit_4.setText("")
+        self.textBrowser_10.setHtml(QCoreApplication.translate("MainWindow",
+                                                               u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                               "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                               "p, li { white-space: pre-wrap; }\n"
+                                                               "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c]</span></p></body></html>",
+                                                               None))
+        self.textBrowser_11.setHtml(QCoreApplication.translate("MainWindow",
+                                                               u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                               "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                               "p, li { white-space: pre-wrap; }\n"
+                                                               "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Times New Roman','serif'; font-size:14pt; font-weight:600; color:#000000;\">\u0394H</span><span style=\" font-size:14pt; font-weight:600;\"> = </span></p></body></html>",
+                                                               None))
+        self.lineEdit_5.setText("")
+        self.textBrowser.setHtml(QCoreApplication.translate("MainWindow",
+                                                            u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><title>\u041a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u044b\u0439 \u043c\u0435\u0442\u043e\u0434 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f</title><style type=\"text/css\">\n"
+                                                            "p, li { white-space: pre-wrap; }\n"
+                                                            "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\" bgcolor=\"#ffffff\">\n"
+                                                            "<p style=\"-qt-paragraph-type:empty; margin-top:40px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><br /></p>\n"
+                                                            "<p style=\" margin-top:40px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" f"
+                                                            "ont-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0414\u0430\u043d\u043d\u044b\u0439 \u043c\u0435\u0442\u043e\u0434 \u0434\u043e\u0432\u043e\u043b\u044c\u043d\u043e \u0442\u043e\u0447\u043d\u044b\u0439 \u0438 \u043d\u0435\u0441\u043b\u043e\u0436\u043d\u044b\u0439, \u0447\u0442\u043e \u0434\u0435\u043b\u0430\u0435\u0442 \u0435\u0433\u043e \u0440\u0430\u0441\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0435\u043d\u043d\u044b\u043c \u0434\u043b\u044f \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f. \u041e\u043d \u0437\u0430\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f \u0432 \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0438 \u043f\u043e\u0434\u044a\u0435\u043c\u0430 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438 \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u043e\u0439 \u0442"
+                                                            "\u0440\u0443\u0431\u043a\u0435. \u041f\u043e\u0434\u043d\u044f\u0442\u0438\u0435 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438 \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0435 \u043c\u043e\u0436\u043d\u043e \u043e\u0431\u044a\u044f\u0441\u043d\u0438\u0442\u044c, \u0435\u0441\u043b\u0438 \u043f\u0440\u0435\u0434\u043f\u043e\u043b\u043e\u0436\u0438\u0442\u044c, \u0447\u0442\u043e \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u044c \u043f\u0440\u0438\u043b\u0438\u043f\u0430\u0435\u0442 \u043a \u0441\u0442\u0435\u043d\u043a\u0430\u043c \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430 \u0432 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0435 \u0441\u043c\u0430\u0447\u0438\u0432\u0430\u043d\u0438\u044f \u0441\u0442\u0435\u043d\u043e\u043a \u0438 \u0442\u044f\u043d\u0435\u0442\u0441\u044f \u0432\u0432\u0435\u0440\u0445. \u0418\u0437\u0432\u0435\u0441\u0442\u043d\u043e, \u0447\u0442\u043e \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u044c \u043f\u043e\u0434\u043d\u0438\u043c\u0435\u0442\u0441"
+                                                            "\u044f \u0438\u043b\u0438 \u043e\u043f\u0443\u0441\u0442\u0438\u0442\u0441\u044f \u0434\u043e \u0442\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f, \u043f\u043e\u043a\u0430 \u0434\u043e\u0431\u0430\u0432\u043e\u0447\u043d\u043e\u0435 \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043f\u043e\u0434 \u043c\u0435\u043d\u0438\u0441\u043a\u043e\u043c \u043d\u0435 \u0443\u0440\u0430\u0432\u043d\u043e\u0432\u0435\u0441\u0438\u0442 \u0433\u0438\u0434\u0440\u043e\u0441\u0442\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0432\u0435\u0441 \u0441\u0442\u043e\u043b\u0431\u0430 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438. </span></p>\n"
+                                                            "<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0415\u0441\u043b\u0438 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u044c \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e "
+                                                            "\u0441\u043c\u0430\u0447\u0438\u0432\u0430\u0435\u0442 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u044c \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430, \u0442\u043e \u0440\u0430\u0434\u0438\u0443\u0441 \u043a\u0440\u0438\u0432\u0438\u0437\u043d\u044b \u043c\u0435\u043d\u0438\u0441\u043a\u0430 \\( R \\) \u0441\u043e\u0432\u043f\u0430\u0434\u0430\u0435\u0442 \u0441 \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u043c \u0440\u0430\u0434\u0438\u0443\u0441\u043e\u043c \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430 \\( r \\). \u0412 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0438 \u0441 \u0444\u043e\u0440\u043c\u0443\u043b\u043e\u0439 \u041b\u0430\u043f\u043b\u0430\u0441\u0430 \u0438\u043c\u0435\u0435\u043c </span></p>\n"
+                                                            "<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size"
+                                                            ":14pt; color:#000000;\">\\[ \\Delta P = \\frac{2\\alpha}{R} = \\frac{2\\alpha}{r} \\] </span></p>\n"
+                                                            "<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0422\u043e\u0433\u0434\u0430 \u0438\u0437 \u0440\u0430\u0432\u0435\u043d\u0441\u0442\u0432\u0430 \u0434\u043e\u0431\u0430\u0432\u043e\u0447\u043d\u043e\u0433\u043e \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u044f \\( \\Delta P \\) \u0438 \u0433\u0438\u0434\u0440\u043e\u0441\u0442\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u044f \\( P = \\rho g h \\) \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c </span></p>\n"
+                                                            "<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','T"
+                                                            "imes','serif'; font-size:14pt; color:#000000;\">\\[ \\Delta P = \\frac{2\\alpha}{r} = \\rho g h \\] </span></p>\n"
+                                                            "<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0433\u0434\u0435 \\( \\rho \\) \u2013 \u043f\u043b\u043e\u0442\u043d\u043e\u0441\u0442\u044c \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438, \\( g \\) \u2013 \u0443\u0441\u043a\u043e\u0440\u0435\u043d\u0438\u0435 \u0441\u0438\u043b\u044b \u0442\u044f\u0436\u0435\u0441\u0442\u0438, \\( h \\) \u2013 \u0432\u044b\u0441\u043e\u0442\u0430 \u0435\u0435 \u043f\u043e\u0434\u043d\u044f\u0442\u0438\u044f \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0435, \\( \\alpha \\) \u2013 \u043a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435"
+                                                            "\u043d\u0438\u044f \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438. \u041e\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u043c \\( \\alpha \\) \u0447\u0435\u0440\u0435\u0437 \u0434\u043e\u0431\u0430\u0432\u043e\u0447\u043d\u043e\u0435 \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u0435: </span></p>\n"
+                                                            "<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ \\alpha = \\frac{1}{2} \\rho g h r \\] </span></p>\n"
+                                                            "<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u041f\u0440\u0438 \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u0438 \u043e\u043f\u044b\u0442\u0430 \u0441 \u0434\u0432\u0443\u043c\u044f \u043a\u0430\u043f\u0438"
+                                                            "\u043b\u043b\u044f\u0440\u0430\u043c\u0438, \u0440\u0430\u0434\u0438\u0443\u0441\u044b \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \\( r_1 \\) \u0438 \\( r_2 \\), \u043a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0432\u0435\u043d: </span></p>\n"
+                                                            "<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ \\alpha = \\frac{1}{2} \\rho g h_1 r_1 = \\frac{1}{2} \\rho g h_2 r_2 \\] </span></p>\n"
+                                                            "<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#0"
+                                                            "00000;\">\u041e\u0442\u0441\u044e\u0434\u0430 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c </span></p>\n"
+                                                            "<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ h_1 - h_2 = \\Delta H = \\frac{2\\alpha}{\\rho g r_1} - \\frac{2\\alpha}{\\rho g r_2} \\] </span></p>\n"
+                                                            "<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0421\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e, \u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0444\u043e\u0440\u043c\u0443\u043b\u0430 \u0434\u043b\u044f \u0440\u0430\u0441\u0447\u0435\u0442\u0430 \u043a\u043e\u044d\u0444\u0444\u0438\u0446\u0438"
+                                                            "\u0435\u043d\u0442\u0430 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f \u0432 \u044d\u0442\u043e\u043c \u0441\u043b\u0443\u0447\u0430\u0435 \u0431\u0443\u0434\u0435\u0442 \u0438\u043c\u0435\u0442\u044c \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0432\u0438\u0434: </span></p>\n"
+                                                            "<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ \\alpha = \\frac{\\rho g r_1 r_2}{2 (r_2 - r_1)} \\Delta H \\] </span></p>\n"
+                                                            "<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0433\u0434\u0435 \\( \\Delta H \\) \u2013 \u0440\u0430\u0437\u043d"
+                                                            "\u043e\u0441\u0442\u044c \u043e\u0442\u0441\u0447\u0435\u0442\u043e\u0432 \u043c\u0435\u0436\u0434\u0443 \u043d\u0438\u0436\u043d\u0438\u043c\u0438 \u0438 \u0432\u0435\u0440\u0445\u043d\u0438\u043c\u0438 \u043a\u0440\u0430\u044f\u043c\u0438 \u043c\u0435\u043d\u0438\u0441\u043a\u043e\u0432 \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430\u0445. </span></p></body></html>",
+                                                            None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow",
+                                                        u"\u0412\u044b\u0432\u043e\u0434 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u0432 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0430",
+                                                        None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow",
+                                                        u"\u0422\u0435\u043a\u0443\u0449\u0438\u0439 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442:",
+                                                        None))
+        self.textBrowser_12.setHtml(QCoreApplication.translate("MainWindow",
+                                                               u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                               "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                               "p, li { white-space: pre-wrap; }\n"
+                                                               "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u041d / \u043c]</span></p></body></html>",
+                                                               None))
+        self.textBrowser_13.setHtml(QCoreApplication.translate("MainWindow",
+                                                               u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                               "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                               "p, li { white-space: pre-wrap; }\n"
+                                                               "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">\u03b1 = </span></p></body></html>",
+                                                               None))
+        self.lineEdit_6.setText("")
+        self.pushButton.setText(QCoreApplication.translate("MainWindow",
+                                                           u"\u0412\u0432\u0435\u0441\u0442\u0438 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0432 \u0442\u0430\u0431\u043b\u0438\u0446\u0443",
+                                                           None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow",
+                                                        u"\u0421\u0432\u043e\u0434\u043a\u0430 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u0432:",
+                                                        None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow",
+                                                                                               u"\u041c\u0435\u0442\u043e\u0434 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u044b\u0439",
+                                                                                               None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow",
+                                                                                                 u"\u041c\u0435\u0442\u043e\u0434 \u043e\u0442\u0440\u044b\u0432\u0430 \u043a\u043e\u043b\u044c\u0446\u0430",
+                                                                                                 None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("MainWindow",
+                                                                                                 u"\u041c\u0435\u0442\u043e\u0434 \u043f\u043b\u0430\u0441\u0442\u0438\u043d\u044b",
+                                                                                                 None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), QCoreApplication.translate("MainWindow",
+                                                                                                 u"\u041c\u0435\u0442\u043e\u0434 \u0432\u0438\u0441\u044f\u0447\u0435\u0439 \u043a\u0430\u043f\u043b\u0438",
+                                                                                                 None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), QCoreApplication.translate("MainWindow",
+                                                                                                 u"\u041c\u0435\u0442\u043e\u0434 \u043e\u0441\u0446\u0438\u043b\u043b\u0438\u0440\u0443\u044e\u0449\u0435\u0439 \u0441\u0442\u0440\u0443\u0438",
+                                                                                                 None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_8), QCoreApplication.translate("MainWindow",
+                                                                                                 u"\u041c\u0435\u0442\u043e\u0434 \u043f\u0443\u0437\u044b\u0440\u044c\u043a\u043e\u0432\u043e\u0433\u043e \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u044f",
+                                                                                                 None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_9), QCoreApplication.translate("MainWindow",
+                                                                                                 u"\u041c\u0435\u0442\u043e\u0434 \u0441\u0447\u0435\u0442\u043d\u044b\u0445 \u043a\u0430\u043f\u0435\u043b\u044c",
+                                                                                                 None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_10), QCoreApplication.translate("MainWindow",
+                                                                                                  u"\u0420\u0430\u0441\u0447\u0435\u0442 \u043f\u043e\u0433\u0440\u0435\u0448\u043d\u043e\u0441\u0442\u0435\u0439",
+                                                                                                  None))
+        # retranslateUi
 
         self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
+
+        self.showMaximized()
+
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u041c\u044b \u0435\u0449\u0435 \u043d\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u0438..", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u044b\u0439", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u043e\u0434 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445", None))
-        self.lineEdit.setText("")
-        self.textBrowser_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043a\u0433 / \u043c</span><span style=\" font-size:14pt; font-weight:600; vertical-align:super;\">3</span><span style=\" font-size:14pt; font-weight:600;\">]</span></p></body></html>", None))
-        self.textBrowser_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">\u03c1 = </span></p></body></html>", None))
-        self.textBrowser_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c / \u0441</span><span style=\" font-size:14pt; font-weight:600; vertical-align:super;\">2</span><span style=\" font-size:14pt; font-weight:600;\">]</span></p></body></html>", None))
-        self.textBrowser_5.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">g = </span></p></body></html>", None))
-        self.lineEdit_2.setText("")
-        self.textBrowser_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c]</span></p></body></html>", None))
-        self.textBrowser_7.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">r</span><span style=\" font-size:14pt; font-weight:600; vertical-align:sub;\">1</span><span style=\" font-size:14pt; font-weight:600;\"> = </span></p></body></html>", None))
-        self.lineEdit_3.setText("")
-        self.textBrowser_8.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c]</span></p></body></html>", None))
-        self.textBrowser_9.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">r</span><span style=\" font-size:14pt; font-weight:600; vertical-align:sub;\">2</span><span style=\" font-size:14pt; font-weight:600;\"> = </span></p></body></html>", None))
-        self.lineEdit_4.setText("")
-        self.textBrowser_10.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u043c]</span></p></body></html>", None))
-        self.textBrowser_11.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Times New Roman','serif'; font-size:14pt; font-weight:600; color:#000000;\">\u0394H</span><span style=\" font-size:14pt; font-weight:600;\"> = </span></p></body></html>", None))
-        self.lineEdit_5.setText("")
-        self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><title>\u041a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u044b\u0439 \u043c\u0435\u0442\u043e\u0434 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f</title><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\" bgcolor=\"#ffffff\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:40px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><br /></p>\n"
-"<p style=\" margin-top:40px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" f"
-                        "ont-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0414\u0430\u043d\u043d\u044b\u0439 \u043c\u0435\u0442\u043e\u0434 \u0434\u043e\u0432\u043e\u043b\u044c\u043d\u043e \u0442\u043e\u0447\u043d\u044b\u0439 \u0438 \u043d\u0435\u0441\u043b\u043e\u0436\u043d\u044b\u0439, \u0447\u0442\u043e \u0434\u0435\u043b\u0430\u0435\u0442 \u0435\u0433\u043e \u0440\u0430\u0441\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0435\u043d\u043d\u044b\u043c \u0434\u043b\u044f \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f. \u041e\u043d \u0437\u0430\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f \u0432 \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0438 \u043f\u043e\u0434\u044a\u0435\u043c\u0430 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438 \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u043e\u0439 \u0442"
-                        "\u0440\u0443\u0431\u043a\u0435. \u041f\u043e\u0434\u043d\u044f\u0442\u0438\u0435 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438 \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0435 \u043c\u043e\u0436\u043d\u043e \u043e\u0431\u044a\u044f\u0441\u043d\u0438\u0442\u044c, \u0435\u0441\u043b\u0438 \u043f\u0440\u0435\u0434\u043f\u043e\u043b\u043e\u0436\u0438\u0442\u044c, \u0447\u0442\u043e \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u044c \u043f\u0440\u0438\u043b\u0438\u043f\u0430\u0435\u0442 \u043a \u0441\u0442\u0435\u043d\u043a\u0430\u043c \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430 \u0432 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0435 \u0441\u043c\u0430\u0447\u0438\u0432\u0430\u043d\u0438\u044f \u0441\u0442\u0435\u043d\u043e\u043a \u0438 \u0442\u044f\u043d\u0435\u0442\u0441\u044f \u0432\u0432\u0435\u0440\u0445. \u0418\u0437\u0432\u0435\u0441\u0442\u043d\u043e, \u0447\u0442\u043e \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u044c \u043f\u043e\u0434\u043d\u0438\u043c\u0435\u0442\u0441"
-                        "\u044f \u0438\u043b\u0438 \u043e\u043f\u0443\u0441\u0442\u0438\u0442\u0441\u044f \u0434\u043e \u0442\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f, \u043f\u043e\u043a\u0430 \u0434\u043e\u0431\u0430\u0432\u043e\u0447\u043d\u043e\u0435 \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043f\u043e\u0434 \u043c\u0435\u043d\u0438\u0441\u043a\u043e\u043c \u043d\u0435 \u0443\u0440\u0430\u0432\u043d\u043e\u0432\u0435\u0441\u0438\u0442 \u0433\u0438\u0434\u0440\u043e\u0441\u0442\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0432\u0435\u0441 \u0441\u0442\u043e\u043b\u0431\u0430 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438. </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0415\u0441\u043b\u0438 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u044c \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e "
-                        "\u0441\u043c\u0430\u0447\u0438\u0432\u0430\u0435\u0442 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u044c \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430, \u0442\u043e \u0440\u0430\u0434\u0438\u0443\u0441 \u043a\u0440\u0438\u0432\u0438\u0437\u043d\u044b \u043c\u0435\u043d\u0438\u0441\u043a\u0430 \\( R \\) \u0441\u043e\u0432\u043f\u0430\u0434\u0430\u0435\u0442 \u0441 \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u043c \u0440\u0430\u0434\u0438\u0443\u0441\u043e\u043c \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430 \\( r \\). \u0412 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0438 \u0441 \u0444\u043e\u0440\u043c\u0443\u043b\u043e\u0439 \u041b\u0430\u043f\u043b\u0430\u0441\u0430 \u0438\u043c\u0435\u0435\u043c </span></p>\n"
-"<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size"
-                        ":14pt; color:#000000;\">\\[ \\Delta P = \\frac{2\\alpha}{R} = \\frac{2\\alpha}{r} \\] </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0422\u043e\u0433\u0434\u0430 \u0438\u0437 \u0440\u0430\u0432\u0435\u043d\u0441\u0442\u0432\u0430 \u0434\u043e\u0431\u0430\u0432\u043e\u0447\u043d\u043e\u0433\u043e \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u044f \\( \\Delta P \\) \u0438 \u0433\u0438\u0434\u0440\u043e\u0441\u0442\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u044f \\( P = \\rho g h \\) \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c </span></p>\n"
-"<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','T"
-                        "imes','serif'; font-size:14pt; color:#000000;\">\\[ \\Delta P = \\frac{2\\alpha}{r} = \\rho g h \\] </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0433\u0434\u0435 \\( \\rho \\) \u2013 \u043f\u043b\u043e\u0442\u043d\u043e\u0441\u0442\u044c \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438, \\( g \\) \u2013 \u0443\u0441\u043a\u043e\u0440\u0435\u043d\u0438\u0435 \u0441\u0438\u043b\u044b \u0442\u044f\u0436\u0435\u0441\u0442\u0438, \\( h \\) \u2013 \u0432\u044b\u0441\u043e\u0442\u0430 \u0435\u0435 \u043f\u043e\u0434\u043d\u044f\u0442\u0438\u044f \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0435, \\( \\alpha \\) \u2013 \u043a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435"
-                        "\u043d\u0438\u044f \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438. \u041e\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u043c \\( \\alpha \\) \u0447\u0435\u0440\u0435\u0437 \u0434\u043e\u0431\u0430\u0432\u043e\u0447\u043d\u043e\u0435 \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u0435: </span></p>\n"
-"<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ \\alpha = \\frac{1}{2} \\rho g h r \\] </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u041f\u0440\u0438 \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u0438 \u043e\u043f\u044b\u0442\u0430 \u0441 \u0434\u0432\u0443\u043c\u044f \u043a\u0430\u043f\u0438"
-                        "\u043b\u043b\u044f\u0440\u0430\u043c\u0438, \u0440\u0430\u0434\u0438\u0443\u0441\u044b \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \\( r_1 \\) \u0438 \\( r_2 \\), \u043a\u043e\u044d\u0444\u0444\u0438\u0446\u0438\u0435\u043d\u0442 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0432\u0435\u043d: </span></p>\n"
-"<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ \\alpha = \\frac{1}{2} \\rho g h_1 r_1 = \\frac{1}{2} \\rho g h_2 r_2 \\] </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#0"
-                        "00000;\">\u041e\u0442\u0441\u044e\u0434\u0430 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c </span></p>\n"
-"<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ h_1 - h_2 = \\Delta H = \\frac{2\\alpha}{\\rho g r_1} - \\frac{2\\alpha}{\\rho g r_2} \\] </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0421\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e, \u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0444\u043e\u0440\u043c\u0443\u043b\u0430 \u0434\u043b\u044f \u0440\u0430\u0441\u0447\u0435\u0442\u0430 \u043a\u043e\u044d\u0444\u0444\u0438\u0446\u0438"
-                        "\u0435\u043d\u0442\u0430 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u043d\u043e\u0433\u043e \u043d\u0430\u0442\u044f\u0436\u0435\u043d\u0438\u044f \u0432 \u044d\u0442\u043e\u043c \u0441\u043b\u0443\u0447\u0430\u0435 \u0431\u0443\u0434\u0435\u0442 \u0438\u043c\u0435\u0442\u044c \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0432\u0438\u0434: </span></p>\n"
-"<p align=\"center\" style=\" margin-top:25px; margin-bottom:25px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\\[ \\alpha = \\frac{\\rho g r_1 r_2}{2 (r_2 - r_1)} \\Delta H \\] </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:21px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Times New Roman','Times','serif'; font-size:14pt; color:#000000;\">\u0433\u0434\u0435 \\( \\Delta H \\) \u2013 \u0440\u0430\u0437\u043d"
-                        "\u043e\u0441\u0442\u044c \u043e\u0442\u0441\u0447\u0435\u0442\u043e\u0432 \u043c\u0435\u0436\u0434\u0443 \u043d\u0438\u0436\u043d\u0438\u043c\u0438 \u0438 \u0432\u0435\u0440\u0445\u043d\u0438\u043c\u0438 \u043a\u0440\u0430\u044f\u043c\u0438 \u043c\u0435\u043d\u0438\u0441\u043a\u043e\u0432 \u0432 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u0430\u0445. </span></p></body></html>", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0432\u043e\u0434 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u0432 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0430", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043a\u0443\u0449\u0438\u0439 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442:", None))
-        self.textBrowser_12.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">[\u041d / \u043c]</span></p></body></html>", None))
-        self.textBrowser_13.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">\u03b1 = </span></p></body></html>", None))
-        self.lineEdit_6.setText("")
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0441\u0442\u0438 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0432 \u0442\u0430\u0431\u043b\u0438\u0446\u0443", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0432\u043e\u0434\u043a\u0430 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u0432:", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u043a\u0430\u043f\u0438\u043b\u043b\u044f\u0440\u043d\u044b\u0439", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u043e\u0442\u0440\u044b\u0432\u0430 \u043a\u043e\u043b\u044c\u0446\u0430", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u043f\u043b\u0430\u0441\u0442\u0438\u043d\u044b", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u0432\u0438\u0441\u044f\u0447\u0435\u0439 \u043a\u0430\u043f\u043b\u0438", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u043e\u0441\u0446\u0438\u043b\u043b\u0438\u0440\u0443\u044e\u0449\u0435\u0439 \u0441\u0442\u0440\u0443\u0438", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_8), QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u043f\u0443\u0437\u044b\u0440\u044c\u043a\u043e\u0432\u043e\u0433\u043e \u0434\u0430\u0432\u043b\u0435\u043d\u0438\u044f", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_9), QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0442\u043e\u0434 \u0441\u0447\u0435\u0442\u043d\u044b\u0445 \u043a\u0430\u043f\u0435\u043b\u044c", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_10), QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0441\u0447\u0435\u0442 \u043f\u043e\u0433\u0440\u0435\u0448\u043d\u043e\u0441\u0442\u0435\u0439", None))
-    # retranslateUi
 
 
+
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    main = Ui_MainWindow()
+    main.show()
+    app.exec_()
 
 

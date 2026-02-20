@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, uic
 
+import sys
+
 #TODO: change the HTML codes (they in TextBrowsers)
 #TODO: improove common styles
 #TODO: connect buttons with func
@@ -20,7 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
-    app = QtWidgets.QApplication([])
+    app = QtWidgets.QApplication(sys.argv)
     main = MainWindow()
     main.show()
     app.exec_()
