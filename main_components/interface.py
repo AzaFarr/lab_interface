@@ -10,9 +10,9 @@ import sys
 
 class MainWindow(QWidget, QMainWindow):
     def setupUi(self):
-        # if not MainWindow.objectName():
-        #     MainWindow.setObjectName(u"MainWindow")
-        # MainWindow.resize(1512, 877)
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(1512, 877)
         icon = QIcon()
         icon.addFile(u"../media/icon.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
