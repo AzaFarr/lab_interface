@@ -22,7 +22,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -561,13 +561,13 @@ p, li { white-space: pre-wrap; }
           <string>Очистить выборочно</string>
          </property>
         </widget>
-        <widget class="Tables" name="widget" native="true">
+        <widget class="Tables" name="tableView_11">
          <property name="geometry">
           <rect>
-           <x>610</x>
+           <x>600</x>
            <y>60</y>
-           <width>591</width>
-           <height>231</height>
+           <width>581</width>
+           <height>241</height>
           </rect>
          </property>
         </widget>
@@ -1072,7 +1072,7 @@ p, li { white-space: pre-wrap; }
           <string>Ввести значение в таблицу</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView_4">
+        <widget class="Tables" name="tableView_4">
          <property name="geometry">
           <rect>
            <x>600</x>
@@ -1731,7 +1731,7 @@ p, li { white-space: pre-wrap; }
           <string>Ввести значение в таблицу</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView_5">
+        <widget class="Tables" name="tableView_5">
          <property name="geometry">
           <rect>
            <x>600</x>
@@ -2163,7 +2163,7 @@ p, li { white-space: pre-wrap; }
           <string>Ввести значение в таблицу</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView_6">
+        <widget class="Tables" name="tableView_6">
          <property name="geometry">
           <rect>
            <x>600</x>
@@ -2652,7 +2652,7 @@ p, li { white-space: pre-wrap; }
           <string>Ввести значение в таблицу</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView_7">
+        <widget class="Tables" name="tableView_7">
          <property name="geometry">
           <rect>
            <x>600</x>
@@ -3201,7 +3201,7 @@ p, li { white-space: pre-wrap; }
           <string>Ввести значение в таблицу</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView_8">
+        <widget class="Tables" name="tableView_8">
          <property name="geometry">
           <rect>
            <x>600</x>
@@ -3750,7 +3750,7 @@ p, li { white-space: pre-wrap; }
           <string>Ввести значение в таблицу</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView_9">
+        <widget class="Tables" name="tableView_9">
          <property name="geometry">
           <rect>
            <x>600</x>
@@ -4292,9 +4292,8 @@ p, li { white-space: pre-wrap; }
  <customwidgets>
   <customwidget>
    <class>Tables</class>
-   <extends>QWidget</extends>
-   <header>tables.h</header>
-   <container>1</container>
+   <extends>QTableView</extends>
+   <header location="global">tables</header>
   </customwidget>
  </customwidgets>
  <resources/>
