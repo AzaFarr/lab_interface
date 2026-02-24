@@ -22,7 +22,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -570,6 +570,9 @@ p, li { white-space: pre-wrap; }
            <height>241</height>
           </rect>
          </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
         </widget>
        </widget>
        <zorder>frame</zorder>
@@ -1080,6 +1083,9 @@ p, li { white-space: pre-wrap; }
            <width>581</width>
            <height>241</height>
           </rect>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
         </widget>
         <widget class="QLabel" name="label_18">
@@ -1740,6 +1746,9 @@ p, li { white-space: pre-wrap; }
            <height>241</height>
           </rect>
          </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
         </widget>
         <widget class="QLabel" name="label_23">
          <property name="geometry">
@@ -2171,6 +2180,9 @@ p, li { white-space: pre-wrap; }
            <width>581</width>
            <height>241</height>
           </rect>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
         </widget>
         <widget class="QLabel" name="label_28">
@@ -2660,6 +2672,9 @@ p, li { white-space: pre-wrap; }
            <width>581</width>
            <height>241</height>
           </rect>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
         </widget>
         <widget class="QLabel" name="label_33">
@@ -3210,6 +3225,9 @@ p, li { white-space: pre-wrap; }
            <height>241</height>
           </rect>
          </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
         </widget>
         <widget class="QLabel" name="label_38">
          <property name="geometry">
@@ -3758,6 +3776,9 @@ p, li { white-space: pre-wrap; }
            <width>581</width>
            <height>241</height>
           </rect>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
         </widget>
         <widget class="QLabel" name="label_43">

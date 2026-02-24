@@ -9,9 +9,11 @@ class Tables(QtWidgets.QTableView):
         super().__init__(parent)
         self.col_prop = [0.1, 0.55, 0.35]
 
-    def resizeEvent(self, event):
+    def resizeEvent(self, event):  # Метод resizeEvent — встроенный обработчик событий, который срабатывает при изменении размера виджета.
+                                   # Объект event содержит метаданные об изменении размера, включая новый размер
         super().resizeEvent(event)
-        return self.resize_columns_proportionally()
+        return self.resize_columns_proportionally()  # таким образом мы накладываем дополнительные действия
+                                                     # на метод resizeEvent
 
     def resize_columns_proportionally(self):
 
