@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 from load_ui import MainWindow
 from tables import Model
+import funcs_button as fb
 
 import style
 
@@ -24,6 +25,21 @@ class UiCore(MainWindow):
 
         self.tabModel = Model().model
 
+        self.pushButton.clicked.connect(
+            lambda: fb.add_item(self.tabModel))  # если у функции есть аргумент, то только через lambda-функцию
+        self.pushButton_4.clicked.connect(
+            lambda: fb.add_item(self.tabModel))
+        self.pushButton_5.clicked.connect(
+            lambda: fb.add_item(self.tabModel))
+        self.pushButton_6.clicked.connect(
+            lambda: fb.add_item(self.tabModel))
+        self.pushButton_7.clicked.connect(
+            lambda: fb.add_item(self.tabModel))
+        self.pushButton_8.clicked.connect(
+            lambda: fb.add_item(self.tabModel))
+        self.pushButton_9.clicked.connect(
+            lambda: fb.add_item(self.tabModel))
+
         self.tableView_11.resize_columns_proportionally()
         self.tableView_11.setModel(self.tabModel)
         self.tableView_4.resize_columns_proportionally()
@@ -38,6 +54,7 @@ class UiCore(MainWindow):
         self.tableView_8.setModel(self.tabModel)
         self.tableView_9.resize_columns_proportionally()
         self.tableView_9.setModel(self.tabModel)
+
 
 
 def open_ui():
