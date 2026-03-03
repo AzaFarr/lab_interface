@@ -1,17 +1,28 @@
 _: str = """
     QMainWindow {
-        background-color: #345678;
+        background-color: #88B37A;
     }
+    
     QFrame {
-        background-color: #afc797;
+        background-color: #C4D9BD;
     }
+    
     QLineEdit {
         border: 2px solid #ddd;
-        border-radius: 4px;
         padding: 8px;
         font-size: 12px;
     }
     QLineEdit:focus {
-        border-color: #4CAF50;
+        border-color: #afa797;
     }
+    
+    QTextBrowser {
+        border: none;
+        padding: 0px;
+    }
+    
+    QTableView {
+        background-color: #F1F6EF
+    }
+        
 """
