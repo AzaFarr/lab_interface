@@ -9,7 +9,7 @@ _: str = """
         border: 2px solid #ddd;
         border-radius: 4px;
         padding: 8px;
-        font-size: 14px;
+        font-size: 12px;
     }
     QLineEdit:focus {
         border-color: #4CAF50;

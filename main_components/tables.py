@@ -18,10 +18,8 @@ class Tables(QtWidgets.QTableView):
     def resize_columns_proportionally(self):
 
         total_width = self.width()
-        print(total_width)
         if self.verticalScrollBar().isVisible():
             total_width -= self.verticalScrollBar().width()
-            print(total_width)
 
         for col, prop in enumerate(self.col_prop):
             if col < 3:
@@ -36,3 +34,5 @@ class Model():
         self.model = QtGui.QStandardItemModel()
         self.model.setColumnCount(3)
         self.model.setHorizontalHeaderLabels(["№", "Значение", "Время"])
+        self.i: int = 1
+
