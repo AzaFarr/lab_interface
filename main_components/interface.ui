@@ -22,7 +22,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -542,25 +542,6 @@ p, li { white-space: pre-wrap; }
           <string>Сводка результатов:</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_12">
-         <property name="geometry">
-          <rect>
-           <x>610</x>
-           <y>310</y>
-           <width>171</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Segoe UI</family>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Очистить выборочно</string>
-         </property>
-        </widget>
         <widget class="Tables" name="tableView_11">
          <property name="geometry">
           <rect>
@@ -572,6 +553,25 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_24">
+         <property name="geometry">
+          <rect>
+           <x>610</x>
+           <y>310</y>
+           <width>131</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Очистить все</string>
          </property>
         </widget>
        </widget>
@@ -1110,12 +1110,12 @@ p, li { white-space: pre-wrap; }
           <string>Сводка результатов:</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_14">
+        <widget class="QPushButton" name="pushButton_23">
          <property name="geometry">
           <rect>
            <x>610</x>
            <y>310</y>
-           <width>171</width>
+           <width>131</width>
            <height>31</height>
           </rect>
          </property>
@@ -1126,7 +1126,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Очистить выборочно</string>
+          <string>Очистить все</string>
          </property>
         </widget>
        </widget>
@@ -1772,12 +1772,12 @@ p, li { white-space: pre-wrap; }
           <string>Сводка результатов:</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_13">
+        <widget class="QPushButton" name="pushButton_22">
          <property name="geometry">
           <rect>
            <x>610</x>
            <y>310</y>
-           <width>171</width>
+           <width>131</width>
            <height>31</height>
           </rect>
          </property>
@@ -1788,7 +1788,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Очистить выборочно</string>
+          <string>Очистить все</string>
          </property>
         </widget>
        </widget>
@@ -2207,12 +2207,12 @@ p, li { white-space: pre-wrap; }
           <string>Сводка результатов:</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_15">
+        <widget class="QPushButton" name="pushButton_21">
          <property name="geometry">
           <rect>
            <x>610</x>
            <y>310</y>
-           <width>171</width>
+           <width>131</width>
            <height>31</height>
           </rect>
          </property>
@@ -2223,7 +2223,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Очистить выборочно</string>
+          <string>Очистить все</string>
          </property>
         </widget>
        </widget>
@@ -2699,12 +2699,12 @@ p, li { white-space: pre-wrap; }
           <string>Сводка результатов:</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_16">
+        <widget class="QPushButton" name="pushButton_20">
          <property name="geometry">
           <rect>
            <x>610</x>
            <y>310</y>
-           <width>171</width>
+           <width>131</width>
            <height>31</height>
           </rect>
          </property>
@@ -2715,7 +2715,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Очистить выборочно</string>
+          <string>Очистить все</string>
          </property>
         </widget>
        </widget>
@@ -3251,12 +3251,12 @@ p, li { white-space: pre-wrap; }
           <string>Сводка результатов:</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_17">
+        <widget class="QPushButton" name="pushButton_19">
          <property name="geometry">
           <rect>
            <x>610</x>
            <y>310</y>
-           <width>171</width>
+           <width>131</width>
            <height>31</height>
           </rect>
          </property>
@@ -3267,7 +3267,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Очистить выборочно</string>
+          <string>Очистить все</string>
          </property>
         </widget>
        </widget>
@@ -3808,7 +3808,7 @@ p, li { white-space: pre-wrap; }
           <rect>
            <x>610</x>
            <y>310</y>
-           <width>171</width>
+           <width>131</width>
            <height>31</height>
           </rect>
          </property>
@@ -3819,7 +3819,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Очистить выборочно</string>
+          <string>Очистить все</string>
          </property>
         </widget>
        </widget>

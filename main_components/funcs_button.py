@@ -11,4 +11,8 @@ def add_item(tabModel: Model, lineEdit: str):
     tabModel.model.appendRow(data)
     tabModel.i += 1
 
+def clear_table(tabModel: Model):
+    for k in range(tabModel.i):
+        tabModel.model.removeRow(0)
+    tabModel.i = 1
 
