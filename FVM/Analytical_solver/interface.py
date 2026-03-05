@@ -1,6 +1,9 @@
 from PyQt5 import QtWidgets, uic
 
-from solution import Solution
+import numpy as np
+
+from analytical_solution import Analyt
+
 
 class MainWindow(QtWidgets.QMainWindow):
 
@@ -10,45 +13,48 @@ class MainWindow(QtWidgets.QMainWindow):
 
         uic.loadUi('interface.ui', self)
 
-        self.solve_button.clicked.connect(self.show_solution)
-        self.plot_button.clicked.connect(self.plot_data)
+        self.T_solution: np.ndarray
+        self.X: np.ndarray
+
+        self.pushButton.clicked.connect(self.solve)
+        self.pushButton_2.clicked.connect(self.plot_data)
+
+
 
 
     def plot_data(self):
 
-        self.Re = float(self.re_edit.text())
-        self.f_0 = float(self.f_0_edit.text())
-        self.f_n = float(self.f_n_edit.text())
-        self.Error = float(self.error_edit.text())
-
-        self.solution = Solution(Re=self.Re,
-                                 f_0=self.f_0,
-                                 f_n=self.f_n,
-                                 Error=self.Error)
         self.widget_graph.canvas.axes.clear()
-        self.widget_graph.canvas.axes.plot(self.solution.f_arr, self.solution.var_Func_arr, "-", label='Func(f)')
+        self.widget_graph.canvas.axes.plot(self.X, self.T_solution, "-o")
+        self.widget_graph.canvas.axes.set_xlabel('Length')
+        self.widget_graph.canvas.axes.set_ylabel('Temperature')
         self.widget_graph.canvas.axes.grid(True)
 
         self.widget_graph.canvas.draw()
 
 
-    def show_solution(self):
+    def solve(self):
 
-        self.Re = float(self.re_edit.text())
-        self.f_0 = float(self.f_0_edit.text())
-        self.f_n = float(self.f_n_edit.text())
-        self.Error = float(self.error_edit.text())
+        print('solver button is clicked')
 
-        self.solution = Solution(Re=self.Re,
-                                 f_0=self.f_0,
-                                 f_n=self.f_n,
-                                 Error=self.Error)
+        Length: float = float(self.lineEdit.text())
+        print('L = ', Length)
+        N: int = int(self.lineEdit_4.text())
+        print('N = ', N)
 
-        message: str = self.solution.solve()
-        print(message)
-        self.error_message.setText(message)
-        self.f_solved = self.solution.f_n
-        self.solution_label.setText(str(self.f_solved))
+        T_right: float = float(self.lineEdit_3.text())
+        print('T(L) = ', T_right)
+        T_left: float = float(self.lineEdit_2.text())
+        print('T(0) = ', T_left)
+
+        solution: np.ndarray = np.zeros(shape=N, dtype=float)
+
+        _ = Analyt(T_right, T_left, Length, N)
+        _.analytical_formula(T=solution)
+        print('task is solved')
+
+        self.T_solution = solution
+        self.X = _.x
 
 
 
