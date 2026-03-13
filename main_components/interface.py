@@ -5,6 +5,8 @@ import funcs_button as fb
 
 import style
 
+import pymupdf as pdf
+
 import sys
 
 #TODO: change the HTML codes (they in TextBrowsers)
@@ -21,7 +23,8 @@ class UiCore(MainWindow):
         super(UiCore, self).__init__()
 
         self.setStyleSheet(style._)  # styles load
-        self.showMaximized()  # fullscreen
+        # self.showMaximized()  # fullscreen
+
 
         self.tabModel_1 = Model() #Capillary
         self.pushButton.clicked.connect(
@@ -31,7 +34,9 @@ class UiCore(MainWindow):
         self.tableView_11.resize_columns_proportionally()
         self.tableView_11.setModel(self.tabModel_1.model)
         self.tableView_11.verticalHeader().setVisible(False)
-
+        url = QtCore.QUrl("Capillary_text.htm")
+        self.textBrowser_122.setSource(url)
+        self.textBrowser_122.setObjectName("textBrowser_122")
 
 
         self.tabModel_2 = Model() #Du niu
@@ -42,6 +47,9 @@ class UiCore(MainWindow):
         self.tableView_4.resize_columns_proportionally()
         self.tableView_4.setModel(self.tabModel_2.model)
         self.tableView_4.verticalHeader().setVisible(False)
+        url = QtCore.QUrl("Dunui_text.htm")
+        self.textBrowser_123.setSource(url)
+        self.textBrowser_123.setObjectName("textBrowser_123")
 
 
         self.tabModel_3 = Model() #Vilhelmi
@@ -52,6 +60,9 @@ class UiCore(MainWindow):
         self.tableView_5.resize_columns_proportionally()
         self.tableView_5.setModel(self.tabModel_3.model)
         self.tableView_5.verticalHeader().setVisible(False)
+        url = QtCore.QUrl("Vilhelmi_text.htm")
+        self.textBrowser_63.setSource(url)
+        self.textBrowser_63.setObjectName("textBrowser_63")
 
 
 
@@ -63,10 +74,13 @@ class UiCore(MainWindow):
         self.tableView_6.resize_columns_proportionally()
         self.tableView_6.setModel(self.tabModel_4.model)
         self.tableView_6.verticalHeader().setVisible(False)
+        url = QtCore.QUrl("HangDrop_text.htm")
+        self.textBrowser_76.setSource(url)
+        self.textBrowser_76.setObjectName("textBrowser_76")
 
 
 
-        self.tabModel_5 = Model() #Oscill drop
+        self.tabModel_5 = Model() #Oscill jet
         self.pushButton_7.clicked.connect(
             lambda: fb.add_item(self.tabModel_5, self.lineEdit_35.text()))
         self.pushButton_20.clicked.connect(
@@ -74,6 +88,9 @@ class UiCore(MainWindow):
         self.tableView_7.resize_columns_proportionally()
         self.tableView_7.setModel(self.tabModel_5.model)
         self.tableView_7.verticalHeader().setVisible(False)
+        url = QtCore.QUrl("OscillJet_text.htm")
+        self.textBrowser_89.setSource(url)
+        self.textBrowser_89.setObjectName("textBrowser_89")
 
 
 
@@ -85,6 +102,9 @@ class UiCore(MainWindow):
         self.tableView_8.resize_columns_proportionally()
         self.tableView_8.setModel(self.tabModel_6.model)
         self.tableView_8.verticalHeader().setVisible(False)
+        url = QtCore.QUrl("Rebinder_text.htm")
+        self.textBrowser_102.setSource(url)
+        self.textBrowser_102.setObjectName("textBrowser_102")
 
 
 
@@ -96,6 +116,9 @@ class UiCore(MainWindow):
         self.tableView_9.resize_columns_proportionally()
         self.tableView_9.setModel(self.tabModel_7.model)
         self.tableView_9.verticalHeader().setVisible(False)
+        url = QtCore.QUrl("DropsCalc_text.htm")
+        self.textBrowser_115.setSource(url)
+        self.textBrowser_115.setObjectName("textBrowser_115")
 
 
 
