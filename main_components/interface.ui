@@ -329,6 +329,9 @@ p, li { white-space: pre-wrap; }
           <height>381</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -3576,33 +3579,11 @@ p, li { white-space: pre-wrap; }
           </property>
          </item>
         </widget>
-        <widget class="QLabel" name="label_95">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>108</y>
-           <width>421</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Segoe UI</family>
-           <pointsize>18</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-           <underline>false</underline>
-          </font>
-         </property>
-         <property name="text">
-          <string>Среднеквадратичное отклонение:</string>
-         </property>
-        </widget>
         <widget class="QLabel" name="label_96">
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>158</y>
+           <y>203</y>
            <width>421</width>
            <height>31</height>
           </rect>
@@ -3624,7 +3605,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>208</y>
+           <y>253</y>
            <width>421</width>
            <height>31</height>
           </rect>
@@ -3642,34 +3623,36 @@ p, li { white-space: pre-wrap; }
           <string>Относительная погрешность:</string>
          </property>
         </widget>
-        <widget class="QTextBrowser" name="textBrowser">
-         <property name="geometry">
-          <rect>
-           <x>440</x>
-           <y>113</y>
-           <width>231</width>
-           <height>31</height>
-          </rect>
-         </property>
-        </widget>
         <widget class="QTextBrowser" name="textBrowser_14">
          <property name="geometry">
           <rect>
-           <x>350</x>
-           <y>161</y>
-           <width>320</width>
-           <height>31</height>
+           <x>360</x>
+           <y>200</y>
+           <width>310</width>
+           <height>42</height>
           </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>18</pointsize>
+          </font>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_15">
          <property name="geometry">
           <rect>
-           <x>382</x>
-           <y>210</y>
-           <width>290</width>
-           <height>31</height>
+           <x>390</x>
+           <y>250</y>
+           <width>280</width>
+           <height>42</height>
           </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>18</pointsize>
+          </font>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_17">

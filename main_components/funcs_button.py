@@ -1,5 +1,8 @@
 from PyQt5 import QtWidgets, QtGui
+
 from tables import Model
+from error_calculation import Error
+
 import datetime as dt
 
 
@@ -15,4 +18,11 @@ def clear_table(tabModel: Model):
     for k in range(tabModel.i):
         tabModel.model.removeRow(0)
     tabModel.i = 1
+
+def print_error(error: Error,
+                tB_conf_int: QtWidgets.QTextBrowser,
+                tB_rel_err: QtWidgets.QTextBrowser):
+    tB_conf_int.setText(f"{error.mean_value:.2f} ± {error.abs_err_value:.2f}")
+    tB_rel_err.setText(str(error.rel_err_value))
+
 

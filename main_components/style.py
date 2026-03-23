@@ -6,7 +6,7 @@ _: str = """
     QFrame {
         background-color: #C7DDD6;
     }
-        
+            
     QLineEdit {
         border: 2px solid #ddd;
         padding: 8px;
