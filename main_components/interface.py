@@ -125,43 +125,43 @@ class UiCore(MainWindow):
     def activated_combobox(self, index):
 
         if self.comboBox.currentIndex() == 0:
-            self.error_capillary = Error(tabModel=self.tabModel_1, n=self.tabModel_1.i)
+            self.error_capillary = Error(tabModel=self.tabModel_1)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_capillary,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15))
         if self.comboBox.currentIndex() == 1:
-            self.error_dunui = Error(tabModel=self.tabModel_2, n=self.tabModel_2.i)
+            self.error_dunui = Error(tabModel=self.tabModel_2)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_dunui,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15))
         if self.comboBox.currentIndex() == 2:
-            self.error_vilhelmi = Error(tabModel=self.tabModel_3, n=self.tabModel_3.i)
+            self.error_vilhelmi = Error(tabModel=self.tabModel_3)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_vilhelmi,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15))
         if self.comboBox.currentIndex() == 3:
-            self.error_hang_drop = Error(tabModel=self.tabModel_4, n=self.tabModel_4.i)
+            self.error_hang_drop = Error(tabModel=self.tabModel_4)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_hang_drop,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15))
         if self.comboBox.currentIndex() == 4:
-            self.error_oscill_jet = Error(tabModel=self.tabModel_5, n=self.tabModel_5.i)
+            self.error_oscill_jet = Error(tabModel=self.tabModel_5)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_oscill_jet,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15))
         if self.comboBox.currentIndex() == 5:
-            self.error_rebinder = Error(tabModel=self.tabModel_6, n=self.tabModel_6.i)
+            self.error_rebinder = Error(tabModel=self.tabModel_6)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_rebinder,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15))
         if self.comboBox.currentIndex() == 6:
-            self.error_drop_calc = Error(tabModel=self.tabModel_7, n=self.tabModel_7.i)
+            self.error_drop_calc = Error(tabModel=self.tabModel_7)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_drop_calc,
                                        tB_conf_int=self.textBrowser_14,
