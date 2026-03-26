@@ -23,6 +23,6 @@ def print_error(error: Error,
                 tB_conf_int: QtWidgets.QTextBrowser,
                 tB_rel_err: QtWidgets.QTextBrowser):
     tB_conf_int.setText(f"{error.mean_value:.2f} ± {error.abs_err_value:.2f}")
-    tB_rel_err.setText(str(error.rel_err_value))
+    tB_rel_err.setText(f"{error.rel_err_value:.4f}")
 
 
