@@ -37,8 +37,6 @@ class UiCore(MainWindow):
         url = QtCore.QUrl("Capillary_text.htm")
         self.textBrowser_122.setSource(url)
         self.textBrowser_122.setObjectName("textBrowser_122")
-        self.frame.setObjectName("frame")
-        self.frame_2.setObjectName("frame_2")
 
 
         self.tabModel_2 = Model() #Du niu
@@ -129,43 +127,50 @@ class UiCore(MainWindow):
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_capillary,
                                        tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15))
+                                       tB_rel_err=self.textBrowser_15,
+                                       tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 1:
             self.error_dunui = Error(tabModel=self.tabModel_2)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_dunui,
                                        tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15))
+                                       tB_rel_err=self.textBrowser_15,
+                                       tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 2:
             self.error_vilhelmi = Error(tabModel=self.tabModel_3)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_vilhelmi,
                                        tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15))
+                                       tB_rel_err=self.textBrowser_15,
+                                       tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 3:
             self.error_hang_drop = Error(tabModel=self.tabModel_4)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_hang_drop,
                                        tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15))
+                                       tB_rel_err=self.textBrowser_15,
+                                       tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 4:
             self.error_oscill_jet = Error(tabModel=self.tabModel_5)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_oscill_jet,
                                        tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15))
+                                       tB_rel_err=self.textBrowser_15,
+                                       tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 5:
             self.error_rebinder = Error(tabModel=self.tabModel_6)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_rebinder,
                                        tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15))
+                                       tB_rel_err=self.textBrowser_15,
+                                       tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 6:
             self.error_drop_calc = Error(tabModel=self.tabModel_7)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_drop_calc,
                                        tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15))
+                                       tB_rel_err=self.textBrowser_15,
+                                       tB_sys_err_mes=self.textBrowser_30))
 
 
 def open_ui():
