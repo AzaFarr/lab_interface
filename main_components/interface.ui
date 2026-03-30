@@ -4011,7 +4011,7 @@ p, li { white-space: pre-wrap; }
           <string>Редактор отчета</string>
          </property>
         </widget>
-        <widget class="MplWidget" name="mplwidget" native="true">
+        <widget class="MplWidget" name="widget_graph" native="true">
          <property name="geometry">
           <rect>
            <x>630</x>

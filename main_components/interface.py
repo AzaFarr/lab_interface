@@ -1,7 +1,10 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
+
 from error_calculation import Error
 from load_ui import MainWindow
 from tables import Model
+from mplwidget import MplWidget
+
 import funcs_button as fb
 
 import style
@@ -27,8 +30,10 @@ class UiCore(MainWindow):
 
 
         self.tabModel_1 = Model() #Capillary
+        self.error_capillary = Error(tabModel=self.tabModel_1)
         self.pushButton.clicked.connect(
             lambda: fb.add_item(self.tabModel_1, self.lineEdit_6.text()))  # если у функции есть аргумент, то только через lambda-функцию
+        self.pushButton.clicked.connect(self.error_capillary.calculate)
         self.pushButton_24.clicked.connect(
             lambda: fb.clear_table(self.tabModel_1))
         self.tableView_11.resize_columns_proportionally()
@@ -39,9 +44,12 @@ class UiCore(MainWindow):
         self.textBrowser_122.setObjectName("textBrowser_122")
 
 
+
         self.tabModel_2 = Model() #Du niu
+        self.error_dunui = Error(tabModel=self.tabModel_2)
         self.pushButton_4.clicked.connect(
             lambda: fb.add_item(self.tabModel_2, self.lineEdit_24.text()))
+        self.pushButton_4.clicked.connect(self.error_dunui.calculate)
         self.pushButton_23.clicked.connect(
             lambda: fb.clear_table(self.tabModel_2))
         self.tableView_4.resize_columns_proportionally()
@@ -52,9 +60,12 @@ class UiCore(MainWindow):
         self.textBrowser_123.setObjectName("textBrowser_123")
 
 
+
         self.tabModel_3 = Model() #Vilhelmi
+        self.error_vilhelmi = Error(tabModel=self.tabModel_3)
         self.pushButton_5.clicked.connect(
             lambda: fb.add_item(self.tabModel_3, self.lineEdit_30.text()))
+        self.pushButton_5.clicked.connect(self.error_vilhelmi.calculate)
         self.pushButton_22.clicked.connect(
             lambda: fb.clear_table(self.tabModel_3))
         self.tableView_5.resize_columns_proportionally()
@@ -65,9 +76,12 @@ class UiCore(MainWindow):
         self.textBrowser_63.setObjectName("textBrowser_63")
 
 
+
         self.tabModel_4 = Model() #Hanging drop
+        self.error_hang_drop = Error(tabModel=self.tabModel_4)
         self.pushButton_6.clicked.connect(
             lambda: fb.add_item(self.tabModel_4, self.lineEdit_31.text()))
+        self.pushButton_6.clicked.connect(self.error_hang_drop.calculate)
         self.pushButton_21.clicked.connect(
             lambda: fb.clear_table(self.tabModel_4))
         self.tableView_6.resize_columns_proportionally()
@@ -78,9 +92,12 @@ class UiCore(MainWindow):
         self.textBrowser_76.setObjectName("textBrowser_76")
 
 
+
         self.tabModel_5 = Model() #Oscill jet
+        self.error_oscill_jet = Error(tabModel=self.tabModel_5)
         self.pushButton_7.clicked.connect(
             lambda: fb.add_item(self.tabModel_5, self.lineEdit_35.text()))
+        self.pushButton_7.clicked.connect(self.error_oscill_jet.calculate)
         self.pushButton_20.clicked.connect(
             lambda: fb.clear_table(self.tabModel_5))
         self.tableView_7.resize_columns_proportionally()
@@ -93,8 +110,10 @@ class UiCore(MainWindow):
 
 
         self.tabModel_6 = Model() #Rebinder
+        self.error_rebinder = Error(tabModel=self.tabModel_6)
         self.pushButton_8.clicked.connect(
             lambda: fb.add_item(self.tabModel_6, self.lineEdit_36.text()))
+        self.pushButton_8.clicked.connect(self.error_rebinder.calculate)
         self.pushButton_19.clicked.connect(
             lambda: fb.clear_table(self.tabModel_6))
         self.tableView_8.resize_columns_proportionally()
@@ -107,8 +126,10 @@ class UiCore(MainWindow):
 
 
         self.tabModel_7 = Model() #Drops calc
+        self.error_drop_calc = Error(tabModel=self.tabModel_7)
         self.pushButton_9.clicked.connect(
             lambda: fb.add_item(self.tabModel_7, self.lineEdit_41.text()))
+        self.pushButton_9.clicked.connect(self.error_drop_calc.calculate)
         self.pushButton_18.clicked.connect(
             lambda: fb.clear_table(self.tabModel_7))
         self.tableView_9.resize_columns_proportionally()
@@ -118,54 +139,77 @@ class UiCore(MainWindow):
         self.textBrowser_115.setSource(url)
         self.textBrowser_115.setObjectName("textBrowser_115")
 
-        self.comboBox.activated.connect(self.activated_combobox)
+
+
+
+        self.comboBox.activated.connect(self.activated_combobox) #Error mod
+
+
+        #
+        # for ticklabel in self.widget_graph.canvas.axes.get_yticklabels():
+        #     ticklabel.set_horizontalalignment("left")
+        #
+        # self.widget_graph.canvas.axes.tick_params("y", pad=70)
+
+
+    def plot(self): # СЕЙЧАС ОН БЕЗ ЧЕКБОКСОВ, И ЕЩЕ НАДО СВЯЗЬ СДЕЛАТЬ С НИМИ, ИНАЧЕ ВСЕ ПОДРЯД БУДЕТ ПОКАЗЫАТЬ
+        #ЕЩЕ ПРОБЛЕМА С РАЗМЕРАМИ
+        self.widget_graph.canvas.axes.clear()
+        methods = {
+            'Капиллярный метод': self.error_capillary.rel_err_value,
+            'Метод отрыва кольца': self.error_dunui.rel_err_value,
+            'Метод пластин': self.error_vilhelmi.rel_err_value,
+            'Метод висячей капли': self.error_hang_drop.rel_err_value,
+            'Метод осциллирующей струи': self.error_oscill_jet.rel_err_value,
+            'Метод пузырькового давления': self.error_rebinder.rel_err_value,
+            'Метод счетных капель': self.error_drop_calc.rel_err_value
+        }
+        self.widget_graph.canvas.axes.bar(methods.keys(), methods.values(), color="#376D5B")
+        self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность")
+        self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
+        self.widget_graph.canvas.axes.tick_params(axis='y', labelcolor='#274E41')
+        self.widget_graph.canvas.axes.grid(False)
+        self.widget_graph.canvas.draw()
 
     def activated_combobox(self, index):
 
         if self.comboBox.currentIndex() == 0:
-            self.error_capillary = Error(tabModel=self.tabModel_1)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_capillary,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 1:
-            self.error_dunui = Error(tabModel=self.tabModel_2)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_dunui,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 2:
-            self.error_vilhelmi = Error(tabModel=self.tabModel_3)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_vilhelmi,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 3:
-            self.error_hang_drop = Error(tabModel=self.tabModel_4)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_hang_drop,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 4:
-            self.error_oscill_jet = Error(tabModel=self.tabModel_5)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_oscill_jet,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 5:
-            self.error_rebinder = Error(tabModel=self.tabModel_6)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_rebinder,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
         if self.comboBox.currentIndex() == 6:
-            self.error_drop_calc = Error(tabModel=self.tabModel_7)
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_drop_calc,
                                        tB_conf_int=self.textBrowser_14,

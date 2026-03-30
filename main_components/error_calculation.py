@@ -13,6 +13,12 @@ class Error():
 
         self.tabModel = tabModel
         self.sys_error_message: str = ''
+        self.mean_value: float = 0
+        self.abs_err_value: float = 0
+        self.rel_err_value: float = 0
+
+
+    def calculate(self):
         try:
             self.data: np.ndarray = np.array(
                 [float(self.tabModel.model.item(k, 1).text()) for k in range(self.tabModel.model.rowCount())])
