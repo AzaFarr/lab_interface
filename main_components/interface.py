@@ -140,41 +140,31 @@ class UiCore(MainWindow):
         self.textBrowser_115.setObjectName("textBrowser_115")
 
         self.methods = {}
-        # self.methods = { 'Капиллярный метод': self.error_capillary.rel_err_value,
-        #                  'Метод отрыва кольца': self.error_dunui.rel_err_value,
-        #                  'Метод пластин': self.error_vilhelmi.rel_err_value,
-        #                  'Метод висячей капли': self.error_hang_drop.rel_err_value,
-        #                  'Метод осциллирующей струи': self.error_oscill_jet.rel_err_value,
-        #                  'Метод пузырькового давления': self.error_rebinder.rel_err_value,
-        #                  'Метод счетных капель': self.error_drop_calc.rel_err_value
-        #                  }
-
         self.widget_graph.setObjectName("widget_graph")
-        self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность")
+        self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
         self.widget_graph.canvas.axes.tick_params(axis='y', labelcolor='#274E41')
         self.widget_graph.canvas.axes.set_facecolor('#EFF5F3')
         self.widget_graph.canvas.fig.set_facecolor('#C7DDD6')
         self.comboBox.activated.connect(self.activated_combobox) #Error mod
         self.cB_capillaryMethod.clicked.connect(
-            lambda: self.activated_checkbox(checkBox=self.cB_capillaryMethod, index='Капиллярный метод', value=self.error_capillary.rel_err_value))
+            lambda: self.activated_checkbox(checkBox=self.cB_capillaryMethod, index='Капиллярный\nметод', value=self.error_capillary.rel_err_value))
         self.cB_Dunui.clicked.connect(
-            lambda: self.activated_checkbox(checkBox=self.cB_Dunui, index='Метод отрыва кольца', value=self.error_dunui.rel_err_value))
+            lambda: self.activated_checkbox(checkBox=self.cB_Dunui, index='Метод\nотрыва\nкольца', value=self.error_dunui.rel_err_value))
         self.cB_Vilhelmy.clicked.connect(
-            lambda: self.activated_checkbox(checkBox=self.cB_Vilhelmy, index='Метод пластин', value=self.error_vilhelmi.rel_err_value))
+            lambda: self.activated_checkbox(checkBox=self.cB_Vilhelmy, index='Метод\nпластин', value=self.error_vilhelmi.rel_err_value))
         self.cB_hangDrop.clicked.connect(
-            lambda: self.activated_checkbox(checkBox=self.cB_hangDrop, index='Метод висячей капли', value=self.error_hang_drop.rel_err_value))
+            lambda: self.activated_checkbox(checkBox=self.cB_hangDrop, index='Метод\nвисячей\nкапли', value=self.error_hang_drop.rel_err_value))
         self.cB_oscillJet.clicked.connect(
-            lambda: self.activated_checkbox(checkBox=self.cB_oscillJet, index='Метод осциллирующей струи', value=self.error_oscill_jet.rel_err_value))
+            lambda: self.activated_checkbox(checkBox=self.cB_oscillJet, index='Метод\nосциллирующей\nструи', value=self.error_oscill_jet.rel_err_value))
         self.cB_Rebinder.clicked.connect(
-            lambda: self.activated_checkbox(checkBox=self.cB_Rebinder, index='Метод пузырькового давления', value=self.error_rebinder.rel_err_value))
+            lambda: self.activated_checkbox(checkBox=self.cB_Rebinder, index='Метод\nпузырькового\nдавления', value=self.error_rebinder.rel_err_value))
         self.cB_calcDrop.clicked.connect(
-            lambda: self.activated_checkbox(checkBox=self.cB_calcDrop, index='Метод счетных капель', value=self.error_drop_calc.rel_err_value))
+            lambda: self.activated_checkbox(checkBox=self.cB_calcDrop, index='Метод\nсчетных\nкапель', value=self.error_drop_calc.rel_err_value))
 
 
 
     def activated_checkbox(self, checkBox: QtWidgets.QCheckBox, index: str, value: float):
-        print(index, " ", checkBox.isChecked())
         if checkBox.isChecked():
             self.plot(index=index, value = value, set_visible=True)
         else:
@@ -186,7 +176,6 @@ class UiCore(MainWindow):
             self.methods[index] = value
         else:
             del self.methods[index]
-        print(self.methods)
         self.widget_graph.canvas.axes.clear()
         self.widget_graph.canvas.axes.bar(self.methods.keys(), self.methods.values(), color="#376D5B")
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность")
@@ -197,7 +186,6 @@ class UiCore(MainWindow):
 
     def activated_combobox(self, index):
         if self.comboBox.currentIndex() == 0:
-            print("capill")
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_capillary,
                                        tB_conf_int=self.textBrowser_14,

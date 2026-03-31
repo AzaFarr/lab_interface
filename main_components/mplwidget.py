@@ -13,6 +13,7 @@ class MplCanvas(FigureCanvasQTAgg):
 
     def __init__(self):
         self.fig = Figure()
+        self.fig.set_layout_engine('tight')
         self.axes = self.fig.add_subplot(111)
         super().__init__(self.fig)
 
