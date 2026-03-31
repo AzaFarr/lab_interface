@@ -20,6 +20,7 @@ class Error():
 
     def calculate(self):
         try:
+            self.sys_error_message = ''
             self.data: np.ndarray = np.array(
                 [float(self.tabModel.model.item(k, 1).text()) for k in range(self.tabModel.model.rowCount())])
             self.mean_value = self.mean()

@@ -12,9 +12,9 @@ from load_ui import MainWindow
 class MplCanvas(FigureCanvasQTAgg):
 
     def __init__(self):
-        fig = Figure()
-        self.axes = fig.add_subplot(111)
-        super().__init__(fig)
+        self.fig = Figure()
+        self.axes = self.fig.add_subplot(111)
+        super().__init__(self.fig)
 
 class MplWidget(QtWidgets.QWidget):
     def __init__(self, parent:None):
