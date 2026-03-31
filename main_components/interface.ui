@@ -3960,11 +3960,11 @@ p, li { white-space: pre-wrap; }
           <string/>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_7">
+        <widget class="QCheckBox" name="cB_calcDrop">
          <property name="geometry">
           <rect>
            <x>86</x>
-           <y>309</y>
+           <y>310</y>
            <width>31</width>
            <height>31</height>
           </rect>

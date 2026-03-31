@@ -140,31 +140,98 @@ class UiCore(MainWindow):
         self.textBrowser_115.setObjectName("textBrowser_115")
 
 
+        self.methods = { 'Капиллярный метод': self.error_capillary.rel_err_value,
+                         'Метод отрыва кольца': self.error_dunui.rel_err_value,
+                         'Метод пластин': self.error_vilhelmi.rel_err_value,
+                         'Метод висячей капли': self.error_hang_drop.rel_err_value,
+                         'Метод осциллирующей струи': self.error_oscill_jet.rel_err_value,
+                         'Метод пузырькового давления': self.error_rebinder.rel_err_value,
+                         'Метод счетных капель': self.error_drop_calc.rel_err_value
+                         }
+
+        self.comboBox.activated.connect(lambda: self.activated_combobox) #Error mod
+        # self.activated_checkbox()
+        self.cB_capillaryMethod.clicked.connect(lambda: self.activated_checkbox(checkBox=self.cB_capillaryMethod, index=0))
+        self.cB_Dunui.clicked.connect(lambda: self.activated_checkbox(checkBox=self.cB_Dunui, index=1))
+        self.cB_Vilhelmy.clicked.connect(lambda: self.activated_checkbox(checkBox=self.cB_Vilhelmy, index=2))
+        self.cB_hangDrop.clicked.connect(lambda: self.activated_checkbox(checkBox=self.cB_hangDrop, index=3))
+        self.cB_oscillJet.clicked.connect(lambda: self.activated_checkbox(checkBox=self.cB_oscillJet, index=4))
+        self.cB_Rebinder.clicked.connect(lambda: self.activated_checkbox(checkBox=self.cB_Rebinder, index=5))
+        self.cB_calcDrop.clicked.connect(lambda: self.activated_checkbox(checkBox=self.cB_calcDrop, index=6))
 
 
-        self.comboBox.activated.connect(self.activated_combobox) #Error mod
+
+    def fill_dictionary(self):
+        self.methods['Капиллярный метод'] = self.error_capillary.rel_err_value
+        self.methods['Метод отрыва кольца'] = self.error_dunui.rel_err_value
+        self.methods['Метод пластин'] = self.error_vilhelmi.rel_err_value
+        self.methods['Метод висячей капли'] = self.error_hang_drop.rel_err_value
+        self.methods['Метод осциллирующей струи'] = self.error_oscill_jet.rel_err_value
+        self.methods['Метод пузырькового давления'] = self.error_rebinder.rel_err_value
+        self.methods['Метод счетных капель'] = self.error_drop_calc.rel_err_value
+
+    def activated_checkbox(self, checkBox: QtWidgets.QCheckBox, index: int):
+
+        try:
+            if checkBox.isChecked():
+                self.plot(index=index, set_visible=True)
+                # self.pushButton_17.clicked.connect(self.plot(index=index, set_visible=True))
+            else:
+                self.plot(index=index, set_visible=False)
+                # self.pushButton_17.clicked.connect(self.plot(index=index, set_visible=False))
+        except Exception as e:
+            print("from checkbox: ", e)
+
+    # def activated_checkbox(self):
+    #
+    #     if self.cB_capillaryMethod.isChecked():
+    #         self.plot(index=0, set_visible=True)
+    #         self.pushButton_17.clicked.connect(self.plot(index=0, set_visible=True))
+    #     else:
+    #         self.plot(index=0, set_visible=False)
+    #         self.pushButton_17.clicked.connect(self.plot(index=0, set_visible=False))
+    #     if self.cB_Dunui.isChecked():
+    #         self.plot(index=1, set_visible=True)
+    #         self.pushButton_17.clicked.connect(self.plot(index=1, set_visible=True))
+    #     else:
+    #         self.plot(index=1, set_visible=False)
+    #         self.pushButton_17.clicked.connect(self.plot(index=1, set_visible=False))
+    #     if self.cB_Vilhelmy.isChecked():
+    #         self.plot(index=2, set_visible=True)
+    #         self.pushButton_17.clicked.connect(self.plot(index=2, set_visible=True))
+    #     else:
+    #         self.plot(index=2, set_visible=False)
+    #         self.pushButton_17.clicked.connect(self.plot(index=2, set_visible=False))
+    #     if self.cB_hangDrop.isChecked():
+    #         self.plot(index=3, set_visible=True)
+    #         self.pushButton_17.clicked.connect(self.plot(index=3, set_visible=True))
+    #     else:
+    #         self.plot(index=3, set_visible=False)
+    #         self.pushButton_17.clicked.connect(self.plot(index=3, set_visible=False))
+    #     if self.cB_oscillJet.isChecked():
+    #         self.plot(index=4, set_visible=True)
+    #         self.pushButton_17.clicked.connect(self.plot(index=4, set_visible=True))
+    #     else:
+    #         self.plot(index=4, set_visible=False)
+    #         self.pushButton_17.clicked.connect(self.plot(index=4, set_visible=False))
+    #     if self.cB_Rebinder.isChecked():
+    #         self.plot(index=5, set_visible=True)
+    #         self.pushButton_17.clicked.connect(self.plot(index=5, set_visible=True))
+    #     else:
+    #         self.plot(index=5, set_visible=False)
+    #         self.pushButton_17.clicked.connect(self.plot(index=5, set_visible=False))
+    #     if self.cB_calcDrop.isChecked():
+    #         self.plot(index=6, set_visible=True)
+    #         self.pushButton_17.clicked.connect(self.plot(index=6, set_visible=True))
+    #     else:
+    #         self.plot(index=6, set_visible=False)
+    #         self.pushButton_17.clicked.connect(self.plot(index=6, set_visible=False))
 
 
-        #
-        # for ticklabel in self.widget_graph.canvas.axes.get_yticklabels():
-        #     ticklabel.set_horizontalalignment("left")
-        #
-        # self.widget_graph.canvas.axes.tick_params("y", pad=70)
 
-
-    def plot(self): # СЕЙЧАС ОН БЕЗ ЧЕКБОКСОВ, И ЕЩЕ НАДО СВЯЗЬ СДЕЛАТЬ С НИМИ, ИНАЧЕ ВСЕ ПОДРЯД БУДЕТ ПОКАЗЫАТЬ
-        #ЕЩЕ ПРОБЛЕМА С РАЗМЕРАМИ
-        self.widget_graph.canvas.axes.clear()
-        methods = {
-            'Капиллярный метод': self.error_capillary.rel_err_value,
-            'Метод отрыва кольца': self.error_dunui.rel_err_value,
-            'Метод пластин': self.error_vilhelmi.rel_err_value,
-            'Метод висячей капли': self.error_hang_drop.rel_err_value,
-            'Метод осциллирующей струи': self.error_oscill_jet.rel_err_value,
-            'Метод пузырькового давления': self.error_rebinder.rel_err_value,
-            'Метод счетных капель': self.error_drop_calc.rel_err_value
-        }
-        self.widget_graph.canvas.axes.bar(methods.keys(), methods.values(), color="#376D5B")
+    def plot(self, index: int, set_visible: bool):
+        self.plot_data = self.widget_graph.canvas.axes.bar(self.methods.keys(), self.methods.values(), color="#376D5B")
+        self.plot_data[index].set_visible(set_visible)
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность")
         self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
         self.widget_graph.canvas.axes.tick_params(axis='y', labelcolor='#274E41')
@@ -173,48 +240,59 @@ class UiCore(MainWindow):
 
     def activated_combobox(self, index):
 
-        if self.comboBox.currentIndex() == 0:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_capillary,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
-        if self.comboBox.currentIndex() == 1:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_dunui,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
-        if self.comboBox.currentIndex() == 2:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_vilhelmi,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
-        if self.comboBox.currentIndex() == 3:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_hang_drop,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
-        if self.comboBox.currentIndex() == 4:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_oscill_jet,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
-        if self.comboBox.currentIndex() == 5:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_rebinder,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
-        if self.comboBox.currentIndex() == 6:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_drop_calc,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
+        try:
+            if self.comboBox.currentIndex() == 0:
+                print("capill")
+                self.pushButton_17.clicked.connect(
+                    lambda: fb.print_error(error=self.error_capillary,
+                                           tB_conf_int=self.textBrowser_14,
+                                           tB_rel_err=self.textBrowser_15,
+                                           tB_sys_err_mes=self.textBrowser_30))
+                self.pushButton_17.clicked.connect(self.fill_dictionary)
+            if self.comboBox.currentIndex() == 1:
+                self.pushButton_17.clicked.connect(
+                    lambda: fb.print_error(error=self.error_dunui,
+                                           tB_conf_int=self.textBrowser_14,
+                                           tB_rel_err=self.textBrowser_15,
+                                           tB_sys_err_mes=self.textBrowser_30))
+                self.pushButton_17.clicked.connect(self.fill_dictionary)
+            if self.comboBox.currentIndex() == 2:
+                self.pushButton_17.clicked.connect(
+                    lambda: fb.print_error(error=self.error_vilhelmi,
+                                           tB_conf_int=self.textBrowser_14,
+                                           tB_rel_err=self.textBrowser_15,
+                                           tB_sys_err_mes=self.textBrowser_30))
+                self.pushButton_17.clicked.connect(self.fill_dictionary)
+            if self.comboBox.currentIndex() == 3:
+                self.pushButton_17.clicked.connect(
+                    lambda: fb.print_error(error=self.error_hang_drop,
+                                           tB_conf_int=self.textBrowser_14,
+                                           tB_rel_err=self.textBrowser_15,
+                                           tB_sys_err_mes=self.textBrowser_30))
+                self.pushButton_17.clicked.connect(self.fill_dictionary)
+            if self.comboBox.currentIndex() == 4:
+                self.pushButton_17.clicked.connect(
+                    lambda: fb.print_error(error=self.error_oscill_jet,
+                                           tB_conf_int=self.textBrowser_14,
+                                           tB_rel_err=self.textBrowser_15,
+                                           tB_sys_err_mes=self.textBrowser_30))
+                self.pushButton_17.clicked.connect(self.fill_dictionary)
+            if self.comboBox.currentIndex() == 5:
+                self.pushButton_17.clicked.connect(
+                    lambda: fb.print_error(error=self.error_rebinder,
+                                           tB_conf_int=self.textBrowser_14,
+                                           tB_rel_err=self.textBrowser_15,
+                                           tB_sys_err_mes=self.textBrowser_30))
+                self.pushButton_17.clicked.connect(self.fill_dictionary)
+            if self.comboBox.currentIndex() == 6:
+                self.pushButton_17.clicked.connect(
+                    lambda: fb.print_error(error=self.error_drop_calc,
+                                           tB_conf_int=self.textBrowser_14,
+                                           tB_rel_err=self.textBrowser_15,
+                                           tB_sys_err_mes=self.textBrowser_30))
+                self.pushButton_17.clicked.connect(self.fill_dictionary)
+        except Exception as e:
+            print("from combobox: ", e)
 
 
 def open_ui():
