@@ -27,8 +27,8 @@ def print_error(error: Error,
     tB_sys_err_mes.setHtml(error.sys_error_message)
 
     try:
-        tB_conf_int.setText(f"{error.mean_value:.2f} ± {error.abs_err_value:.2f}")
-        tB_rel_err.setText(f"{error.rel_err_value:.4f}")
+        tB_conf_int.setText(f"{error.mean_value:.2f} ± {error.abs_err_value:.2f}  [Н / м]")
+        tB_rel_err.setText(f"{error.rel_err_value:.4f}  д.ед.")
     except Exception as e:
         tB_conf_int.setText("")
         tB_rel_err.setText("")

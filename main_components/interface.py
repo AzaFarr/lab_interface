@@ -140,7 +140,6 @@ class UiCore(MainWindow):
         self.textBrowser_115.setObjectName("textBrowser_115")
 
         self.methods = {}
-        self.widget_graph.setObjectName("widget_graph")
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
         self.widget_graph.canvas.axes.tick_params(axis='y', labelcolor='#274E41')
@@ -178,7 +177,7 @@ class UiCore(MainWindow):
             del self.methods[index]
         self.widget_graph.canvas.axes.clear()
         self.widget_graph.canvas.axes.bar(self.methods.keys(), self.methods.values(), color="#376D5B")
-        self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность")
+        self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.grid(False)
         self.widget_graph.canvas.draw()
 
