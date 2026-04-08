@@ -139,13 +139,13 @@ class UiCore(MainWindow):
         self.textBrowser_115.setSource(url)
         self.textBrowser_115.setObjectName("textBrowser_115")
 
-        self.methods = {}
+        self.methods = {} #Error mod
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
         self.widget_graph.canvas.axes.tick_params(axis='y', labelcolor='#274E41')
         self.widget_graph.canvas.axes.set_facecolor('#EFF5F3')
         self.widget_graph.canvas.fig.set_facecolor('#C7DDD6')
-        self.comboBox.activated.connect(self.activated_combobox) #Error mod
+        self.comboBox.activated.connect(self.activated_combobox)
         self.cB_capillaryMethod.clicked.connect(
             lambda: self.activated_checkbox(checkBox=self.cB_capillaryMethod, index='Капиллярный\nметод', value=self.error_capillary.rel_err_value))
         self.cB_Dunui.clicked.connect(
