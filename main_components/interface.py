@@ -29,13 +29,15 @@ class UiCore(MainWindow):
         self.setStyleSheet(style._)  # styles load
 
 
-        self.tabModel_1 = Model() #Capillary
+        self.header_1 = ["№", "ρ", "r_1", "r_2", "ΔH", "Время"]
+        self.tabModel_1 = Model(self.header_1) #Capillary
         self.error_capillary = Error(tabModel=self.tabModel_1)
         self.pushButton.clicked.connect(
             lambda: fb.add_item(self.tabModel_1, self.lineEdit_6.text()))  # если у функции есть аргумент, то только через lambda-функцию
         self.pushButton.clicked.connect(self.error_capillary.calculate)
         self.pushButton_24.clicked.connect(
             lambda: fb.clear_table(self.tabModel_1))
+        self.tableView_11.model = self.tabModel_1
         self.tableView_11.resize_columns_proportionally()
         self.tableView_11.setModel(self.tabModel_1.model)
         self.tableView_11.verticalHeader().setVisible(False)
@@ -43,15 +45,15 @@ class UiCore(MainWindow):
         self.textBrowser_122.setSource(url)
         self.textBrowser_122.setObjectName("textBrowser_122")
 
-
-
-        self.tabModel_2 = Model() #Du niu
+        self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
+        self.tabModel_2 = Model(self.header_2) #Du niu
         self.error_dunui = Error(tabModel=self.tabModel_2)
         self.pushButton_4.clicked.connect(
             lambda: fb.add_item(self.tabModel_2, self.lineEdit_24.text()))
         self.pushButton_4.clicked.connect(self.error_dunui.calculate)
         self.pushButton_23.clicked.connect(
             lambda: fb.clear_table(self.tabModel_2))
+        self.tableView_4.model = self.tabModel_2
         self.tableView_4.resize_columns_proportionally()
         self.tableView_4.setModel(self.tabModel_2.model)
         self.tableView_4.verticalHeader().setVisible(False)
@@ -59,15 +61,15 @@ class UiCore(MainWindow):
         self.textBrowser_123.setSource(url)
         self.textBrowser_123.setObjectName("textBrowser_123")
 
-
-
-        self.tabModel_3 = Model() #Vilhelmi
+        self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
+        self.tabModel_3 = Model(self.header_3) #Vilhelmi
         self.error_vilhelmi = Error(tabModel=self.tabModel_3)
         self.pushButton_5.clicked.connect(
             lambda: fb.add_item(self.tabModel_3, self.lineEdit_30.text()))
         self.pushButton_5.clicked.connect(self.error_vilhelmi.calculate)
         self.pushButton_22.clicked.connect(
             lambda: fb.clear_table(self.tabModel_3))
+        self.tableView_5.model = self.tabModel_3
         self.tableView_5.resize_columns_proportionally()
         self.tableView_5.setModel(self.tabModel_3.model)
         self.tableView_5.verticalHeader().setVisible(False)
@@ -75,15 +77,15 @@ class UiCore(MainWindow):
         self.textBrowser_63.setSource(url)
         self.textBrowser_63.setObjectName("textBrowser_63")
 
-
-
-        self.tabModel_4 = Model() #Hanging drop
+        self.header_4 = ["№", "m_ср", "d", "Время"]
+        self.tabModel_4 = Model(self.header_4) #Hanging drop
         self.error_hang_drop = Error(tabModel=self.tabModel_4)
         self.pushButton_6.clicked.connect(
             lambda: fb.add_item(self.tabModel_4, self.lineEdit_31.text()))
         self.pushButton_6.clicked.connect(self.error_hang_drop.calculate)
         self.pushButton_21.clicked.connect(
             lambda: fb.clear_table(self.tabModel_4))
+        self.tableView_6.model = self.tabModel_4
         self.tableView_6.resize_columns_proportionally()
         self.tableView_6.setModel(self.tabModel_4.model)
         self.tableView_6.verticalHeader().setVisible(False)
@@ -91,15 +93,15 @@ class UiCore(MainWindow):
         self.textBrowser_76.setSource(url)
         self.textBrowser_76.setObjectName("textBrowser_76")
 
-
-
-        self.tabModel_5 = Model() #Oscill jet
+        self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
+        self.tabModel_5 = Model(self.header_5) #Oscill jet
         self.error_oscill_jet = Error(tabModel=self.tabModel_5)
         self.pushButton_7.clicked.connect(
             lambda: fb.add_item(self.tabModel_5, self.lineEdit_35.text()))
         self.pushButton_7.clicked.connect(self.error_oscill_jet.calculate)
         self.pushButton_20.clicked.connect(
             lambda: fb.clear_table(self.tabModel_5))
+        self.tableView_7.model = self.tabModel_5
         self.tableView_7.resize_columns_proportionally()
         self.tableView_7.setModel(self.tabModel_5.model)
         self.tableView_7.verticalHeader().setVisible(False)
@@ -107,15 +109,15 @@ class UiCore(MainWindow):
         self.textBrowser_89.setSource(url)
         self.textBrowser_89.setObjectName("textBrowser_89")
 
-
-
-        self.tabModel_6 = Model() #Rebinder
+        self.header_6 = ["№", "r", "ΔP_max", "Время"]
+        self.tabModel_6 = Model(self.header_6) #Rebinder
         self.error_rebinder = Error(tabModel=self.tabModel_6)
         self.pushButton_8.clicked.connect(
             lambda: fb.add_item(self.tabModel_6, self.lineEdit_36.text()))
         self.pushButton_8.clicked.connect(self.error_rebinder.calculate)
         self.pushButton_19.clicked.connect(
             lambda: fb.clear_table(self.tabModel_6))
+        self.tableView_8.model = self.tabModel_6
         self.tableView_8.resize_columns_proportionally()
         self.tableView_8.setModel(self.tabModel_6.model)
         self.tableView_8.verticalHeader().setVisible(False)
@@ -123,15 +125,15 @@ class UiCore(MainWindow):
         self.textBrowser_102.setSource(url)
         self.textBrowser_102.setObjectName("textBrowser_102")
 
-
-
-        self.tabModel_7 = Model() #Drops calc
+        self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
+        self.tabModel_7 = Model(self.header_7) #Drops calc
         self.error_drop_calc = Error(tabModel=self.tabModel_7)
         self.pushButton_9.clicked.connect(
             lambda: fb.add_item(self.tabModel_7, self.lineEdit_41.text()))
         self.pushButton_9.clicked.connect(self.error_drop_calc.calculate)
         self.pushButton_18.clicked.connect(
             lambda: fb.clear_table(self.tabModel_7))
+        self.tableView_9.model = self.tabModel_7
         self.tableView_9.resize_columns_proportionally()
         self.tableView_9.setModel(self.tabModel_7.model)
         self.tableView_9.verticalHeader().setVisible(False)
