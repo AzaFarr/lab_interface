@@ -6,13 +6,25 @@ from error_calculation import Error
 import datetime as dt
 
 
-def add_item(tabModel: Model, lineEdit: str):
-    number = QtGui.QStandardItem(str(tabModel.i))
-    exp_data = QtGui.QStandardItem(lineEdit)
-    date = QtGui.QStandardItem(str(dt.datetime.now()))
-    data = [number, exp_data, date]
-    tabModel.model.appendRow(data)
-    tabModel.i += 1
+def obtain_data(data, *lineEdits):
+    for value in lineEdits:
+        data.append(value)
+
+
+def add_item(tabModel: Model, data: list[str]):
+
+    try:
+        size = len(data)
+        data_table = []
+        data_table.append(QtGui.QStandardItem(str(tabModel.i)))
+        for i in range(size): data_table.append(QtGui.QStandardItem(str(data[i])))
+        data_table.append(QtGui.QStandardItem(str(dt.datetime.now())))
+        tabModel.model.appendRow(data_table)
+        del data[:]
+        tabModel.i += 1
+    except Exception as e:
+        print(e)
+
 
 def clear_table(tabModel: Model):
     for k in range(tabModel.i):

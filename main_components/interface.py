@@ -30,112 +30,155 @@ class UiCore(MainWindow):
 
 
         self.header_1 = ["№", "ρ", "r_1", "r_2", "ΔH", "Время"]
+        self.data_1 = []
         self.tabModel_1 = Model(self.header_1) #Capillary
         self.error_capillary = Error(tabModel=self.tabModel_1)
         self.pushButton.clicked.connect(
-            lambda: fb.add_item(self.tabModel_1, self.lineEdit_6.text()))  # если у функции есть аргумент, то только через lambda-функцию
+            lambda: fb.obtain_data(self.data_1,
+                                   self.lineEdit.text(),
+                                   self.lineEdit_3.text(),
+                                   self.lineEdit_4.text(),
+                                   self.lineEdit_5.text()))
+        self.pushButton.clicked.connect(
+            lambda: fb.add_item(self.tabModel_1, self.data_1))  # если у функции есть аргумент, то только через lambda-функцию
         self.pushButton.clicked.connect(self.error_capillary.calculate)
         self.pushButton_24.clicked.connect(
             lambda: fb.clear_table(self.tabModel_1))
-        self.tableView_11.model = self.tabModel_1
-        self.tableView_11.resize_columns_proportionally()
         self.tableView_11.setModel(self.tabModel_1.model)
+        self.tableView_11.resize_columns_proportionally()
         self.tableView_11.verticalHeader().setVisible(False)
         url = QtCore.QUrl("Capillary_text.htm")
         self.textBrowser_122.setSource(url)
         self.textBrowser_122.setObjectName("textBrowser_122")
 
         self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
+        self.data_2 = []
         self.tabModel_2 = Model(self.header_2) #Du niu
         self.error_dunui = Error(tabModel=self.tabModel_2)
         self.pushButton_4.clicked.connect(
-            lambda: fb.add_item(self.tabModel_2, self.lineEdit_24.text()))
+            lambda: fb.obtain_data(self.data_2,
+                                   self.lineEdit_19.text(),
+                                   self.lineEdit_20.text(),
+                                   self.lineEdit_21.text(),
+                                   self.lineEdit_119.text(),
+                                   self.lineEdit_120.text()))
+        self.pushButton_4.clicked.connect(
+            lambda: fb.add_item(self.tabModel_2, self.data_2))
         self.pushButton_4.clicked.connect(self.error_dunui.calculate)
         self.pushButton_23.clicked.connect(
             lambda: fb.clear_table(self.tabModel_2))
-        self.tableView_4.model = self.tabModel_2
-        self.tableView_4.resize_columns_proportionally()
         self.tableView_4.setModel(self.tabModel_2.model)
+        self.tableView_4.resize_columns_proportionally()
         self.tableView_4.verticalHeader().setVisible(False)
         url = QtCore.QUrl("Dunui_text.htm")
         self.textBrowser_123.setSource(url)
         self.textBrowser_123.setObjectName("textBrowser_123")
 
         self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
+        self.data_3 = []
         self.tabModel_3 = Model(self.header_3) #Vilhelmi
         self.error_vilhelmi = Error(tabModel=self.tabModel_3)
         self.pushButton_5.clicked.connect(
-            lambda: fb.add_item(self.tabModel_3, self.lineEdit_30.text()))
+            lambda: fb.obtain_data(self.data_3,
+                                   self.lineEdit_25.text(),
+                                   self.lineEdit_26.text(),
+                                   self.lineEdit_27.text(),
+                                   self.lineEdit_28.text(),
+                                   self.lineEdit_29.text(),
+                                   self.lineEdit_55.text(),
+                                   self.lineEdit_56.text()))
+        self.pushButton_5.clicked.connect(
+            lambda: fb.add_item(self.tabModel_3, self.data_3))
         self.pushButton_5.clicked.connect(self.error_vilhelmi.calculate)
         self.pushButton_22.clicked.connect(
             lambda: fb.clear_table(self.tabModel_3))
-        self.tableView_5.model = self.tabModel_3
-        self.tableView_5.resize_columns_proportionally()
         self.tableView_5.setModel(self.tabModel_3.model)
+        self.tableView_5.resize_columns_proportionally()
         self.tableView_5.verticalHeader().setVisible(False)
         url = QtCore.QUrl("Vilhelmi_text.htm")
         self.textBrowser_63.setSource(url)
         self.textBrowser_63.setObjectName("textBrowser_63")
 
         self.header_4 = ["№", "m_ср", "d", "Время"]
+        self.data_4 = []
         self.tabModel_4 = Model(self.header_4) #Hanging drop
         self.error_hang_drop = Error(tabModel=self.tabModel_4)
         self.pushButton_6.clicked.connect(
-            lambda: fb.add_item(self.tabModel_4, self.lineEdit_31.text()))
+            lambda: fb.obtain_data(self.data_4,
+                                   self.lineEdit_32.text(),
+                                   self.lineEdit_33.text()))
+        self.pushButton_6.clicked.connect(
+            lambda: fb.add_item(self.tabModel_4, self.data_4))
         self.pushButton_6.clicked.connect(self.error_hang_drop.calculate)
         self.pushButton_21.clicked.connect(
             lambda: fb.clear_table(self.tabModel_4))
-        self.tableView_6.model = self.tabModel_4
-        self.tableView_6.resize_columns_proportionally()
         self.tableView_6.setModel(self.tabModel_4.model)
+        self.tableView_6.resize_columns_proportionally()
         self.tableView_6.verticalHeader().setVisible(False)
         url = QtCore.QUrl("HangDrop_text.htm")
         self.textBrowser_76.setSource(url)
         self.textBrowser_76.setObjectName("textBrowser_76")
 
         self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
+        self.data_5 = []
         self.tabModel_5 = Model(self.header_5) #Oscill jet
         self.error_oscill_jet = Error(tabModel=self.tabModel_5)
         self.pushButton_7.clicked.connect(
-            lambda: fb.add_item(self.tabModel_5, self.lineEdit_35.text()))
+            lambda: fb.obtain_data(self.data_5,
+                                   self.lineEdit_37.text(),
+                                   self.lineEdit_38.text(),
+                                   self.lineEdit_39.text(),
+                                   self.lineEdit_40.text()))
+        self.pushButton_7.clicked.connect(
+            lambda: fb.add_item(self.tabModel_5, self.data_5))
         self.pushButton_7.clicked.connect(self.error_oscill_jet.calculate)
         self.pushButton_20.clicked.connect(
             lambda: fb.clear_table(self.tabModel_5))
-        self.tableView_7.model = self.tabModel_5
-        self.tableView_7.resize_columns_proportionally()
         self.tableView_7.setModel(self.tabModel_5.model)
+        self.tableView_7.resize_columns_proportionally()
         self.tableView_7.verticalHeader().setVisible(False)
         url = QtCore.QUrl("OscillJet_text.htm")
         self.textBrowser_89.setSource(url)
         self.textBrowser_89.setObjectName("textBrowser_89")
 
         self.header_6 = ["№", "r", "ΔP_max", "Время"]
+        self.data_6 = []
         self.tabModel_6 = Model(self.header_6) #Rebinder
         self.error_rebinder = Error(tabModel=self.tabModel_6)
         self.pushButton_8.clicked.connect(
-            lambda: fb.add_item(self.tabModel_6, self.lineEdit_36.text()))
+            lambda: fb.obtain_data(self.data_6,
+                                   self.lineEdit_43.text(),
+                                   self.lineEdit_47.text()))
+        self.pushButton_8.clicked.connect(
+            lambda: fb.add_item(self.tabModel_6, self.data_6))
         self.pushButton_8.clicked.connect(self.error_rebinder.calculate)
         self.pushButton_19.clicked.connect(
             lambda: fb.clear_table(self.tabModel_6))
-        self.tableView_8.model = self.tabModel_6
-        self.tableView_8.resize_columns_proportionally()
         self.tableView_8.setModel(self.tabModel_6.model)
+        self.tableView_8.resize_columns_proportionally()
         self.tableView_8.verticalHeader().setVisible(False)
         url = QtCore.QUrl("Rebinder_text.htm")
         self.textBrowser_102.setSource(url)
         self.textBrowser_102.setObjectName("textBrowser_102")
 
         self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
+        self.data_7 = []
         self.tabModel_7 = Model(self.header_7) #Drops calc
         self.error_drop_calc = Error(tabModel=self.tabModel_7)
         self.pushButton_9.clicked.connect(
-            lambda: fb.add_item(self.tabModel_7, self.lineEdit_41.text()))
+            lambda: fb.obtain_data(self.data_7,
+                                   self.lineEdit_49.text(),
+                                   self.lineEdit_50.text(),
+                                   self.lineEdit_51.text(),
+                                   self.lineEdit_52.text(),
+                                   self.lineEdit_53.text()))
+        self.pushButton_9.clicked.connect(
+            lambda: fb.add_item(self.tabModel_7, self.data_7))
         self.pushButton_9.clicked.connect(self.error_drop_calc.calculate)
         self.pushButton_18.clicked.connect(
             lambda: fb.clear_table(self.tabModel_7))
-        self.tableView_9.model = self.tabModel_7
-        self.tableView_9.resize_columns_proportionally()
         self.tableView_9.setModel(self.tabModel_7.model)
+        self.tableView_9.resize_columns_proportionally()
         self.tableView_9.verticalHeader().setVisible(False)
         url = QtCore.QUrl("DropsCalc_text.htm")
         self.textBrowser_115.setSource(url)
