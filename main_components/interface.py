@@ -9,8 +9,6 @@ import funcs_button as fb
 
 import style
 
-import pymupdf as pdf
-
 import sys
 
 #TODO: change the HTML codes (they in TextBrowsers) - DONE
@@ -28,10 +26,14 @@ class UiCore(MainWindow):
 
         self.setStyleSheet(style._)  # styles load
 
-
         self.header_1 = ["№", "ρ", "r_1", "r_2", "ΔH", "Время"]
+        self.paths = ['data_base_capillary/rho.txt',
+                      'data_base_capillary/r_1.txt',
+                      'data_base_capillary/r_2.txt',
+                      'data_base_capillary/delta_H.txt']
         self.data_1 = []
-        self.tabModel_1 = Model(self.header_1) #Capillary
+        fb.clear_data_base(self.paths)
+        self.tabModel_1 = Model(self.header_1)  # Capillary
         self.error_capillary = Error(tabModel=self.tabModel_1)
         self.pushButton.clicked.connect(
             lambda: fb.obtain_data(self.data_1,
@@ -40,16 +42,29 @@ class UiCore(MainWindow):
                                    self.lineEdit_4.text(),
                                    self.lineEdit_5.text()))
         self.pushButton.clicked.connect(
-            lambda: fb.add_item(self.tabModel_1, self.data_1))  # если у функции есть аргумент, то только через lambda-функцию
+            lambda: fb.rec_data_base(self.data_1,
+                                   self.paths))
+        self.pushButton.clicked.connect(
+            lambda: fb.add_item(self.tabModel_1,
+                                self.data_1))  # если у функции есть аргумент, то только через lambda-функцию
         self.pushButton.clicked.connect(self.error_capillary.calculate)
+
+        content = []
+        self.pushButton_24.clicked.connect(
+            lambda: fb.get_data_base(content, self.paths))
+
         self.pushButton_24.clicked.connect(
             lambda: fb.clear_table(self.tabModel_1))
+        self.pushButton_24.clicked.connect(
+            lambda: fb.clear_data_base(self.paths))
         self.tableView_11.setModel(self.tabModel_1.model)
         self.tableView_11.resize_columns_proportionally()
         self.tableView_11.verticalHeader().setVisible(False)
         url = QtCore.QUrl("Capillary_text.htm")
         self.textBrowser_122.setSource(url)
         self.textBrowser_122.setObjectName("textBrowser_122")
+
+
 
         self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
         self.data_2 = []
@@ -73,6 +88,8 @@ class UiCore(MainWindow):
         url = QtCore.QUrl("Dunui_text.htm")
         self.textBrowser_123.setSource(url)
         self.textBrowser_123.setObjectName("textBrowser_123")
+
+
 
         self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
         self.data_3 = []
@@ -99,6 +116,8 @@ class UiCore(MainWindow):
         self.textBrowser_63.setSource(url)
         self.textBrowser_63.setObjectName("textBrowser_63")
 
+
+
         self.header_4 = ["№", "m_ср", "d", "Время"]
         self.data_4 = []
         self.tabModel_4 = Model(self.header_4) #Hanging drop
@@ -118,6 +137,8 @@ class UiCore(MainWindow):
         url = QtCore.QUrl("HangDrop_text.htm")
         self.textBrowser_76.setSource(url)
         self.textBrowser_76.setObjectName("textBrowser_76")
+
+
 
         self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
         self.data_5 = []
@@ -141,6 +162,8 @@ class UiCore(MainWindow):
         self.textBrowser_89.setSource(url)
         self.textBrowser_89.setObjectName("textBrowser_89")
 
+
+
         self.header_6 = ["№", "r", "ΔP_max", "Время"]
         self.data_6 = []
         self.tabModel_6 = Model(self.header_6) #Rebinder
@@ -160,6 +183,8 @@ class UiCore(MainWindow):
         url = QtCore.QUrl("Rebinder_text.htm")
         self.textBrowser_102.setSource(url)
         self.textBrowser_102.setObjectName("textBrowser_102")
+
+
 
         self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
         self.data_7 = []
@@ -183,6 +208,8 @@ class UiCore(MainWindow):
         url = QtCore.QUrl("DropsCalc_text.htm")
         self.textBrowser_115.setSource(url)
         self.textBrowser_115.setObjectName("textBrowser_115")
+
+
 
         self.methods = {} #Error mod
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
@@ -221,6 +248,7 @@ class UiCore(MainWindow):
         else:
             del self.methods[index]
         self.widget_graph.canvas.axes.clear()
+
         self.widget_graph.canvas.axes.bar(self.methods.keys(), self.methods.values(), color="#376D5B")
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.grid(False)
@@ -235,6 +263,7 @@ class UiCore(MainWindow):
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
+
         if self.comboBox.currentIndex() == 1:
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_dunui,
