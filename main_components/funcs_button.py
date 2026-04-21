@@ -26,7 +26,6 @@ def get_data_base(content: list[list[str]], dirPaths: list[str]):
                 string = data_base.readline()[:-1]
                 line.append(string)
             content.append(line[:-1])
-    print(content)
 
 def obtain_data(data, *lineEdits):
     for value in lineEdits:

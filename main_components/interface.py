@@ -26,14 +26,16 @@ class UiCore(MainWindow):
 
         self.setStyleSheet(style._)  # styles load
 
+
+        # Capillary
         self.header_1 = ["№", "ρ", "r_1", "r_2", "ΔH", "Время"]
-        self.paths = ['data_base_capillary/rho.txt',
+        self.paths_1 = ['data_base_capillary/rho.txt',
                       'data_base_capillary/r_1.txt',
                       'data_base_capillary/r_2.txt',
                       'data_base_capillary/delta_H.txt']
         self.data_1 = []
-        fb.clear_data_base(self.paths)
-        self.tabModel_1 = Model(self.header_1)  # Capillary
+        fb.clear_data_base(self.paths_1)
+        self.tabModel_1 = Model(self.header_1)
         self.error_capillary = Error(tabModel=self.tabModel_1)
         self.pushButton.clicked.connect(
             lambda: fb.obtain_data(self.data_1,
@@ -43,20 +45,15 @@ class UiCore(MainWindow):
                                    self.lineEdit_5.text()))
         self.pushButton.clicked.connect(
             lambda: fb.rec_data_base(self.data_1,
-                                   self.paths))
+                                   self.paths_1))
         self.pushButton.clicked.connect(
             lambda: fb.add_item(self.tabModel_1,
                                 self.data_1))  # если у функции есть аргумент, то только через lambda-функцию
         self.pushButton.clicked.connect(self.error_capillary.calculate)
-
-        content = []
-        self.pushButton_24.clicked.connect(
-            lambda: fb.get_data_base(content, self.paths))
-
         self.pushButton_24.clicked.connect(
             lambda: fb.clear_table(self.tabModel_1))
         self.pushButton_24.clicked.connect(
-            lambda: fb.clear_data_base(self.paths))
+            lambda: fb.clear_data_base(self.paths_1))
         self.tableView_11.setModel(self.tabModel_1.model)
         self.tableView_11.resize_columns_proportionally()
         self.tableView_11.verticalHeader().setVisible(False)
@@ -65,10 +62,16 @@ class UiCore(MainWindow):
         self.textBrowser_122.setObjectName("textBrowser_122")
 
 
-
+        #Du nui
         self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
         self.data_2 = []
-        self.tabModel_2 = Model(self.header_2) #Du niu
+        self.paths_2 = ['data_base_dunui/P.txt',
+                        'data_base_dunui/R_ring.txt',
+                        'data_base_dunui/r_rod.txt',
+                        'data_base_dunui/rho_alpha.txt',
+                        'data_base_dunui/rho_beta.txt']
+        fb.clear_data_base(self.paths_2)
+        self.tabModel_2 = Model(self.header_2)
         self.error_dunui = Error(tabModel=self.tabModel_2)
         self.pushButton_4.clicked.connect(
             lambda: fb.obtain_data(self.data_2,
@@ -78,10 +81,15 @@ class UiCore(MainWindow):
                                    self.lineEdit_119.text(),
                                    self.lineEdit_120.text()))
         self.pushButton_4.clicked.connect(
+            lambda: fb.rec_data_base(self.data_2,
+                                     self.paths_2))
+        self.pushButton_4.clicked.connect(
             lambda: fb.add_item(self.tabModel_2, self.data_2))
         self.pushButton_4.clicked.connect(self.error_dunui.calculate)
         self.pushButton_23.clicked.connect(
             lambda: fb.clear_table(self.tabModel_2))
+        self.pushButton_23.clicked.connect(
+            lambda: fb.clear_data_base(self.paths_2))
         self.tableView_4.setModel(self.tabModel_2.model)
         self.tableView_4.resize_columns_proportionally()
         self.tableView_4.verticalHeader().setVisible(False)
@@ -90,10 +98,18 @@ class UiCore(MainWindow):
         self.textBrowser_123.setObjectName("textBrowser_123")
 
 
-
+        #Vilhelmi
         self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
         self.data_3 = []
-        self.tabModel_3 = Model(self.header_3) #Vilhelmi
+        self.paths_3 = ['data_base_vilhelmi/l.txt',
+                        'data_base_vilhelmi/t.txt',
+                        'data_base_vilhelmi/h.txt',
+                        'data_base_vilhelmi/F.txt',
+                        'data_base_vilhelmi/phi.txt',
+                        'data_base_vilhelmi/rho_alpha.txt',
+                        'data_base_vilhelmi/rho_beta.txt']
+        fb.clear_data_base(self.paths_3)
+        self.tabModel_3 = Model(self.header_3)
         self.error_vilhelmi = Error(tabModel=self.tabModel_3)
         self.pushButton_5.clicked.connect(
             lambda: fb.obtain_data(self.data_3,
@@ -105,10 +121,15 @@ class UiCore(MainWindow):
                                    self.lineEdit_55.text(),
                                    self.lineEdit_56.text()))
         self.pushButton_5.clicked.connect(
+            lambda: fb.rec_data_base(self.data_3,
+                                     self.paths_3))
+        self.pushButton_5.clicked.connect(
             lambda: fb.add_item(self.tabModel_3, self.data_3))
         self.pushButton_5.clicked.connect(self.error_vilhelmi.calculate)
         self.pushButton_22.clicked.connect(
             lambda: fb.clear_table(self.tabModel_3))
+        self.pushButton_22.clicked.connect(
+            lambda: fb.clear_data_base(self.paths_3))
         self.tableView_5.setModel(self.tabModel_3.model)
         self.tableView_5.resize_columns_proportionally()
         self.tableView_5.verticalHeader().setVisible(False)
@@ -117,20 +138,28 @@ class UiCore(MainWindow):
         self.textBrowser_63.setObjectName("textBrowser_63")
 
 
-
+        #Hanging drop
         self.header_4 = ["№", "m_ср", "d", "Время"]
         self.data_4 = []
-        self.tabModel_4 = Model(self.header_4) #Hanging drop
+        self.paths_4 = ['data_base_hangdrop/m.txt',
+                        'data_base_hangdrop/d.txt']
+        fb.clear_data_base(self.paths_4)
+        self.tabModel_4 = Model(self.header_4)
         self.error_hang_drop = Error(tabModel=self.tabModel_4)
         self.pushButton_6.clicked.connect(
             lambda: fb.obtain_data(self.data_4,
                                    self.lineEdit_32.text(),
                                    self.lineEdit_33.text()))
         self.pushButton_6.clicked.connect(
+            lambda: fb.rec_data_base(self.data_4,
+                                     self.paths_4))
+        self.pushButton_6.clicked.connect(
             lambda: fb.add_item(self.tabModel_4, self.data_4))
         self.pushButton_6.clicked.connect(self.error_hang_drop.calculate)
         self.pushButton_21.clicked.connect(
             lambda: fb.clear_table(self.tabModel_4))
+        self.pushButton_21.clicked.connect(
+            lambda: fb.clear_data_base(self.paths_4))
         self.tableView_6.setModel(self.tabModel_4.model)
         self.tableView_6.resize_columns_proportionally()
         self.tableView_6.verticalHeader().setVisible(False)
@@ -139,10 +168,15 @@ class UiCore(MainWindow):
         self.textBrowser_76.setObjectName("textBrowser_76")
 
 
-
+        #Oscill jet
         self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
         self.data_5 = []
-        self.tabModel_5 = Model(self.header_5) #Oscill jet
+        self.paths_5 = ['data_base_osciljet/rho.txt',
+                        'data_base_osciljet/Q.txt',
+                        'data_base_osciljet/r_0.txt',
+                        'data_base_osciljet/lambda.txt']
+        fb.clear_data_base(self.paths_5)
+        self.tabModel_5 = Model(self.header_5)
         self.error_oscill_jet = Error(tabModel=self.tabModel_5)
         self.pushButton_7.clicked.connect(
             lambda: fb.obtain_data(self.data_5,
@@ -151,10 +185,15 @@ class UiCore(MainWindow):
                                    self.lineEdit_39.text(),
                                    self.lineEdit_40.text()))
         self.pushButton_7.clicked.connect(
+            lambda: fb.rec_data_base(self.data_5,
+                                     self.paths_5))
+        self.pushButton_7.clicked.connect(
             lambda: fb.add_item(self.tabModel_5, self.data_5))
         self.pushButton_7.clicked.connect(self.error_oscill_jet.calculate)
         self.pushButton_20.clicked.connect(
             lambda: fb.clear_table(self.tabModel_5))
+        self.pushButton_20.clicked.connect(
+            lambda: fb.clear_data_base(self.paths_5))
         self.tableView_7.setModel(self.tabModel_5.model)
         self.tableView_7.resize_columns_proportionally()
         self.tableView_7.verticalHeader().setVisible(False)
@@ -163,20 +202,28 @@ class UiCore(MainWindow):
         self.textBrowser_89.setObjectName("textBrowser_89")
 
 
-
+        #Rebinder
         self.header_6 = ["№", "r", "ΔP_max", "Время"]
         self.data_6 = []
-        self.tabModel_6 = Model(self.header_6) #Rebinder
+        self.paths_6 = ['data_base_rebinder/r.txt',
+                        'data_base_rebinder/delta_P.txt']
+        fb.clear_data_base(self.paths_6)
+        self.tabModel_6 = Model(self.header_6)
         self.error_rebinder = Error(tabModel=self.tabModel_6)
         self.pushButton_8.clicked.connect(
             lambda: fb.obtain_data(self.data_6,
                                    self.lineEdit_43.text(),
                                    self.lineEdit_47.text()))
         self.pushButton_8.clicked.connect(
+            lambda: fb.rec_data_base(self.data_6,
+                                     self.paths_6))
+        self.pushButton_8.clicked.connect(
             lambda: fb.add_item(self.tabModel_6, self.data_6))
         self.pushButton_8.clicked.connect(self.error_rebinder.calculate)
         self.pushButton_19.clicked.connect(
             lambda: fb.clear_table(self.tabModel_6))
+        self.pushButton_19.clicked.connect(
+            lambda: fb.clear_data_base(self.paths_6))
         self.tableView_8.setModel(self.tabModel_6.model)
         self.tableView_8.resize_columns_proportionally()
         self.tableView_8.verticalHeader().setVisible(False)
@@ -185,10 +232,16 @@ class UiCore(MainWindow):
         self.textBrowser_102.setObjectName("textBrowser_102")
 
 
-
+        #Drops calc
         self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
         self.data_7 = []
-        self.tabModel_7 = Model(self.header_7) #Drops calc
+        self.paths_7 = ['data_base_dropcalc/a_0.txt',
+                        'data_base_dropcalc/rho_0.txt',
+                        'data_base_dropcalc/n_0.txt',
+                        'data_base_dropcalc/rho.txt',
+                        'data_base_dropcalc/n.txt']
+        fb.clear_data_base(self.paths_7)
+        self.tabModel_7 = Model(self.header_7)
         self.error_drop_calc = Error(tabModel=self.tabModel_7)
         self.pushButton_9.clicked.connect(
             lambda: fb.obtain_data(self.data_7,
@@ -198,10 +251,15 @@ class UiCore(MainWindow):
                                    self.lineEdit_52.text(),
                                    self.lineEdit_53.text()))
         self.pushButton_9.clicked.connect(
+            lambda: fb.rec_data_base(self.data_7,
+                                     self.paths_7))
+        self.pushButton_9.clicked.connect(
             lambda: fb.add_item(self.tabModel_7, self.data_7))
         self.pushButton_9.clicked.connect(self.error_drop_calc.calculate)
         self.pushButton_18.clicked.connect(
             lambda: fb.clear_table(self.tabModel_7))
+        self.pushButton_18.clicked.connect(
+            lambda: fb.clear_data_base(self.paths_7))
         self.tableView_9.setModel(self.tabModel_7.model)
         self.tableView_9.resize_columns_proportionally()
         self.tableView_9.verticalHeader().setVisible(False)
