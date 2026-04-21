@@ -18,12 +18,14 @@ def clear_data_base(dirPaths: list[str]):
 
 def get_data_base(content: list[list[str]], dirPaths: list[str]):
     del content[:]
-    size = len(dirPaths)
     for path in (dirPaths):
         line = []
+        string = '-'
         with open(path, 'r') as data_base:
-            for i in range(size - 1): line.append(data_base.readline()[:-1])
-            content.append(line)
+            while string!='':
+                string = data_base.readline()[:-1]
+                line.append(string)
+            content.append(line[:-1])
     print(content)
 
 def obtain_data(data, *lineEdits):
