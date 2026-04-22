@@ -262,8 +262,12 @@ class UiCore(MainWindow):
 
 
 
+        import capillary, drops_calc, du_nui, hanging_drop, oscill_jet, rebinder, vilhelmi
+
         self.methods = {} #Error mod
-        self.error_capillary = Error(tabModel=self.tabModel_1, )
+        self.alpha: float
+        self.comboBox_2.activated.connect(self.get_alpha)
+        self.error_capillary = Error(tabModel=self.tabModel_1, function=capillary.formula.calculate, alpha=self.alpha, instrument_error=)
         self.error_dunui = Error(tabModel=self.tabModel_2)
         self.error_vilhelmi = Error(tabModel=self.tabModel_3)
         self.error_hang_drop = Error(tabModel=self.tabModel_4)
@@ -291,7 +295,8 @@ class UiCore(MainWindow):
         self.cB_calcDrop.clicked.connect(
             lambda: self.activated_checkbox(checkBox=self.cB_calcDrop, index='Метод\nсчетных\nкапель', value=self.error_drop_calc.rel_err_value))
 
-
+    def get_alpha(self):
+        self.alpha = float(self.comboBox_2.currentText())
 
     def activated_checkbox(self, checkBox: QtWidgets.QCheckBox, index: str, value: float):
         if checkBox.isChecked():
@@ -325,14 +330,7 @@ class UiCore(MainWindow):
     def activated_combobox(self, index):
         if self.comboBox.currentIndex() == 0:
             #вынести в отдельную функцию в модуле погрешностей вот эти действия к кнопке
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_capillary,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
-            self.pushButton_17.clicked.connect(
-                lambda:
-            )
+            self.activated_combobox_action(self.error_capillary, self.paths_1)
 
         if self.comboBox.currentIndex() == 1:
             self.pushButton_17.clicked.connect(
