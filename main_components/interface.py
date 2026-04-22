@@ -29,10 +29,10 @@ class UiCore(MainWindow):
 
         # Capillary
         self.header_1 = ["№", "ρ", "r_1", "r_2", "ΔH", "Время"]
-        self.paths_1 = ['data_base_capillary/rho.txt',
-                      'data_base_capillary/r_1.txt',
-                      'data_base_capillary/r_2.txt',
-                      'data_base_capillary/delta_H.txt']
+        self.paths_1 = ['capillary/data_base_capillary/rho.txt',
+                      'capillary/data_base_capillary/r_1.txt',
+                      'capillary/data_base_capillary/r_2.txt',
+                      'capillary/data_base_capillary/delta_H.txt']
         self.data_1 = []
         fb.clear_data_base(self.paths_1)
         self.tabModel_1 = Model(self.header_1)
@@ -57,7 +57,7 @@ class UiCore(MainWindow):
         self.tableView_11.setModel(self.tabModel_1.model)
         self.tableView_11.resize_columns_proportionally()
         self.tableView_11.verticalHeader().setVisible(False)
-        url = QtCore.QUrl("Capillary_text.htm")
+        url = QtCore.QUrl("capillary/Capillary_text.htm")
         self.textBrowser_122.setSource(url)
         self.textBrowser_122.setObjectName("textBrowser_122")
 
@@ -65,11 +65,11 @@ class UiCore(MainWindow):
         #Du nui
         self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
         self.data_2 = []
-        self.paths_2 = ['data_base_dunui/P.txt',
-                        'data_base_dunui/R_ring.txt',
-                        'data_base_dunui/r_rod.txt',
-                        'data_base_dunui/rho_alpha.txt',
-                        'data_base_dunui/rho_beta.txt']
+        self.paths_2 = ['du_nui/data_base_dunui/P.txt',
+                        'du_nui/data_base_dunui/R_ring.txt',
+                        'du_nui/data_base_dunui/r_rod.txt',
+                        'du_nui/data_base_dunui/rho_alpha.txt',
+                        'du_nui/data_base_dunui/rho_beta.txt']
         fb.clear_data_base(self.paths_2)
         self.tabModel_2 = Model(self.header_2)
         self.error_dunui = Error(tabModel=self.tabModel_2)
@@ -93,7 +93,7 @@ class UiCore(MainWindow):
         self.tableView_4.setModel(self.tabModel_2.model)
         self.tableView_4.resize_columns_proportionally()
         self.tableView_4.verticalHeader().setVisible(False)
-        url = QtCore.QUrl("Dunui_text.htm")
+        url = QtCore.QUrl("du_nui/Dunui_text.htm")
         self.textBrowser_123.setSource(url)
         self.textBrowser_123.setObjectName("textBrowser_123")
 
@@ -101,13 +101,13 @@ class UiCore(MainWindow):
         #Vilhelmi
         self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
         self.data_3 = []
-        self.paths_3 = ['data_base_vilhelmi/l.txt',
-                        'data_base_vilhelmi/t.txt',
-                        'data_base_vilhelmi/h.txt',
-                        'data_base_vilhelmi/F.txt',
-                        'data_base_vilhelmi/phi.txt',
-                        'data_base_vilhelmi/rho_alpha.txt',
-                        'data_base_vilhelmi/rho_beta.txt']
+        self.paths_3 = ['vilhelmi/data_base_vilhelmi/l.txt',
+                        'vilhelmi/data_base_vilhelmi/t.txt',
+                        'vilhelmi/data_base_vilhelmi/h.txt',
+                        'vilhelmi/data_base_vilhelmi/F.txt',
+                        'vilhelmi/data_base_vilhelmi/phi.txt',
+                        'vilhelmi/data_base_vilhelmi/rho_alpha.txt',
+                        'vilhelmi/data_base_vilhelmi/rho_beta.txt']
         fb.clear_data_base(self.paths_3)
         self.tabModel_3 = Model(self.header_3)
         self.error_vilhelmi = Error(tabModel=self.tabModel_3)
@@ -133,7 +133,7 @@ class UiCore(MainWindow):
         self.tableView_5.setModel(self.tabModel_3.model)
         self.tableView_5.resize_columns_proportionally()
         self.tableView_5.verticalHeader().setVisible(False)
-        url = QtCore.QUrl("Vilhelmi_text.htm")
+        url = QtCore.QUrl("vilhelmi/Vilhelmi_text.htm")
         self.textBrowser_63.setSource(url)
         self.textBrowser_63.setObjectName("textBrowser_63")
 
@@ -141,8 +141,8 @@ class UiCore(MainWindow):
         #Hanging drop
         self.header_4 = ["№", "m_ср", "d", "Время"]
         self.data_4 = []
-        self.paths_4 = ['data_base_hangdrop/m.txt',
-                        'data_base_hangdrop/d.txt']
+        self.paths_4 = ['hanging_drop/data_base_hangdrop/m.txt',
+                        'hanging_drop/data_base_hangdrop/d.txt']
         fb.clear_data_base(self.paths_4)
         self.tabModel_4 = Model(self.header_4)
         self.error_hang_drop = Error(tabModel=self.tabModel_4)
@@ -163,7 +163,7 @@ class UiCore(MainWindow):
         self.tableView_6.setModel(self.tabModel_4.model)
         self.tableView_6.resize_columns_proportionally()
         self.tableView_6.verticalHeader().setVisible(False)
-        url = QtCore.QUrl("HangDrop_text.htm")
+        url = QtCore.QUrl("hanging_drop/HangDrop_text.htm")
         self.textBrowser_76.setSource(url)
         self.textBrowser_76.setObjectName("textBrowser_76")
 
@@ -171,10 +171,10 @@ class UiCore(MainWindow):
         #Oscill jet
         self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
         self.data_5 = []
-        self.paths_5 = ['data_base_osciljet/rho.txt',
-                        'data_base_osciljet/Q.txt',
-                        'data_base_osciljet/r_0.txt',
-                        'data_base_osciljet/lambda.txt']
+        self.paths_5 = ['oscill_jet/data_base_osciljet/rho.txt',
+                        'oscill_jet/data_base_osciljet/Q.txt',
+                        'oscill_jet/data_base_osciljet/r_0.txt',
+                        'oscill_jet/data_base_osciljet/lambda.txt']
         fb.clear_data_base(self.paths_5)
         self.tabModel_5 = Model(self.header_5)
         self.error_oscill_jet = Error(tabModel=self.tabModel_5)
@@ -197,7 +197,7 @@ class UiCore(MainWindow):
         self.tableView_7.setModel(self.tabModel_5.model)
         self.tableView_7.resize_columns_proportionally()
         self.tableView_7.verticalHeader().setVisible(False)
-        url = QtCore.QUrl("OscillJet_text.htm")
+        url = QtCore.QUrl("oscill_jet/OscillJet_text.htm")
         self.textBrowser_89.setSource(url)
         self.textBrowser_89.setObjectName("textBrowser_89")
 
@@ -205,8 +205,8 @@ class UiCore(MainWindow):
         #Rebinder
         self.header_6 = ["№", "r", "ΔP_max", "Время"]
         self.data_6 = []
-        self.paths_6 = ['data_base_rebinder/r.txt',
-                        'data_base_rebinder/delta_P.txt']
+        self.paths_6 = ['rebinder/data_base_rebinder/r.txt',
+                        'rebinder/data_base_rebinder/delta_P.txt']
         fb.clear_data_base(self.paths_6)
         self.tabModel_6 = Model(self.header_6)
         self.error_rebinder = Error(tabModel=self.tabModel_6)
@@ -227,7 +227,7 @@ class UiCore(MainWindow):
         self.tableView_8.setModel(self.tabModel_6.model)
         self.tableView_8.resize_columns_proportionally()
         self.tableView_8.verticalHeader().setVisible(False)
-        url = QtCore.QUrl("Rebinder_text.htm")
+        url = QtCore.QUrl("rebinder/Rebinder_text.htm")
         self.textBrowser_102.setSource(url)
         self.textBrowser_102.setObjectName("textBrowser_102")
 
@@ -235,11 +235,11 @@ class UiCore(MainWindow):
         #Drops calc
         self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
         self.data_7 = []
-        self.paths_7 = ['data_base_dropcalc/a_0.txt',
-                        'data_base_dropcalc/rho_0.txt',
-                        'data_base_dropcalc/n_0.txt',
-                        'data_base_dropcalc/rho.txt',
-                        'data_base_dropcalc/n.txt']
+        self.paths_7 = ['drops_calc/data_base_dropcalc/a_0.txt',
+                        'drops_calc/data_base_dropcalc/rho_0.txt',
+                        'drops_calc/data_base_dropcalc/n_0.txt',
+                        'drops_calc/data_base_dropcalc/rho.txt',
+                        'drops_calc/data_base_dropcalc/n.txt']
         fb.clear_data_base(self.paths_7)
         self.tabModel_7 = Model(self.header_7)
         self.error_drop_calc = Error(tabModel=self.tabModel_7)
@@ -263,7 +263,7 @@ class UiCore(MainWindow):
         self.tableView_9.setModel(self.tabModel_7.model)
         self.tableView_9.resize_columns_proportionally()
         self.tableView_9.verticalHeader().setVisible(False)
-        url = QtCore.QUrl("DropsCalc_text.htm")
+        url = QtCore.QUrl("drops_calc/DropsCalc_text.htm")
         self.textBrowser_115.setSource(url)
         self.textBrowser_115.setObjectName("textBrowser_115")
 
