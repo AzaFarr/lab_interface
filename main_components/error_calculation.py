@@ -1,6 +1,8 @@
 from tables import Model
 
 import numpy as np
+import scipy as sp
+from typing import Callable
 
 #TODO: ValueError, RuntimeError/Warnings, ZeroDivision
 #      должны быть исключены еще на моменте ввода данных,
@@ -9,10 +11,34 @@ import numpy as np
 
 class Error():
 
-    def __init__(self, tabModel: Model):
+    def __init__(self, tabModel: Model,
+                 function: Callable[[float], float],
+                 values: list[list[str]],
+                 alpha: float,
+                 instrument_error: float):
+
+        """
+            mean_value_array - array of mean measured physical values
+            abs_err_value_array - array of absolute errors of measured physical values
+
+            mean_value - value of mean surface tension
+            abs_err_value - value of absolute error of surface tension
+            rel_err_value - value of relative error of surface tension
+        """
 
         self.tabModel = tabModel
+        self.values = values
+        self.function = function
+        self.alpha = alpha
+        self.n = self.tabModel.model.rowCount()
+        self.instrument_error = instrument_error
+
+        self.size = len(self.tabModel.header) - 2
         self.sys_error_message: str = ''
+
+        self.mean_value_array: np.ndarray = np.zeros(shape=self.size, dtype=float)
+        self.abs_err_value_array: np.ndarray = np.zeros(shape=self.size, dtype=float)
+
         self.mean_value: float = 0
         self.abs_err_value: float = 0
         self.rel_err_value: float = 0
@@ -68,7 +94,7 @@ class Error():
             120: {0.2: 0.25, 0.4: 0.53, 0.5: 0.68, 0.6: 0.85, 0.7: 1.0,
                   0.8: 1.3, 0.9: 1.7, 0.95: 2.0, 0.98: 2.4, 0.99: 2.6, 0.999: 3.4},
 
-            float('inf'): {0.2: 0.25, 0.4: 0.52, 0.5: 0.67, 0.6: 0.84, 0.7: 1.0,
+            121: {0.2: 0.25, 0.4: 0.52, 0.5: 0.67, 0.6: 0.84, 0.7: 1.0,
                            0.8: 1.3, 0.9: 1.6, 0.95: 2.0, 0.98: 2.3, 0.99: 2.6, 0.999: 3.3}
         }
 
@@ -76,25 +102,47 @@ class Error():
     def calculate(self):
         try:
             self.sys_error_message = ''
-            self.data: np.ndarray = np.array(
-                [float(self.tabModel.model.item(k, 1).text()) for k in range(self.tabModel.model.rowCount())])
-            self.mean_value = self.get_mean()
-            self.abs_err_value = self.get_standard_deviation()
+
+            data = np.array(self.values)
+            self.mean_value_array = self.get_mean(data)
+            mean_variance = self.get_mean_variance(data)
+            self.abs_err_value_array = self.get_absolute_error(mean_variance)
+
+            self.mean_value = self.function(self.mean_value_array)
+            self.abs_err_value = self.absolute_error_of_function(self.function)
             self.rel_err_value = self.get_relative_error()
+
         except Exception as e:
             print(e)
             self.sys_error_message = f'<html><body style="color: #D40D0D;"><p>Проверьте корректность ввода данных.</p><p>Ошибка: {e}</p></body></html>'
 
+    def get_student_coefficient(self, alpha):
+        return self.t_student[self.n][alpha]
 
-    def get_mean(self):
-        return sum(self.data) / self.tabModel.model.rowCount()
+    def get_mean(self, data: np.ndarray):
+        return np.sum(a=data, axis=1) / self.n
 
-    def get_standard_deviation(self):
-        return np.std(self.data, ddof=1) / np.sqrt(len(self.data))
+    def get_mean_variance(self, data: np.ndarray):
+        return np.var(a=data, axis=1, ddof=1) / self.n
+
+    def get_absolute_error(self, mean_variance: np.ndarray):
+        abs_err_squared = (pow(self.get_student_coefficient(self.alpha) * mean_variance, 2) +
+                           pow(self.get_student_coefficient(121) * self.instrument_error / 3, 2))
+        return pow(abs_err_squared, 0.5)
 
     def get_relative_error(self):
         return self.abs_err_value / self.mean_value
 
-    def get_student_coefficient(self, n, alpha):
-        return self.t_student[n][alpha]
 
+    def absolute_error_of_function(self, function):
+        def f_vec(x):
+            res = np.apply_along_axis(function, 0, x)
+            return res[np.newaxis, :]
+
+        abs_err_squared = 0
+        diff = sp.differentiate.jacobian(f_vec, self.mean_value_array).df[0]
+
+        for i in range(self.size):
+            abs_err_squared += pow(diff[i], 2) * pow(self.abs_err_value_array[i], 2)
+
+        return pow(abs_err_squared, 0.5)

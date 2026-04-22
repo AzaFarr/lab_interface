@@ -29,14 +29,13 @@ class UiCore(MainWindow):
 
         # Capillary
         self.header_1 = ["№", "ρ", "r_1", "r_2", "ΔH", "Время"]
-        self.paths_1 = ['capillary/data_base_capillary/rho.txt',
-                      'capillary/data_base_capillary/r_1.txt',
-                      'capillary/data_base_capillary/r_2.txt',
-                      'capillary/data_base_capillary/delta_H.txt']
+        self.paths_1 = ['capillary/data_base/rho.txt',
+                      'capillary/data_base/r_1.txt',
+                      'capillary/data_base/r_2.txt',
+                      'capillary/data_base/delta_H.txt']
         self.data_1 = []
         fb.clear_data_base(self.paths_1)
         self.tabModel_1 = Model(self.header_1)
-        self.error_capillary = Error(tabModel=self.tabModel_1)
         self.pushButton.clicked.connect(
             lambda: fb.obtain_data(self.data_1,
                                    self.lineEdit.text(),
@@ -65,14 +64,13 @@ class UiCore(MainWindow):
         #Du nui
         self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
         self.data_2 = []
-        self.paths_2 = ['du_nui/data_base_dunui/P.txt',
-                        'du_nui/data_base_dunui/R_ring.txt',
-                        'du_nui/data_base_dunui/r_rod.txt',
-                        'du_nui/data_base_dunui/rho_alpha.txt',
-                        'du_nui/data_base_dunui/rho_beta.txt']
+        self.paths_2 = ['du_nui/data_base/P.txt',
+                        'du_nui/data_base/R_ring.txt',
+                        'du_nui/data_base/r_rod.txt',
+                        'du_nui/data_base/rho_alpha.txt',
+                        'du_nui/data_base/rho_beta.txt']
         fb.clear_data_base(self.paths_2)
         self.tabModel_2 = Model(self.header_2)
-        self.error_dunui = Error(tabModel=self.tabModel_2)
         self.pushButton_4.clicked.connect(
             lambda: fb.obtain_data(self.data_2,
                                    self.lineEdit_19.text(),
@@ -101,16 +99,15 @@ class UiCore(MainWindow):
         #Vilhelmi
         self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
         self.data_3 = []
-        self.paths_3 = ['vilhelmi/data_base_vilhelmi/l.txt',
-                        'vilhelmi/data_base_vilhelmi/t.txt',
-                        'vilhelmi/data_base_vilhelmi/h.txt',
-                        'vilhelmi/data_base_vilhelmi/F.txt',
-                        'vilhelmi/data_base_vilhelmi/phi.txt',
-                        'vilhelmi/data_base_vilhelmi/rho_alpha.txt',
-                        'vilhelmi/data_base_vilhelmi/rho_beta.txt']
+        self.paths_3 = ['vilhelmi/data_base/l.txt',
+                        'vilhelmi/data_base/t.txt',
+                        'vilhelmi/data_base/h.txt',
+                        'vilhelmi/data_base/F.txt',
+                        'vilhelmi/data_base/phi.txt',
+                        'vilhelmi/data_base/rho_alpha.txt',
+                        'vilhelmi/data_base/rho_beta.txt']
         fb.clear_data_base(self.paths_3)
         self.tabModel_3 = Model(self.header_3)
-        self.error_vilhelmi = Error(tabModel=self.tabModel_3)
         self.pushButton_5.clicked.connect(
             lambda: fb.obtain_data(self.data_3,
                                    self.lineEdit_25.text(),
@@ -141,11 +138,10 @@ class UiCore(MainWindow):
         #Hanging drop
         self.header_4 = ["№", "m_ср", "d", "Время"]
         self.data_4 = []
-        self.paths_4 = ['hanging_drop/data_base_hangdrop/m.txt',
-                        'hanging_drop/data_base_hangdrop/d.txt']
+        self.paths_4 = ['hanging_drop/data_base/m.txt',
+                        'hanging_drop/data_base/d.txt']
         fb.clear_data_base(self.paths_4)
         self.tabModel_4 = Model(self.header_4)
-        self.error_hang_drop = Error(tabModel=self.tabModel_4)
         self.pushButton_6.clicked.connect(
             lambda: fb.obtain_data(self.data_4,
                                    self.lineEdit_32.text(),
@@ -171,13 +167,12 @@ class UiCore(MainWindow):
         #Oscill jet
         self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
         self.data_5 = []
-        self.paths_5 = ['oscill_jet/data_base_osciljet/rho.txt',
-                        'oscill_jet/data_base_osciljet/Q.txt',
-                        'oscill_jet/data_base_osciljet/r_0.txt',
-                        'oscill_jet/data_base_osciljet/lambda.txt']
+        self.paths_5 = ['oscill_jet/data_base/rho.txt',
+                        'oscill_jet/data_base/Q.txt',
+                        'oscill_jet/data_base/r_0.txt',
+                        'oscill_jet/data_base/lambda.txt']
         fb.clear_data_base(self.paths_5)
         self.tabModel_5 = Model(self.header_5)
-        self.error_oscill_jet = Error(tabModel=self.tabModel_5)
         self.pushButton_7.clicked.connect(
             lambda: fb.obtain_data(self.data_5,
                                    self.lineEdit_37.text(),
@@ -205,11 +200,10 @@ class UiCore(MainWindow):
         #Rebinder
         self.header_6 = ["№", "r", "ΔP_max", "Время"]
         self.data_6 = []
-        self.paths_6 = ['rebinder/data_base_rebinder/r.txt',
-                        'rebinder/data_base_rebinder/delta_P.txt']
+        self.paths_6 = ['rebinder/data_base/r.txt',
+                        'rebinder/data_base/delta_P.txt']
         fb.clear_data_base(self.paths_6)
         self.tabModel_6 = Model(self.header_6)
-        self.error_rebinder = Error(tabModel=self.tabModel_6)
         self.pushButton_8.clicked.connect(
             lambda: fb.obtain_data(self.data_6,
                                    self.lineEdit_43.text(),
@@ -235,14 +229,13 @@ class UiCore(MainWindow):
         #Drops calc
         self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
         self.data_7 = []
-        self.paths_7 = ['drops_calc/data_base_dropcalc/a_0.txt',
-                        'drops_calc/data_base_dropcalc/rho_0.txt',
-                        'drops_calc/data_base_dropcalc/n_0.txt',
-                        'drops_calc/data_base_dropcalc/rho.txt',
-                        'drops_calc/data_base_dropcalc/n.txt']
+        self.paths_7 = ['drops_calc/data_base/a_0.txt',
+                        'drops_calc/data_base/rho_0.txt',
+                        'drops_calc/data_base/n_0.txt',
+                        'drops_calc/data_base/rho.txt',
+                        'drops_calc/data_base/n.txt']
         fb.clear_data_base(self.paths_7)
         self.tabModel_7 = Model(self.header_7)
-        self.error_drop_calc = Error(tabModel=self.tabModel_7)
         self.pushButton_9.clicked.connect(
             lambda: fb.obtain_data(self.data_7,
                                    self.lineEdit_49.text(),
@@ -270,6 +263,13 @@ class UiCore(MainWindow):
 
 
         self.methods = {} #Error mod
+        self.error_capillary = Error(tabModel=self.tabModel_1, )
+        self.error_dunui = Error(tabModel=self.tabModel_2)
+        self.error_vilhelmi = Error(tabModel=self.tabModel_3)
+        self.error_hang_drop = Error(tabModel=self.tabModel_4)
+        self.error_oscill_jet = Error(tabModel=self.tabModel_5)
+        self.error_rebinder = Error(tabModel=self.tabModel_6)
+        self.error_drop_calc = Error(tabModel=self.tabModel_7)
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
         self.widget_graph.canvas.axes.tick_params(axis='y', labelcolor='#274E41')
@@ -312,15 +312,27 @@ class UiCore(MainWindow):
         self.widget_graph.canvas.axes.grid(False)
         self.widget_graph.canvas.draw()
 
-
+    def activated_combobox_action(self, error: Error, dirPaths: list[str]):
+        self.pushButton_17.clicked.connect(
+            lambda: fb.print_error(error=error,
+                                   tB_conf_int=self.textBrowser_14,
+                                   tB_rel_err=self.textBrowser_15,
+                                   tB_sys_err_mes=self.textBrowser_30))
+        self.pushButton_17.clicked.connect(
+            lambda: fb.get_data_base(error.values, dirPaths)
+        )
 
     def activated_combobox(self, index):
         if self.comboBox.currentIndex() == 0:
+            #вынести в отдельную функцию в модуле погрешностей вот эти действия к кнопке
             self.pushButton_17.clicked.connect(
                 lambda: fb.print_error(error=self.error_capillary,
                                        tB_conf_int=self.textBrowser_14,
                                        tB_rel_err=self.textBrowser_15,
                                        tB_sys_err_mes=self.textBrowser_30))
+            self.pushButton_17.clicked.connect(
+                lambda:
+            )
 
         if self.comboBox.currentIndex() == 1:
             self.pushButton_17.clicked.connect(
