@@ -109,7 +109,7 @@
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_2">
@@ -197,7 +197,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_8">
@@ -251,7 +251,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_10">
@@ -305,7 +305,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_122">
@@ -456,7 +456,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_12">
@@ -493,7 +493,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_13">
@@ -547,7 +547,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_4">
@@ -601,7 +601,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_5">
@@ -655,56 +655,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:14pt; font-weight:600;&quot;&gt;r&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:14pt; font-weight:600; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QPushButton" name="pushButton_3">
          <property name="geometry">
           <rect>
-           <x>670</x>
-           <y>100</y>
-           <width>21</width>
-           <height>17</height>
+           <x>700</x>
+           <y>260</y>
+           <width>261</width>
+           <height>31</height>
           </rect>
          </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_3">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>180</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_2">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>140</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_4">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>220</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
+          <string>Учесть приборную погрешность</string>
          </property>
         </widget>
        </widget>
@@ -791,7 +758,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_40">
@@ -879,7 +846,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_44">
@@ -933,7 +900,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_123">
@@ -1006,7 +973,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_255">
@@ -1043,7 +1010,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_256">
@@ -1309,7 +1276,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_259">
@@ -1346,7 +1313,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_260">
@@ -1400,7 +1367,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_122">
@@ -1420,7 +1387,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_24">
@@ -1440,7 +1407,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_51">
@@ -1460,69 +1427,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:14pt; font-weight:600;&quot;&gt;R&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_7">
+        <widget class="QPushButton" name="pushButton_34">
          <property name="geometry">
           <rect>
-           <x>670</x>
-           <y>180</y>
-           <width>21</width>
-           <height>17</height>
+           <x>700</x>
+           <y>300</y>
+           <width>261</width>
+           <height>31</height>
           </rect>
          </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_60">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>260</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_5">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>100</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_6">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>140</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_59">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>220</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
+          <string>Учесть приборную погрешность</string>
          </property>
         </widget>
        </widget>
@@ -1606,7 +1527,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_53">
@@ -1694,7 +1615,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_57">
@@ -1748,7 +1669,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_59">
@@ -1802,7 +1723,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_61">
@@ -1856,7 +1777,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_63">
@@ -1927,7 +1848,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_56">
@@ -1947,7 +1868,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_119">
@@ -2129,7 +2050,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_57">
@@ -2149,7 +2070,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_77">
@@ -2220,7 +2141,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_42">
@@ -2240,7 +2161,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_87">
@@ -2277,7 +2198,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_125">
@@ -2382,7 +2303,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_95">
@@ -2419,7 +2340,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_96">
@@ -2473,95 +2394,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:14pt; font-weight:600;&quot;&gt;ρ&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; vertical-align:sub;&quot;&gt;α&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_15">
+        <widget class="QPushButton" name="pushButton_35">
          <property name="geometry">
           <rect>
-           <x>670</x>
-           <y>290</y>
-           <width>21</width>
-           <height>17</height>
+           <x>939</x>
+           <y>82</y>
+           <width>261</width>
+           <height>31</height>
           </rect>
          </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_14">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>250</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_10">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>90</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_11">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>130</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_12">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>170</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_16">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>330</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_13">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>210</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
+          <string>Учесть приборную погрешность</string>
          </property>
         </widget>
        </widget>
@@ -2679,7 +2528,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_70">
@@ -2733,7 +2582,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_76">
@@ -2915,7 +2764,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_99">
@@ -2952,7 +2801,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_103">
@@ -2972,30 +2821,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;[кг]&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_18">
+        <widget class="QPushButton" name="pushButton_36">
          <property name="geometry">
           <rect>
-           <x>670</x>
-           <y>140</y>
-           <width>21</width>
-           <height>17</height>
+           <x>710</x>
+           <y>180</y>
+           <width>261</width>
+           <height>31</height>
           </rect>
          </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_17">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>100</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string/>
+          <string>Учесть приборную погрешность</string>
          </property>
         </widget>
        </widget>
@@ -3079,7 +2921,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_79">
@@ -3167,7 +3009,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_83">
@@ -3221,7 +3063,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_85">
@@ -3275,7 +3117,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_89">
@@ -3440,7 +3282,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_116">
@@ -3477,7 +3319,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_117">
@@ -3514,7 +3356,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_128">
@@ -3619,59 +3461,26 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_21">
+        <widget class="QPushButton" name="pushButton_37">
          <property name="geometry">
           <rect>
-           <x>670</x>
-           <y>180</y>
-           <width>21</width>
-           <height>17</height>
+           <x>700</x>
+           <y>260</y>
+           <width>261</width>
+           <height>31</height>
           </rect>
          </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_19">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>100</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_22">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>220</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_20">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>140</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
+          <string>Учесть приборную погрешность</string>
          </property>
         </widget>
        </widget>
@@ -3755,7 +3564,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_92">
@@ -3843,7 +3652,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_102">
@@ -3991,7 +3800,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_133">
@@ -4028,7 +3837,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_134">
@@ -4082,30 +3891,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:14pt;&quot;&gt;Δ&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:14pt; font-weight:600;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:14pt; font-weight:600; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_23">
+        <widget class="QPushButton" name="pushButton_38">
          <property name="geometry">
           <rect>
-           <x>660</x>
-           <y>100</y>
-           <width>21</width>
-           <height>17</height>
+           <x>700</x>
+           <y>180</y>
+           <width>261</width>
+           <height>31</height>
           </rect>
          </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_24">
-         <property name="geometry">
-          <rect>
-           <x>660</x>
-           <y>140</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string/>
+          <string>Учесть приборную погрешность</string>
          </property>
         </widget>
        </widget>
@@ -4189,7 +3991,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_105">
@@ -4277,7 +4079,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_109">
@@ -4331,7 +4133,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_111">
@@ -4385,7 +4187,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_113">
@@ -4439,7 +4241,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_115">
@@ -4582,7 +4384,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_138">
@@ -4670,7 +4472,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_142">
@@ -4707,7 +4509,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_67">
@@ -4727,7 +4529,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QTextBrowser" name="textBrowser_143">
@@ -4815,7 +4617,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string>0</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_11">
@@ -4840,69 +4642,23 @@ p, li { white-space: pre-wrap; }
           <string>Приборная погрешность</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_28">
+        <widget class="QPushButton" name="pushButton_39">
          <property name="geometry">
           <rect>
-           <x>670</x>
-           <y>220</y>
-           <width>21</width>
-           <height>17</height>
+           <x>705</x>
+           <y>300</y>
+           <width>261</width>
+           <height>31</height>
           </rect>
          </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_29">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>260</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_25">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>100</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_26">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>140</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_27">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>180</y>
-           <width>21</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
+          <string>Учесть приборную погрешность</string>
          </property>
         </widget>
        </widget>

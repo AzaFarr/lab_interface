@@ -27,9 +27,15 @@ def get_data_base(content: list[list[str]], dirPaths: list[str]):
                 line.append(string)
             content.append(line[:-1])
 
+def let_transfer_data(content, data):
+    content = data
+
+
 def obtain_data(data, *lineEdits):
+    del data[:]
     for value in lineEdits:
         data.append(value)
+    print(data)
 
 def add_item(tabModel: Model, data: list[str]):
 
@@ -40,7 +46,6 @@ def add_item(tabModel: Model, data: list[str]):
         for i in range(size): data_table.append(QtGui.QStandardItem(str(data[i])))
         data_table.append(QtGui.QStandardItem(str(dt.datetime.now())))
         tabModel.model.appendRow(data_table)
-        del data[:]
         tabModel.i += 1
     except Exception as e:
         print(e)

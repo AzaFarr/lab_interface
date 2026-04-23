@@ -11,10 +11,7 @@ from typing import Callable
 
 class Error():
 
-    def __init__(self, tabModel: Model,
-                 function: Callable[[np.ndarray], float],
-                 alpha: float,
-                 instrument_error: np.ndarray):
+    def __init__(self, function: Callable[[np.ndarray], float]):
 
         """
             mean_value_array - array of mean measured physical values
@@ -25,12 +22,14 @@ class Error():
             rel_err_value - value of relative error of surface tension
         """
 
-        self.tabModel = tabModel
-        self.values = []
+
         self.function = function
-        self.alpha = alpha
+
+        self.tabModel: Model
+        self.values = []
+        self.instrument_error = []
+        self.alpha: float = 0.2
         self.n = self.tabModel.model.rowCount()
-        self.instrument_error = instrument_error
 
         self.size = len(self.tabModel.header) - 2
         self.sys_error_message: str = ''
@@ -97,20 +96,30 @@ class Error():
                   0.8: 1.3, 0.9: 1.6, 0.95: 2.0, 0.98: 2.3, 0.99: 2.6}
         }
 
+        self.calculate()
+
 
     def calculate(self):
         try:
             self.sys_error_message = ''
 
             data = np.array(self.values, dtype=float)
+            instrument_error = np.array(self.instrument_error, dtype=float)
 
+            print('start')
             self.mean_value_array = self.get_mean(data)
+            print('mean success')
             mean_variance = self.get_mean_variance(data)
-            self.abs_err_value_array = self.get_absolute_error(mean_variance)
+            print('variance success')
+            self.abs_err_value_array = self.get_absolute_error(mean_variance, instrument_error)
+            print('abs error success')
 
             self.mean_value = self.function(self.mean_value_array)
+            print('success')
             self.abs_err_value = self.absolute_error_of_function(self.function)
+            print('success')
             self.rel_err_value = self.get_relative_error()
+            print('success')
 
         except Exception as e:
             print(e)
@@ -120,14 +129,14 @@ class Error():
         return self.t_student[self.n][alpha]
 
     def get_mean(self, data: np.ndarray):
-        return np.sum(a=data, axis=1) / self.n
+        return np.sum(a=data, axis=0) / self.n
 
     def get_mean_variance(self, data: np.ndarray):
-        return np.var(a=data, axis=1, ddof=1) / self.n
+        return np.var(a=data, axis=0, ddof=1) / self.n
 
-    def get_absolute_error(self, mean_variance: np.ndarray):
+    def get_absolute_error(self, mean_variance: np.ndarray, instrument_error: np.ndarray):
         abs_err_squared = (pow(self.get_student_coefficient(self.alpha) * mean_variance, 2) +
-                           pow(self.get_student_coefficient(121) * self.instrument_error / 3, 2))
+                           pow(self.get_student_coefficient(121) * instrument_error / 3, 2))
         return pow(abs_err_squared, 0.5)
 
     def get_relative_error(self):

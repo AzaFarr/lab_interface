@@ -34,8 +34,15 @@ class UiCore(MainWindow):
                       'capillary/data_base/r_2.txt',
                       'capillary/data_base/delta_H.txt']
         self.data_1 = []
+        self.instrument_error_1 = []
         fb.clear_data_base(self.paths_1)
         self.tabModel_1 = Model(self.header_1)
+        self.pushButton_3.clicked.connect(
+            lambda: fb.obtain_data(self.instrument_error_1,
+                                   self.lineEdit_2.text(),
+                                   self.lineEdit_8.text(),
+                                   self.lineEdit_7.text(),
+                                   self.lineEdit_6.text()))
         self.pushButton.clicked.connect(
             lambda: fb.obtain_data(self.data_1,
                                    self.lineEdit.text(),
@@ -48,7 +55,6 @@ class UiCore(MainWindow):
         self.pushButton.clicked.connect(
             lambda: fb.add_item(self.tabModel_1,
                                 self.data_1))  # если у функции есть аргумент, то только через lambda-функцию
-        self.pushButton.clicked.connect(self.error_capillary.calculate)
         self.pushButton_24.clicked.connect(
             lambda: fb.clear_table(self.tabModel_1))
         self.pushButton_24.clicked.connect(
@@ -64,6 +70,7 @@ class UiCore(MainWindow):
         #Du nui
         self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
         self.data_2 = []
+        self.instrument_error_2 = []
         self.paths_2 = ['du_nui/data_base/P.txt',
                         'du_nui/data_base/R_ring.txt',
                         'du_nui/data_base/r_rod.txt',
@@ -71,6 +78,13 @@ class UiCore(MainWindow):
                         'du_nui/data_base/rho_beta.txt']
         fb.clear_data_base(self.paths_2)
         self.tabModel_2 = Model(self.header_2)
+        self.pushButton_34.clicked.connect(
+            lambda: fb.obtain_data(self.instrument_error_2,
+                                   self.lineEdit_24.text(),
+                                   self.lineEdit_22.text(),
+                                   self.lineEdit_23.text(),
+                                   self.lineEdit_122.text(),
+                                   self.lineEdit_121.text()))
         self.pushButton_4.clicked.connect(
             lambda: fb.obtain_data(self.data_2,
                                    self.lineEdit_19.text(),
@@ -83,7 +97,6 @@ class UiCore(MainWindow):
                                      self.paths_2))
         self.pushButton_4.clicked.connect(
             lambda: fb.add_item(self.tabModel_2, self.data_2))
-        self.pushButton_4.clicked.connect(self.error_dunui.calculate)
         self.pushButton_23.clicked.connect(
             lambda: fb.clear_table(self.tabModel_2))
         self.pushButton_23.clicked.connect(
@@ -99,6 +112,7 @@ class UiCore(MainWindow):
         #Vilhelmi
         self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
         self.data_3 = []
+        self.instrument_error_3 = []
         self.paths_3 = ['vilhelmi/data_base/l.txt',
                         'vilhelmi/data_base/t.txt',
                         'vilhelmi/data_base/h.txt',
@@ -108,6 +122,15 @@ class UiCore(MainWindow):
                         'vilhelmi/data_base/rho_beta.txt']
         fb.clear_data_base(self.paths_3)
         self.tabModel_3 = Model(self.header_3)
+        self.pushButton_35.clicked.connect(
+            lambda: fb.obtain_data(self.instrument_error_3,
+                                   self.lineEdit_41.text(),
+                                   self.lineEdit_45.text(),
+                                   self.lineEdit_42.text(),
+                                   self.lineEdit_44.text(),
+                                   self.lineEdit_36.text(),
+                                   self.lineEdit_58.text(),
+                                   self.lineEdit_57.text()))
         self.pushButton_5.clicked.connect(
             lambda: fb.obtain_data(self.data_3,
                                    self.lineEdit_25.text(),
@@ -122,7 +145,6 @@ class UiCore(MainWindow):
                                      self.paths_3))
         self.pushButton_5.clicked.connect(
             lambda: fb.add_item(self.tabModel_3, self.data_3))
-        self.pushButton_5.clicked.connect(self.error_vilhelmi.calculate)
         self.pushButton_22.clicked.connect(
             lambda: fb.clear_table(self.tabModel_3))
         self.pushButton_22.clicked.connect(
@@ -138,10 +160,15 @@ class UiCore(MainWindow):
         #Hanging drop
         self.header_4 = ["№", "m_ср", "d", "Время"]
         self.data_4 = []
+        self.instrument_error_4 = []
         self.paths_4 = ['hanging_drop/data_base/m.txt',
                         'hanging_drop/data_base/d.txt']
         fb.clear_data_base(self.paths_4)
         self.tabModel_4 = Model(self.header_4)
+        self.pushButton_36.clicked.connect(
+            lambda: fb.obtain_data(self.instrument_error_4,
+                                   self.lineEdit_46.text(),
+                                   self.lineEdit_48.text()))
         self.pushButton_6.clicked.connect(
             lambda: fb.obtain_data(self.data_4,
                                    self.lineEdit_32.text(),
@@ -151,7 +178,6 @@ class UiCore(MainWindow):
                                      self.paths_4))
         self.pushButton_6.clicked.connect(
             lambda: fb.add_item(self.tabModel_4, self.data_4))
-        self.pushButton_6.clicked.connect(self.error_hang_drop.calculate)
         self.pushButton_21.clicked.connect(
             lambda: fb.clear_table(self.tabModel_4))
         self.pushButton_21.clicked.connect(
@@ -167,12 +193,19 @@ class UiCore(MainWindow):
         #Oscill jet
         self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
         self.data_5 = []
+        self.instrument_error_5 = []
         self.paths_5 = ['oscill_jet/data_base/rho.txt',
                         'oscill_jet/data_base/Q.txt',
                         'oscill_jet/data_base/r_0.txt',
                         'oscill_jet/data_base/lambda.txt']
         fb.clear_data_base(self.paths_5)
         self.tabModel_5 = Model(self.header_5)
+        self.pushButton_37.clicked.connect(
+            lambda: fb.obtain_data(self.instrument_error_5,
+                                   self.lineEdit_60.text(),
+                                   self.lineEdit_61.text(),
+                                   self.lineEdit_54.text(),
+                                   self.lineEdit_59.text()))
         self.pushButton_7.clicked.connect(
             lambda: fb.obtain_data(self.data_5,
                                    self.lineEdit_37.text(),
@@ -184,7 +217,6 @@ class UiCore(MainWindow):
                                      self.paths_5))
         self.pushButton_7.clicked.connect(
             lambda: fb.add_item(self.tabModel_5, self.data_5))
-        self.pushButton_7.clicked.connect(self.error_oscill_jet.calculate)
         self.pushButton_20.clicked.connect(
             lambda: fb.clear_table(self.tabModel_5))
         self.pushButton_20.clicked.connect(
@@ -200,10 +232,15 @@ class UiCore(MainWindow):
         #Rebinder
         self.header_6 = ["№", "r", "ΔP_max", "Время"]
         self.data_6 = []
+        self.instrument_error_6 = []
         self.paths_6 = ['rebinder/data_base/r.txt',
                         'rebinder/data_base/delta_P.txt']
         fb.clear_data_base(self.paths_6)
         self.tabModel_6 = Model(self.header_6)
+        self.pushButton_38.clicked.connect(
+            lambda: fb.obtain_data(self.instrument_error_6,
+                                   self.lineEdit_62.text(),
+                                   self.lineEdit_63.text()))
         self.pushButton_8.clicked.connect(
             lambda: fb.obtain_data(self.data_6,
                                    self.lineEdit_43.text(),
@@ -213,7 +250,6 @@ class UiCore(MainWindow):
                                      self.paths_6))
         self.pushButton_8.clicked.connect(
             lambda: fb.add_item(self.tabModel_6, self.data_6))
-        self.pushButton_8.clicked.connect(self.error_rebinder.calculate)
         self.pushButton_19.clicked.connect(
             lambda: fb.clear_table(self.tabModel_6))
         self.pushButton_19.clicked.connect(
@@ -229,6 +265,7 @@ class UiCore(MainWindow):
         #Drops calc
         self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
         self.data_7 = []
+        self.instrument_error_7 = []
         self.paths_7 = ['drops_calc/data_base/a_0.txt',
                         'drops_calc/data_base/rho_0.txt',
                         'drops_calc/data_base/n_0.txt',
@@ -236,6 +273,13 @@ class UiCore(MainWindow):
                         'drops_calc/data_base/n.txt']
         fb.clear_data_base(self.paths_7)
         self.tabModel_7 = Model(self.header_7)
+        self.pushButton_39.clicked.connect(
+            lambda: fb.obtain_data(self.instrument_error_7,
+                                   self.lineEdit_64.text(),
+                                   self.lineEdit_66.text(),
+                                   self.lineEdit_68.text(),
+                                   self.lineEdit_67.text(),
+                                   self.lineEdit_65.text()))
         self.pushButton_9.clicked.connect(
             lambda: fb.obtain_data(self.data_7,
                                    self.lineEdit_49.text(),
@@ -248,7 +292,6 @@ class UiCore(MainWindow):
                                      self.paths_7))
         self.pushButton_9.clicked.connect(
             lambda: fb.add_item(self.tabModel_7, self.data_7))
-        self.pushButton_9.clicked.connect(self.error_drop_calc.calculate)
         self.pushButton_18.clicked.connect(
             lambda: fb.clear_table(self.tabModel_7))
         self.pushButton_18.clicked.connect(
@@ -262,23 +305,26 @@ class UiCore(MainWindow):
 
 
 
-        import capillary, drops_calc, du_nui, hanging_drop, oscill_jet, rebinder, vilhelmi
+        import capillary.formula, drops_calc.formula, du_nui.formula, hanging_drop.formula, oscill_jet.formula, rebinder.formula, vilhelmi.formula
 
         self.methods = {} #Error mod
         self.alpha: float
         self.comboBox_2.activated.connect(self.get_alpha)
-        self.error_capillary = Error(tabModel=self.tabModel_1, function=capillary.formula.calculate, alpha=self.alpha, instrument_error=)
-        self.error_dunui = Error(tabModel=self.tabModel_2)
-        self.error_vilhelmi = Error(tabModel=self.tabModel_3)
-        self.error_hang_drop = Error(tabModel=self.tabModel_4)
-        self.error_oscill_jet = Error(tabModel=self.tabModel_5)
-        self.error_rebinder = Error(tabModel=self.tabModel_6)
-        self.error_drop_calc = Error(tabModel=self.tabModel_7)
+
+        self.error_capillary = Error(function=capillary.formula.calculate)
+        self.error_dunui = Error(function=du_nui.formula.calculate)
+        self.error_vilhelmi = Error(function=vilhelmi.formula.calculate)
+        self.error_hang_drop = Error(function=hanging_drop.formula.calculate)
+        self.error_oscill_jet = Error(function=oscill_jet.formula.calculate)
+        self.error_rebinder = Error(function=rebinder.formula.calculate)
+        self.error_drop_calc = Error(function=drops_calc.formula.calculate)
+
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
         self.widget_graph.canvas.axes.tick_params(axis='y', labelcolor='#274E41')
         self.widget_graph.canvas.axes.set_facecolor('#EFF5F3')
         self.widget_graph.canvas.fig.set_facecolor('#C7DDD6')
+
         self.comboBox.activated.connect(self.activated_combobox)
         self.cB_capillaryMethod.clicked.connect(
             lambda: self.activated_checkbox(checkBox=self.cB_capillaryMethod, index='Капиллярный\nметод', value=self.error_capillary.rel_err_value))
@@ -304,7 +350,6 @@ class UiCore(MainWindow):
         else:
             self.plot(index=index, value = value, set_visible=False)
 
-
     def plot(self, index: str, value: float, set_visible: bool):
         if set_visible:
             self.methods[index] = value
@@ -317,57 +362,36 @@ class UiCore(MainWindow):
         self.widget_graph.canvas.axes.grid(False)
         self.widget_graph.canvas.draw()
 
-    def activated_combobox_action(self, error: Error, dirPaths: list[str]):
+    def activated_combobox_action(self, error: Error, tabModel: Model, instrument_error: list[str], dirPaths: list[str]):
+        self.pushButton_17.clicked.connect(
+            lambda: fb.get_data_base(error.values, dirPaths))
+        self.pushButton_17.clicked.connect(
+            lambda: fb.let_transfer_data(error.tabModel, tabModel))
+        self.pushButton_17.clicked.connect(
+            lambda: fb.let_transfer_data(error.instrument_error, instrument_error))
+        self.pushButton_17.clicked.connect(
+            lambda: fb.let_transfer_data(error.alpha, self.alpha))
         self.pushButton_17.clicked.connect(
             lambda: fb.print_error(error=error,
                                    tB_conf_int=self.textBrowser_14,
                                    tB_rel_err=self.textBrowser_15,
                                    tB_sys_err_mes=self.textBrowser_30))
-        self.pushButton_17.clicked.connect(
-            lambda: fb.get_data_base(error.values, dirPaths)
-        )
 
     def activated_combobox(self, index):
         if self.comboBox.currentIndex() == 0:
-            #вынести в отдельную функцию в модуле погрешностей вот эти действия к кнопке
-            self.activated_combobox_action(self.error_capillary, self.paths_1)
-
+            self.activated_combobox_action(self.error_capillary, self.tabModel_1, self.instrument_error_1, self.paths_1)
         if self.comboBox.currentIndex() == 1:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_dunui,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
+            self.activated_combobox_action(self.error_dunui, self.tabModel_2, self.instrument_error_2, self.paths_2)
         if self.comboBox.currentIndex() == 2:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_vilhelmi,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
+            self.activated_combobox_action(self.error_vilhelmi, self.tabModel_3, self.instrument_error_3, self.paths_3)
         if self.comboBox.currentIndex() == 3:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_hang_drop,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
+            self.activated_combobox_action(self.error_hang_drop, self.tabModel_4, self.instrument_error_4, self.paths_4)
         if self.comboBox.currentIndex() == 4:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_oscill_jet,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
+            self.activated_combobox_action(self.error_oscill_jet, self.tabModel_5, self.instrument_error_5, self.paths_5)
         if self.comboBox.currentIndex() == 5:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_rebinder,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
+            self.activated_combobox_action(self.error_rebinder, self.tabModel_6, self.instrument_error_6, self.paths_6)
         if self.comboBox.currentIndex() == 6:
-            self.pushButton_17.clicked.connect(
-                lambda: fb.print_error(error=self.error_drop_calc,
-                                       tB_conf_int=self.textBrowser_14,
-                                       tB_rel_err=self.textBrowser_15,
-                                       tB_sys_err_mes=self.textBrowser_30))
+            self.activated_combobox_action(self.error_drop_calc, self.tabModel_7, self.instrument_error_7, self.paths_7)
 
 
 
