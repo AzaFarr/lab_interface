@@ -33,8 +33,8 @@ class UiCore(MainWindow):
                       'capillary/data_base/r_1.txt',
                       'capillary/data_base/r_2.txt',
                       'capillary/data_base/delta_H.txt']
-        self.data_1 = []
-        self.instrument_error_1 = []
+        self.data_1 = ['0'] * len(self.header_1)
+        self.instrument_error_1 = ['0'] * (len(self.header_1) - 2)
         fb.clear_data_base(self.paths_1)
         self.tabModel_1 = Model(self.header_1)
         self.pushButton_3.clicked.connect(
@@ -69,8 +69,8 @@ class UiCore(MainWindow):
 
         #Du nui
         self.header_2 = ["№", "P", "R", "r", "ρ_α", "ρ_β", "Время"]
-        self.data_2 = []
-        self.instrument_error_2 = []
+        self.data_2 = ['0'] * len(self.header_2)
+        self.instrument_error_2 = ['0'] * (len(self.header_2) - 2)
         self.paths_2 = ['du_nui/data_base/P.txt',
                         'du_nui/data_base/R_ring.txt',
                         'du_nui/data_base/r_rod.txt',
@@ -111,8 +111,8 @@ class UiCore(MainWindow):
 
         #Vilhelmi
         self.header_3 = ["№", "l", "t", "h", "F", "φ", "ρ_α", "ρ_β", "Время"]
-        self.data_3 = []
-        self.instrument_error_3 = []
+        self.data_3 = ['0'] * len(self.header_3)
+        self.instrument_error_3 = ['0'] * (len(self.header_3) - 2)
         self.paths_3 = ['vilhelmi/data_base/l.txt',
                         'vilhelmi/data_base/t.txt',
                         'vilhelmi/data_base/h.txt',
@@ -159,8 +159,8 @@ class UiCore(MainWindow):
 
         #Hanging drop
         self.header_4 = ["№", "m_ср", "d", "Время"]
-        self.data_4 = []
-        self.instrument_error_4 = []
+        self.data_4 = ['0'] * len(self.header_4)
+        self.instrument_error_4 = ['0'] * (len(self.header_4) - 2)
         self.paths_4 = ['hanging_drop/data_base/m.txt',
                         'hanging_drop/data_base/d.txt']
         fb.clear_data_base(self.paths_4)
@@ -192,8 +192,8 @@ class UiCore(MainWindow):
 
         #Oscill jet
         self.header_5 = ["№", "ρ", "Q", "r_0", "λ", "Время"]
-        self.data_5 = []
-        self.instrument_error_5 = []
+        self.data_5 = ['0'] * len(self.header_5)
+        self.instrument_error_5 = ['0'] * (len(self.header_5) - 2)
         self.paths_5 = ['oscill_jet/data_base/rho.txt',
                         'oscill_jet/data_base/Q.txt',
                         'oscill_jet/data_base/r_0.txt',
@@ -231,8 +231,8 @@ class UiCore(MainWindow):
 
         #Rebinder
         self.header_6 = ["№", "r", "ΔP_max", "Время"]
-        self.data_6 = []
-        self.instrument_error_6 = []
+        self.data_6 = ['0'] * len(self.header_6)
+        self.instrument_error_6 = ['0'] * (len(self.header_6) - 2)
         self.paths_6 = ['rebinder/data_base/r.txt',
                         'rebinder/data_base/delta_P.txt']
         fb.clear_data_base(self.paths_6)
@@ -264,8 +264,8 @@ class UiCore(MainWindow):
 
         #Drops calc
         self.header_7 = ["№", "α_0", "ρ_0", "n_0", "ρ", "n", "Время"]
-        self.data_7 = []
-        self.instrument_error_7 = []
+        self.data_7 = ['0'] * len(self.header_7)
+        self.instrument_error_7 = ['0'] * (len(self.header_7) - 2)
         self.paths_7 = ['drops_calc/data_base/a_0.txt',
                         'drops_calc/data_base/rho_0.txt',
                         'drops_calc/data_base/n_0.txt',
@@ -311,13 +311,13 @@ class UiCore(MainWindow):
         self.alpha: float
         self.comboBox_2.activated.connect(self.get_alpha)
 
-        self.error_capillary = Error(function=capillary.formula.calculate)
-        self.error_dunui = Error(function=du_nui.formula.calculate)
-        self.error_vilhelmi = Error(function=vilhelmi.formula.calculate)
-        self.error_hang_drop = Error(function=hanging_drop.formula.calculate)
-        self.error_oscill_jet = Error(function=oscill_jet.formula.calculate)
-        self.error_rebinder = Error(function=rebinder.formula.calculate)
-        self.error_drop_calc = Error(function=drops_calc.formula.calculate)
+        self.error_capillary = Error(header=self.tabModel_1.header, function=capillary.formula.calculate)
+        self.error_dunui = Error(header=self.tabModel_2.header, function=du_nui.formula.calculate)
+        self.error_vilhelmi = Error(header=self.tabModel_3.header, function=vilhelmi.formula.calculate)
+        self.error_hang_drop = Error(header=self.tabModel_4.header, function=hanging_drop.formula.calculate)
+        self.error_oscill_jet = Error(header=self.tabModel_5.header, function=oscill_jet.formula.calculate)
+        self.error_rebinder = Error(header=self.tabModel_6.header, function=rebinder.formula.calculate)
+        self.error_drop_calc = Error(header=self.tabModel_7.header, function=drops_calc.formula.calculate)
 
         self.widget_graph.canvas.axes.set_ylabel("Относительная погрешность", color='#274E41')
         self.widget_graph.canvas.axes.tick_params(axis='x', labelcolor='#274E41', labelrotation=45, labelsize=8)
@@ -364,13 +364,7 @@ class UiCore(MainWindow):
 
     def activated_combobox_action(self, error: Error, tabModel: Model, instrument_error: list[str], dirPaths: list[str]):
         self.pushButton_17.clicked.connect(
-            lambda: fb.get_data_base(error.values, dirPaths))
-        self.pushButton_17.clicked.connect(
-            lambda: fb.let_transfer_data(error.tabModel, tabModel))
-        self.pushButton_17.clicked.connect(
-            lambda: fb.let_transfer_data(error.instrument_error, instrument_error))
-        self.pushButton_17.clicked.connect(
-            lambda: fb.let_transfer_data(error.alpha, self.alpha))
+            lambda: fb.update_data_error(error=error, dirPaths=dirPaths, instrument_error=instrument_error, n=tabModel.model.rowCount(), alpha=self.alpha))
         self.pushButton_17.clicked.connect(
             lambda: fb.print_error(error=error,
                                    tB_conf_int=self.textBrowser_14,

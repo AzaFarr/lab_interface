@@ -11,7 +11,7 @@ from typing import Callable
 
 class Error():
 
-    def __init__(self, function: Callable[[np.ndarray], float]):
+    def __init__(self, header: list[str], function: Callable[[np.ndarray], float]):
 
         """
             mean_value_array - array of mean measured physical values
@@ -23,15 +23,15 @@ class Error():
         """
 
 
-        self.function = function
-
-        self.tabModel: Model
+        self.header = header
         self.values = []
         self.instrument_error = []
         self.alpha: float = 0.2
-        self.n = self.tabModel.model.rowCount()
+        self.n: int = 0
 
-        self.size = len(self.tabModel.header) - 2
+        self.function = function
+
+        self.size = len(self.header) - 2
         self.sys_error_message: str = ''
 
         self.mean_value_array: np.ndarray = np.zeros(shape=self.size, dtype=float)
@@ -96,7 +96,6 @@ class Error():
                   0.8: 1.3, 0.9: 1.6, 0.95: 2.0, 0.98: 2.3, 0.99: 2.6}
         }
 
-        self.calculate()
 
 
     def calculate(self):
@@ -106,38 +105,40 @@ class Error():
             data = np.array(self.values, dtype=float)
             instrument_error = np.array(self.instrument_error, dtype=float)
 
-            print('start')
+            # print('start')
             self.mean_value_array = self.get_mean(data)
-            print('mean success')
+            print(self.mean_value_array)
+            # print('mean success')
             mean_variance = self.get_mean_variance(data)
-            print('variance success')
+            print(mean_variance)
             self.abs_err_value_array = self.get_absolute_error(mean_variance, instrument_error)
-            print('abs error success')
+            # print('abs error success')
 
             self.mean_value = self.function(self.mean_value_array)
-            print('success')
+            # print('success')
             self.abs_err_value = self.absolute_error_of_function(self.function)
-            print('success')
+            # print('success')
             self.rel_err_value = self.get_relative_error()
-            print('success')
+            # print('success')
 
         except Exception as e:
             print(e)
             self.sys_error_message = f'<html><body style="color: #D40D0D;"><p>Проверьте корректность ввода данных.</p><p>Ошибка: {e}</p></body></html>'
 
-    def get_student_coefficient(self, alpha):
-        return self.t_student[self.n][alpha]
+    def get_student_coefficient(self, n, alpha):
+        return self.t_student[n][alpha]
 
     def get_mean(self, data: np.ndarray):
-        return np.sum(a=data, axis=0) / self.n
+        return np.sum(a=data, axis=1) / self.n
 
     def get_mean_variance(self, data: np.ndarray):
-        return np.var(a=data, axis=0, ddof=1) / self.n
+        return np.var(a=data, axis=1, ddof=1) / self.n
 
     def get_absolute_error(self, mean_variance: np.ndarray, instrument_error: np.ndarray):
-        abs_err_squared = (pow(self.get_student_coefficient(self.alpha) * mean_variance, 2) +
-                           pow(self.get_student_coefficient(121) * instrument_error / 3, 2))
-        return pow(abs_err_squared, 0.5)
+        abs_err_squared = ((pow(self.get_student_coefficient(self.n, self.alpha), 2) * mean_variance) +
+                           pow(self.get_student_coefficient(121, self.alpha) * instrument_error / 3, 2))
+        abs_err = pow(abs_err_squared, 0.5)
+        return abs_err
 
     def get_relative_error(self):
         return self.abs_err_value / self.mean_value
@@ -146,10 +147,14 @@ class Error():
     def absolute_error_of_function(self, function):
         def f_vec(x):
             res = np.apply_along_axis(function, 0, x)
+            print(res[np.newaxis, :])
             return res[np.newaxis, :]
 
         abs_err_squared = 0
         diff = sp.differentiate.jacobian(f_vec, self.mean_value_array).df[0]
+        # diff = sp.differentiate.jacobian(function, self.mean_value_array).df
+        print('diff = ', diff)
+        print('abs_err_array = ', self.abs_err_value_array)
 
         for i in range(self.size):
             abs_err_squared += pow(diff[i], 2) * pow(self.abs_err_value_array[i], 2)

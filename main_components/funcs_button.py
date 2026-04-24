@@ -30,6 +30,12 @@ def get_data_base(content: list[list[str]], dirPaths: list[str]):
 def let_transfer_data(content, data):
     content = data
 
+def update_data_error(error: Error, dirPaths: list[str], instrument_error: list[str], n: int, alpha: float):
+    get_data_base(error.values, dirPaths)
+    error.instrument_error = instrument_error
+    error.n = n
+    error.alpha = alpha
+
 
 def obtain_data(data, *lineEdits):
     del data[:]
@@ -61,10 +67,11 @@ def print_error(error: Error,
                 tB_rel_err: QtWidgets.QTextBrowser,
                 tB_sys_err_mes: QtWidgets.QTextBrowser):
 
+    error.calculate()
     tB_sys_err_mes.setHtml(error.sys_error_message)
 
     try:
-        tB_conf_int.setText(f"{error.mean_value:.2f} ± {error.abs_err_value:.2f}  [Н / м]")
+        tB_conf_int.setText(f"{error.mean_value:.5f} ± {error.abs_err_value:.5f}  [Н / м]")
         tB_rel_err.setText(f"{error.rel_err_value:.4f}  д.ед.")
     except Exception as e:
         tB_conf_int.setText("")
