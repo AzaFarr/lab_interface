@@ -147,11 +147,10 @@ class Error():
     def absolute_error_of_function(self, function):
         def f_vec(x):
             res = np.apply_along_axis(function, 0, x)
-            print(res[np.newaxis, :])
-            return res[np.newaxis, :]
+            return res
 
         abs_err_squared = 0
-        diff = sp.differentiate.jacobian(f_vec, self.mean_value_array).df[0]
+        diff = sp.differentiate.jacobian(f_vec, self.mean_value_array, initial_step=1e-6).df
         # diff = sp.differentiate.jacobian(function, self.mean_value_array).df
         print('diff = ', diff)
         print('abs_err_array = ', self.abs_err_value_array)
