@@ -150,7 +150,7 @@ class Error():
             return res
 
         abs_err_squared = 0
-        diff = sp.differentiate.jacobian(f_vec, self.mean_value_array, initial_step=1e-6).df
+        diff = sp.differentiate.jacobian(f_vec, self.mean_value_array, initial_step=1e-7).df
         # diff = sp.differentiate.jacobian(function, self.mean_value_array).df
         print('diff = ', diff)
         print('abs_err_array = ', self.abs_err_value_array)

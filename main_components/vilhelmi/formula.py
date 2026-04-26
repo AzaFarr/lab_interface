@@ -1,10 +1,20 @@
 import numpy as np
 import scipy as sp
+import math as m
 
 
 def calculate(mean_value_array: np.ndarray):
+    """если нижняя грань пластины располагается
+       на уровне горизонта жидкости, то вводить
+               rho_alpha = pho_beta
 
-    rho, r_1, r_2, delta_H = mean_value_array[0], mean_value_array[1], mean_value_array[2], mean_value_array[3]
+       если пластина располагается выше/ниже
+       горизонта жидкости, то:
+           * ниже горизонта => h<0
+           * выше горизонта => h>0
+    """
+
+    l, t, h, F, phi, rho_alpha, rho_beta = mean_value_array[0], mean_value_array[1], mean_value_array[2], mean_value_array[3], mean_value_array[4], mean_value_array[5], mean_value_array[6]
     g = sp.constants.g
 
-    return (rho * g * r_1 * r_2 * delta_H) / (2 * (r_2 - r_1))
+    return (F + t * l * h * (rho_alpha - rho_beta) * g) / (2 * l * m.cos(phi))

@@ -4,7 +4,9 @@ import scipy as sp
 
 def calculate(mean_value_array: np.ndarray):
 
-    rho, r_1, r_2, delta_H = mean_value_array[0], mean_value_array[1], mean_value_array[2], mean_value_array[3]
+    rho, Q, r_o, lambdae = mean_value_array[0], mean_value_array[1], mean_value_array[2], mean_value_array[3]
     g = sp.constants.g
 
-    return (rho * g * r_1 * r_2 * delta_H) / (2 * (r_2 - r_1))
+    return (2 * rho * (Q ** 2)) / (3 * r_o * (lambdae ** 2))
+
+#[1000 0.000031 0.01, 0.03]

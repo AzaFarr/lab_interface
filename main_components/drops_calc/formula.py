@@ -1,10 +1,10 @@
 import numpy as np
-import scipy as sp
 
 
 def calculate(mean_value_array: np.ndarray):
 
-    rho, r_1, r_2, delta_H = mean_value_array[0], mean_value_array[1], mean_value_array[2], mean_value_array[3]
-    g = sp.constants.g
+    alpha_o, rho_o, n_o, rho, n = mean_value_array[0], mean_value_array[1], mean_value_array[2], mean_value_array[3], mean_value_array[4]
 
-    return (rho * g * r_1 * r_2 * delta_H) / (2 * (r_2 - r_1))
+    return (alpha_o * rho * n_o) / (n * rho_o)
+
+

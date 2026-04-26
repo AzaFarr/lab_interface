@@ -4,7 +4,10 @@ import scipy as sp
 
 def calculate(mean_value_array: np.ndarray):
 
-    rho, r_1, r_2, delta_H = mean_value_array[0], mean_value_array[1], mean_value_array[2], mean_value_array[3]
+    m_mean, d = mean_value_array[0], mean_value_array[1]
     g = sp.constants.g
+    pi = sp.constants.pi
 
-    return (rho * g * r_1 * r_2 * delta_H) / (2 * (r_2 - r_1))
+    return (m_mean * g) / (d * pi)
+
+# [0.000219 0.0094]
