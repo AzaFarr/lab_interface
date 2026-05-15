@@ -2,7 +2,6 @@ from PyQt5 import QtWidgets, uic
 
 import numpy as np
 
-from analytical_solution import Analyt
 from FVM.TDMA_solver.tdma import tdma_algorithm
 
 
@@ -14,14 +13,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
         uic.loadUi('interface.ui', self)
 
-        self.T_analytical_solution: np.ndarray
         self.T_numerical_solution: np.ndarray
-        self.X_an: np.ndarray
         self.X_num: np.ndarray
 
-        self.pushButton.clicked.connect(self.solve_analytical)
         self.pushButton_3.clicked.connect(self.solve_numerical)
-        self.pushButton_3.setDisabled(False)
         self.pushButton_2.clicked.connect(self.plot_data)
 
 
@@ -38,40 +33,27 @@ class MainWindow(QtWidgets.QMainWindow):
         self.widget_graph.canvas.draw()
 
 
-    def solve_analytical(self):
-        Length: float = float(self.lineEdit.text())
-        N: int = int(self.lineEdit_4.text())
-
-        T_right: float = float(self.lineEdit_3.text())
-        T_left: float = float(self.lineEdit_2.text())
-        n: float = float(self.lineEdit_5.text())
-
-        solution: np.ndarray = np.zeros(shape=N, dtype=float)
-
-        _ = Analyt(T_right, T_left, Length, N, n)
-        _.analytical_formula(T=solution)
-        print('task is solved')
-
-        self.T_analytical_solution = solution
-        self.X_an = _.x
-
 
     def solve_numerical(self):
         Length: float = float(self.lineEdit.text())
-        N: int = int(self.lineEdit_4.text())
-        dx = Length / N
+        Height: float = float(self.lineEdit_6.text())
+        Nx: int = int(self.lineEdit_4.text())
+        Ny: int = int(self.lineEdit_8.text())
+        dx = Length / Nx
+        dy = Height / Ny
 
-        T_right: float = float(self.lineEdit_3.text())
-        T_left: float = float(self.lineEdit_2.text())
-        n: float = float(self.lineEdit_5.text())
-        q = 0
-        k = 1
+        T_bound: float = float(self.lineEdit_3.text())
+        q: float = float(self.lineEdit_5.text())
+        k: float = float(self.lineEdit_7.text())
 
-        a_p: np.ndarray = np.ones(shape=N, dtype=float)
-        a_w: np.ndarray = np.zeros(shape=N, dtype=float)
-        a_e: np.ndarray = np.zeros(shape=N, dtype=float)
-        b: np.ndarray = np.zeros(shape=N, dtype=float)
-        solution: np.ndarray = np.zeros(shape=N, dtype=float)
+        a_p: np.ndarray = np.ones(shape=(Nx, Ny), dtype=float)
+        a_w: np.ndarray = np.zeros(shape=(Nx, Ny), dtype=float)
+        a_e: np.ndarray = np.zeros(shape=(Nx, Ny), dtype=float)
+        b: np.ndarray = np.zeros(shape=(Nx, Ny), dtype=float)
+        solution_new: np.ndarray = np.ones(shape=(Nx, Ny), dtype=float)
+        solution_old: np.ndarray = np.ones(shape=(Nx, Ny), dtype=float)
+
+        error: float = 0.0001
 
         a_p[0] = 3 + (n * dx) ** 2
         a_w[0] = 0
@@ -83,14 +65,21 @@ class MainWindow(QtWidgets.QMainWindow):
         a_e[N - 1] = 0
         b[N - 1] = (dx * q / k) + (n * dx) ** 2 * T_right
 
-        for i in range(1, N - 1):
-            a_p[i] = 2 + (n * dx) ** 2
-            a_w[i] = 1
-            a_e[i] = 1
-            b[i] = (n * dx) ** 2 * T_right
-
-
-        tdma_algorithm(a_p, -a_e, -a_w, b, N, solution)
+        while pow(solution_old - solution_new, 2) > error:
+            for i in range(1, Nx - 1):
+                for j in range(1, Ny - 1):
+                    a_p[i][j] =
+                    a_w[i][j] =
+                    a_e[i][j] =
+                    b[i][j] =
+                tdma_algorithm(a_p, -a_e, -a_w, b, Ny, solution_new[i])
+            for j in range(1, Ny - 1):
+                for i in range(1, Nx - 1):
+                    a_p[j][i] =
+                    a_w[j][i] =
+                    a_e[j][i] =
+                    b[j][i] =
+                tdma_algorithm(a_p, -a_e, -a_w, b, Nx, solution_new[j])
 
         M = N + 2
         self.T_numerical_solution = np.zeros(shape = M)
